@@ -11,10 +11,15 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let dataController = DataController(modelName: "DepartingEarthDataModel")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        dataController.load { (description) in
+            print("Loaded store from CoreData")
+        }
+        
+        
         return true
     }
 

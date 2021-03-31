@@ -13,53 +13,65 @@ class LaunchLibraryApiClient {
     var test = "Test"
     
     enum Endpoint {
-        //MARK: URL Components
-        private static let apiUrl = "https://ll.thespacedevs.com/2.0.0/"
+        //MARK: URL Components - Base API
+        //Provides acctual data but throttled. Use in release and real world testing.
+        //private static let apiUrl = "https://ll.thespacedevs.com/2.0.0/"
+        //Provides Stale data but not throttled. Use when building and testing
+        private static let apiUrl = "https://lldev.thespacedevs.com/2.0.0/"
         private static let responseAsJson = "?format=json"
+        
+        //MARK: URL Components - Request Types
         private static let launches = "launch/"
+        private static let upcomingLaunches = "launch/upcoming/"
+        
+        //MARK: URL Components - Filters and Ordering
+        private static let first50 = "&limit=50&offset=0"
         
         //MARK: Endpoint Cases
-        case getLaunches
+        case getUpcomingLaunches
         
         //MARK: URL Construction
-        var url: URL? { return URL(string: urlString) }
+        var url: URL { return URL(string: urlString)! }
         
         private var urlString: String {
             switch self {
-            case .getLaunches:
-                return Endpoint.apiUrl + Endpoint.launches + Endpoint.responseAsJson
+            case .getUpcomingLaunches:
+                return Endpoint.apiUrl + Endpoint.upcomingLaunches + Endpoint.responseAsJson + Endpoint.first50
             }
         }
     }
     
     //MARK: Get Request
-    class func getLaunches(completion: @escaping ([LaunchInfo]?, Error?) -> Void) {
-        guard let url = Endpoint.getLaunches.url else {
-            print("Endpoint does not provide a valid URL")
-            return
-        }
+    class func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?, URLResponse?) -> Void) {
+        let url = Endpoint.getUpcomingLaunches.url
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
-            //TODO: Add error handling
+            
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(nil, error, response)
                 }
                 return
             }
             
             guard let data = data else {
-                print("No data returned from request")
-                return
-            }
-            let decoder = JSONDecoder()
-            guard let jsonData = try? decoder.decode(LaunchLibraryApiResponse.self, from: data) else {
-                print("Unable to Decoding JSON from data to LaunchLibraryResponse")
+                DispatchQueue.main.async {
+                    completion(nil, error, response)
+                }
                 return
             }
             
-            DispatchQueue.main.async {
-                completion(jsonData.results, nil)
+            let decoder = JSONDecoder()
+            do {
+                let jsonData = try decoder.decode(LaunchLibraryApiResponse.self, from: data)
+                DispatchQueue.main.async {
+                    completion(jsonData.results, nil, nil)
+                }
+            } catch {
+                print("JSON Decoding Failed: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil, error, response)
+                }
             }
         }
         task.resume()
