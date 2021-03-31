@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */; };
+		1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */; };
+		1F2B21442614C5E1001A940D /* ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21432614C5E1001A940D /* ModelHelpers.swift */; };
+		1F2B21492614CBD6001A940D /* UpcomingCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */; };
 		1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F41D326147B97000B9CD9 /* DataController.swift */; };
 		1F581FD826138584004AA80B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD726138584004AA80B /* AppDelegate.swift */; };
 		1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD926138584004AA80B /* SceneDelegate.swift */; };
@@ -17,7 +21,6 @@
 		1F581FF226138585004AA80B /* Departing_EarthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FF126138585004AA80B /* Departing_EarthTests.swift */; };
 		1F581FFD26138585004AA80B /* Departing_EarthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */; };
 		1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */; };
-		1F58201926138F62004AA80B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58201826138F62004AA80B /* TestViewController.swift */; };
 		1F58202926147104004AA80B /* LaunchLibraryApiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchesCollectionViewController.swift; sourceTree = "<group>"; };
+		1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchCell.swift; sourceTree = "<group>"; };
+		1F2B21432614C5E1001A940D /* ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelpers.swift; sourceTree = "<group>"; };
+		1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCollectionHeaderView.swift; sourceTree = "<group>"; };
 		1F4F41D326147B97000B9CD9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		1F581FD426138584004AA80B /* Departing Earth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departing Earth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F581FD726138584004AA80B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +62,6 @@
 		1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departing_EarthUITests.swift; sourceTree = "<group>"; };
 		1F581FFE26138585004AA80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiClient.swift; sourceTree = "<group>"; };
-		1F58201826138F62004AA80B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiResponses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +90,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F2B21382614B9B9001A940D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F58201626138BFB004AA80B /* Storyboards */,
+				1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */,
+				1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F4F41D826147CD0000B9CD9 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +135,7 @@
 				1F4F41D826147CD0000B9CD9 /* App */,
 				1F58201526138BEC004AA80B /* API Clients */,
 				1F58201726138C13004AA80B /* Model */,
-				1F58201626138BFB004AA80B /* Storyboards */,
+				1F2B21382614B9B9001A940D /* View */,
 				1F58201D26138F8C004AA80B /* Controllers */,
 				1F581FE326138585004AA80B /* Assets.xcassets */,
 				1F581FE826138585004AA80B /* Info.plist */,
@@ -168,6 +184,7 @@
 			children = (
 				1F581FE026138584004AA80B /* DepartingEarthDataModel.xcdatamodeld */,
 				1F4F41D326147B97000B9CD9 /* DataController.swift */,
+				1F2B21432614C5E1001A940D /* ModelHelpers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,7 +192,7 @@
 		1F58201D26138F8C004AA80B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1F58201826138F62004AA80B /* TestViewController.swift */,
+				1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,10 +327,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */,
 				1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */,
-				1F58201926138F62004AA80B /* TestViewController.swift in Sources */,
+				1F2B21492614CBD6001A940D /* UpcomingCollectionHeaderView.swift in Sources */,
 				1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */,
 				1F581FE226138584004AA80B /* DepartingEarthDataModel.xcdatamodeld in Sources */,
+				1F2B21442614C5E1001A940D /* ModelHelpers.swift in Sources */,
+				1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */,
 				1F581FD826138584004AA80B /* AppDelegate.swift in Sources */,
 				1F58202926147104004AA80B /* LaunchLibraryApiResponses.swift in Sources */,
 				1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */,
