@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		1F581FD826138584004AA80B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD726138584004AA80B /* AppDelegate.swift */; };
 		1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD926138584004AA80B /* SceneDelegate.swift */; };
-		1F581FDC26138584004AA80B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FDB26138584004AA80B /* ViewController.swift */; };
 		1F581FDF26138584004AA80B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F581FDD26138584004AA80B /* Main.storyboard */; };
 		1F581FE226138584004AA80B /* Departing_Earth.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FE026138584004AA80B /* Departing_Earth.xcdatamodeld */; };
 		1F581FE426138585004AA80B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F581FE326138585004AA80B /* Assets.xcassets */; };
 		1F581FE726138585004AA80B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F581FE526138585004AA80B /* LaunchScreen.storyboard */; };
 		1F581FF226138585004AA80B /* Departing_EarthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FF126138585004AA80B /* Departing_EarthTests.swift */; };
 		1F581FFD26138585004AA80B /* Departing_EarthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */; };
+		1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */; };
+		1F58201926138F62004AA80B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58201826138F62004AA80B /* TestViewController.swift */; };
+		1F58202926147104004AA80B /* LaunchLibraryApiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 		1F581FD426138584004AA80B /* Departing Earth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departing Earth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F581FD726138584004AA80B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F581FD926138584004AA80B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1F581FDB26138584004AA80B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1F581FDE26138584004AA80B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F581FE126138584004AA80B /* Departing_Earth.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Departing_Earth.xcdatamodel; sourceTree = "<group>"; };
 		1F581FE326138585004AA80B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +52,9 @@
 		1F581FF826138585004AA80B /* Departing EarthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Departing EarthUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departing_EarthUITests.swift; sourceTree = "<group>"; };
 		1F581FFE26138585004AA80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiClient.swift; sourceTree = "<group>"; };
+		1F58201826138F62004AA80B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiResponses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +107,12 @@
 			children = (
 				1F581FD726138584004AA80B /* AppDelegate.swift */,
 				1F581FD926138584004AA80B /* SceneDelegate.swift */,
-				1F581FDB26138584004AA80B /* ViewController.swift */,
-				1F581FDD26138584004AA80B /* Main.storyboard */,
+				1F58201526138BEC004AA80B /* API Clients */,
+				1F58201726138C13004AA80B /* Model */,
+				1F58201626138BFB004AA80B /* Storyboards */,
+				1F58201D26138F8C004AA80B /* Controllers */,
 				1F581FE326138585004AA80B /* Assets.xcassets */,
-				1F581FE526138585004AA80B /* LaunchScreen.storyboard */,
 				1F581FE826138585004AA80B /* Info.plist */,
-				1F581FE026138584004AA80B /* Departing_Earth.xcdatamodeld */,
 			);
 			path = "Departing Earth";
 			sourceTree = "<group>";
@@ -129,6 +133,40 @@
 				1F581FFE26138585004AA80B /* Info.plist */,
 			);
 			path = "Departing EarthUITests";
+			sourceTree = "<group>";
+		};
+		1F58201526138BEC004AA80B /* API Clients */ = {
+			isa = PBXGroup;
+			children = (
+				1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */,
+				1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */,
+			);
+			path = "API Clients";
+			sourceTree = "<group>";
+		};
+		1F58201626138BFB004AA80B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1F581FDD26138584004AA80B /* Main.storyboard */,
+				1F581FE526138585004AA80B /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		1F58201726138C13004AA80B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F581FE026138584004AA80B /* Departing_Earth.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F58201D26138F8C004AA80B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1F58201826138F62004AA80B /* TestViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +299,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F581FDC26138584004AA80B /* ViewController.swift in Sources */,
+				1F58201926138F62004AA80B /* TestViewController.swift in Sources */,
+				1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */,
 				1F581FE226138584004AA80B /* Departing_Earth.xcdatamodeld in Sources */,
 				1F581FD826138584004AA80B /* AppDelegate.swift in Sources */,
+				1F58202926147104004AA80B /* LaunchLibraryApiResponses.swift in Sources */,
 				1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
