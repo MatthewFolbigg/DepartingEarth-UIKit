@@ -15,6 +15,7 @@ class ModelHelpers {
         let launchProvider = LaunchProvider(context: context)
         let rocket = Rocket(context: context)
         launch.name = launchInfo.name
+        launch.netDate = launchInfo.noEarlierThan
         launchProvider.name = launchInfo.launchServiceProvider.name
         launchProvider.type = launchInfo.launchServiceProvider.type
         rocket.name = launchInfo.rocket.configuration.name
@@ -25,4 +26,5 @@ class ModelHelpers {
         return launch
     }
     
+  
 }

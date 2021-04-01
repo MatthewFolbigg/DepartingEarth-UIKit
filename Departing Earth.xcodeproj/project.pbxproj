@@ -11,6 +11,7 @@
 		1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */; };
 		1F2B21442614C5E1001A940D /* ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21432614C5E1001A940D /* ModelHelpers.swift */; };
 		1F2B21492614CBD6001A940D /* UpcomingCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */; };
+		1F2B21542614EBA9001A940D /* LaunchDateTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21532614EBA9001A940D /* LaunchDateTimes.swift */; };
 		1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F41D326147B97000B9CD9 /* DataController.swift */; };
 		1F581FD826138584004AA80B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD726138584004AA80B /* AppDelegate.swift */; };
 		1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD926138584004AA80B /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchCell.swift; sourceTree = "<group>"; };
 		1F2B21432614C5E1001A940D /* ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelpers.swift; sourceTree = "<group>"; };
 		1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCollectionHeaderView.swift; sourceTree = "<group>"; };
+		1F2B21532614EBA9001A940D /* LaunchDateTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDateTimes.swift; sourceTree = "<group>"; };
 		1F4F41D326147B97000B9CD9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		1F581FD426138584004AA80B /* Departing Earth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departing Earth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F581FD726138584004AA80B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				1F581FE026138584004AA80B /* DepartingEarthDataModel.xcdatamodeld */,
 				1F4F41D326147B97000B9CD9 /* DataController.swift */,
 				1F2B21432614C5E1001A940D /* ModelHelpers.swift */,
+				1F2B21532614EBA9001A940D /* LaunchDateTimes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2B21542614EBA9001A940D /* LaunchDateTimes.swift in Sources */,
 				1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */,
 				1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */,
 				1F2B21492614CBD6001A940D /* UpcomingCollectionHeaderView.swift in Sources */,

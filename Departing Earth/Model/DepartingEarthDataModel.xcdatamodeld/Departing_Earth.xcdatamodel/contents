@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Launch" representedClassName="Launch" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="netDate" optional="YES" attributeType="String"/>
         <relationship name="launchProvider" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchProvider" inverseName="launch" inverseEntity="LaunchProvider"/>
         <relationship name="rocket" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launch" inverseEntity="Rocket"/>
     </entity>
@@ -17,7 +18,7 @@
         <relationship name="launch" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="Launch" positionX="-504.6484375" positionY="-62.53515625" width="153.72265625" height="74"/>
+        <element name="Launch" positionX="-504.6484375" positionY="-62.53515625" width="153.72265625" height="89"/>
         <element name="LaunchProvider" positionX="-150.71875" positionY="-117.7421875" width="128" height="74"/>
         <element name="Rocket" positionX="-152.93359375" positionY="-20.75" width="128" height="103"/>
     </elements>

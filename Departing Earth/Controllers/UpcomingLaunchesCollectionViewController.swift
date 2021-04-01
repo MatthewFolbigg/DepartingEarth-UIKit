@@ -33,7 +33,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             self.collectionView.reloadData()
         }
     }
-    
+        
 }
 
 //MARK: CollectionView Delegate and DataSource
@@ -64,7 +64,12 @@ extension UpcomingLaunchesCollectionViewController {
         }
     }
     
-    //MARK: Cell/Header UI Style and Content
+}
+
+//MARK: Cells and Supplementary Views
+extension UpcomingLaunchesCollectionViewController {
+    
+    //MARK: Cells
     func setStyleFor(cell: UpcomingLaunchCell) -> UpcomingLaunchCell {
         cell.backgroundColor = .systemGray5
         cell.layer.cornerRadius = 15
@@ -72,22 +77,22 @@ extension UpcomingLaunchesCollectionViewController {
         return cell
     }
     
-    func setUpcomingHeaderStyle(for view: UpcomingCollectionHeaderView) -> UpcomingCollectionHeaderView {
-        view.title.text = "Departing Soon..."
-        view.titleLeadingContraint.constant = cellSideInsetAmount
-        view.titleTrailingContraint.constant = cellSideInsetAmount
-        return view
-    }
-    
-    //MARK: Cell Content
     func setContentFor(cell: UpcomingLaunchCell, atRow row: Int) -> UpcomingLaunchCell {
         let launch = launches[row]
         cell.rocketNameLabel.text = launch.rocket?.name
         cell.launchProviderNameLabel.text = launch.launchProvider?.name
         cell.launchProviderTypeLabel.text = launch.launchProvider?.type
+        cell.launchDateLabel.text = LaunchDateTimes.deafultNetDateFormatFor(launch: launch)
         return cell
     }
     
+    //MARK: Headers
+    func setUpcomingHeaderStyle(for view: UpcomingCollectionHeaderView) -> UpcomingCollectionHeaderView {
+        view.title.text = "Departing Soon"
+        view.titleLeadingContraint.constant = cellSideInsetAmount
+        view.titleTrailingContraint.constant = cellSideInsetAmount
+        return view
+    }
 }
 
 //MARK: CollectionView FlowLayout

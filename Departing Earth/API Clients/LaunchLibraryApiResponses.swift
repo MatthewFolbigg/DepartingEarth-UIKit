@@ -18,12 +18,16 @@ struct LaunchInfo: Codable {
     let rocket: RocketLaunching
     let mission: Mission?
     let launchServiceProvider: LaunchServiceProvider
+    let noEarlierThan: String
+    let launchStatus: LaunchStatus
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case rocket = "rocket"
         case mission = "mission"
         case launchServiceProvider = "launch_service_provider"
+        case noEarlierThan = "net"
+        case launchStatus = "status"
     }
 }
 
@@ -55,4 +59,9 @@ struct Mission: Codable {
 struct Orbit: Codable {
     let name: String
     let abbrev: String
+}
+
+struct LaunchStatus: Codable {
+    let id: Int
+    let name: String
 }

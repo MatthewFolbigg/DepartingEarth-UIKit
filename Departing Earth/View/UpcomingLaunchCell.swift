@@ -12,4 +12,5 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var rocketNameLabel: UILabel!
     @IBOutlet var launchProviderNameLabel: UILabel!
     @IBOutlet var launchProviderTypeLabel: UILabel!
+    @IBOutlet var launchDateLabel: UILabel!
 }

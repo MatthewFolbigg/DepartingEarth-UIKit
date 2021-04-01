@@ -43,9 +43,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provider Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fr-X0-0XH">
-                                            <rect key="frame" x="25" y="75" width="96.5" height="19.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
-                                            <color key="textColor" systemColor="systemIndigoColor"/>
+                                            <rect key="frame" x="25" y="75" width="103" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                            <color key="textColor" systemColor="systemOrangeColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00/00/00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRt-50-Wte">
+                                            <rect key="frame" x="317" y="74" width="72" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -57,12 +63,15 @@
                                         <constraint firstItem="Zju-sy-Dtl" firstAttribute="leading" secondItem="rm2-0D-WBe" secondAttribute="leading" constant="25" id="GOa-AJ-Oxu"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2fr-X0-0XH" secondAttribute="trailing" constant="20" symbolic="YES" id="PZY-dP-XI4"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zju-sy-Dtl" secondAttribute="trailing" constant="20" symbolic="YES" id="WV0-MM-PLB"/>
+                                        <constraint firstAttribute="trailing" secondItem="tRt-50-Wte" secondAttribute="trailing" constant="25" id="Wqj-hs-SRe"/>
                                         <constraint firstItem="2fr-X0-0XH" firstAttribute="top" secondItem="JMa-yw-lPB" secondAttribute="bottom" constant="5" id="dg5-Eb-GED"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JMa-yw-lPB" secondAttribute="trailing" constant="20" symbolic="YES" id="edL-va-Rgo"/>
+                                        <constraint firstItem="tRt-50-Wte" firstAttribute="centerY" secondItem="2fr-X0-0XH" secondAttribute="centerY" id="nph-Hf-pM6"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="414" height="120"/>
                                 <connections>
+                                    <outlet property="launchDateLabel" destination="tRt-50-Wte" id="1cS-lc-U1K"/>
                                     <outlet property="launchProviderNameLabel" destination="JMa-yw-lPB" id="CUK-x4-34g"/>
                                     <outlet property="launchProviderTypeLabel" destination="2fr-X0-0XH" id="4PX-3t-vHe"/>
                                     <outlet property="rocketNameLabel" destination="Zju-sy-Dtl" id="kwI-ix-cXs"/>
@@ -116,9 +125,6 @@
         <image name="flame.fill" catalog="system" width="108" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
