@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AgencyLogo" representedClassName="AgencyLogo" syncable="YES" codeGenerationType="class">
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <relationship name="agency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="logo" inverseEntity="LaunchAgency"/>
+    </entity>
     <entity name="Launch" representedClassName="Launch" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="netDate" optional="YES" attributeType="String"/>
-        <relationship name="launchProvider" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchProvider" inverseName="launch" inverseEntity="LaunchProvider"/>
+        <relationship name="launchProvider" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="launch" inverseEntity="LaunchAgency"/>
         <relationship name="rocket" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launch" inverseEntity="Rocket"/>
     </entity>
-    <entity name="LaunchProvider" representedClassName="LaunchProvider" syncable="YES" codeGenerationType="class">
+    <entity name="LaunchAgency" representedClassName="LaunchAgency" syncable="YES" codeGenerationType="class">
+        <attribute name="abbreviation" optional="YES" attributeType="String"/>
+        <attribute name="agencyId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="logoUrl" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
-        <relationship name="launch" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="launchProvider" inverseEntity="Launch"/>
+        <relationship name="launch" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="launchProvider" inverseEntity="Launch"/>
+        <relationship name="logo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AgencyLogo" inverseName="agency" inverseEntity="AgencyLogo"/>
     </entity>
     <entity name="Rocket" representedClassName="Rocket" syncable="YES" codeGenerationType="class">
         <attribute name="family" optional="YES" attributeType="String"/>
@@ -18,8 +26,9 @@
         <relationship name="launch" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="Launch" positionX="-504.6484375" positionY="-62.53515625" width="153.72265625" height="89"/>
-        <element name="LaunchProvider" positionX="-150.71875" positionY="-117.7421875" width="128" height="74"/>
-        <element name="Rocket" positionX="-152.93359375" positionY="-20.75" width="128" height="103"/>
+        <element name="Launch" positionX="-888.09765625" positionY="-60.91796875" width="153.72265625" height="89"/>
+        <element name="LaunchAgency" positionX="-597.98046875" positionY="-223.6015625" width="128" height="148"/>
+        <element name="Rocket" positionX="-589.0625" positionY="40.90625" width="128" height="103"/>
+        <element name="AgencyLogo" positionX="-406.7578125" positionY="-149.1484375" width="128" height="73"/>
     </elements>
 </model>

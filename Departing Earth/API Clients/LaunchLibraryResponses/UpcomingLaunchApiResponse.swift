@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: Response Array
-struct LaunchLibraryApiResponse: Codable {
+struct UpcomingLaunchApiResponse: Codable {
     let results: [LaunchInfo]
 }
 
@@ -35,6 +35,7 @@ struct LaunchInfo: Codable {
 struct LaunchServiceProvider: Codable {
     let name: String
     let type: String?
+    let id: Int
 }
 
 //MARK: Rocket

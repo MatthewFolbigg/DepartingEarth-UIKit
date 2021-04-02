@@ -7,24 +7,26 @@
 
 import Foundation
 import CoreData
+import UIKit
 
-class ModelHelpers {
+class LaunchHelper {
     
-    class func createLaunchObjectFrom(launchInfo: LaunchInfo, context: NSManagedObjectContext) -> Launch {
+    static func createLaunchObjectFrom(launchInfo: LaunchInfo, context: NSManagedObjectContext, completion: @escaping (Launch) -> Void){
         let launch = Launch(context: context)
-        let launchProvider = LaunchProvider(context: context)
         let rocket = Rocket(context: context)
         launch.name = launchInfo.name
         launch.netDate = launchInfo.noEarlierThan
-        launchProvider.name = launchInfo.launchServiceProvider.name
-        launchProvider.type = launchInfo.launchServiceProvider.type
         rocket.name = launchInfo.rocket.configuration.name
         rocket.family = launchInfo.rocket.configuration.family
         rocket.variant = launchInfo.rocket.configuration.variant
         launch.rocket = rocket
-        launch.launchProvider = launchProvider
-        return launch
+        
+        AgencyHelper.getAgencyForId(id: launchInfo.launchServiceProvider.id, context: context, completion: { (agency) in
+            launch.launchProvider = agency
+            try? context.save()
+            completion(launch)
+        })
     }
     
-  
 }
+

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F03A44826179697005CB48C /* AgencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03A44726179697005CB48C /* AgencyHelper.swift */; };
+		1F03A45026179D85005CB48C /* AgencyDetailAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F03A44F26179D85005CB48C /* AgencyDetailAPIResponse.swift */; };
 		1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */; };
 		1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */; };
-		1F2B21442614C5E1001A940D /* ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21432614C5E1001A940D /* ModelHelpers.swift */; };
+		1F2B21442614C5E1001A940D /* LaunchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21432614C5E1001A940D /* LaunchHelper.swift */; };
 		1F2B21492614CBD6001A940D /* UpcomingCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */; };
-		1F2B21542614EBA9001A940D /* LaunchDateTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21532614EBA9001A940D /* LaunchDateTimes.swift */; };
+		1F2B21542614EBA9001A940D /* LaunchDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21532614EBA9001A940D /* LaunchDateTime.swift */; };
 		1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F41D326147B97000B9CD9 /* DataController.swift */; };
 		1F581FD826138584004AA80B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD726138584004AA80B /* AppDelegate.swift */; };
 		1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD926138584004AA80B /* SceneDelegate.swift */; };
@@ -22,7 +24,7 @@
 		1F581FF226138585004AA80B /* Departing_EarthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FF126138585004AA80B /* Departing_EarthTests.swift */; };
 		1F581FFD26138585004AA80B /* Departing_EarthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */; };
 		1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */; };
-		1F58202926147104004AA80B /* LaunchLibraryApiResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */; };
+		1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F03A44726179697005CB48C /* AgencyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyHelper.swift; sourceTree = "<group>"; };
+		1F03A44F26179D85005CB48C /* AgencyDetailAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencyDetailAPIResponse.swift; sourceTree = "<group>"; };
 		1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchesCollectionViewController.swift; sourceTree = "<group>"; };
 		1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchCell.swift; sourceTree = "<group>"; };
-		1F2B21432614C5E1001A940D /* ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHelpers.swift; sourceTree = "<group>"; };
+		1F2B21432614C5E1001A940D /* LaunchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchHelper.swift; sourceTree = "<group>"; };
 		1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCollectionHeaderView.swift; sourceTree = "<group>"; };
-		1F2B21532614EBA9001A940D /* LaunchDateTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDateTimes.swift; sourceTree = "<group>"; };
+		1F2B21532614EBA9001A940D /* LaunchDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDateTime.swift; sourceTree = "<group>"; };
 		1F4F41D326147B97000B9CD9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		1F581FD426138584004AA80B /* Departing Earth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departing Earth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F581FD726138584004AA80B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +68,7 @@
 		1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departing_EarthUITests.swift; sourceTree = "<group>"; };
 		1F581FFE26138585004AA80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiClient.swift; sourceTree = "<group>"; };
-		1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiResponses.swift; sourceTree = "<group>"; };
+		1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchApiResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,15 @@
 				1F2B21482614CBD6001A940D /* UpcomingCollectionHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1F3603702617ACCF00099E02 /* LaunchLibraryResponses */ = {
+			isa = PBXGroup;
+			children = (
+				1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */,
+				1F03A44F26179D85005CB48C /* AgencyDetailAPIResponse.swift */,
+			);
+			path = LaunchLibraryResponses;
 			sourceTree = "<group>";
 		};
 		1F4F41D826147CD0000B9CD9 /* App */ = {
@@ -167,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */,
-				1F58202826147104004AA80B /* LaunchLibraryApiResponses.swift */,
+				1F3603702617ACCF00099E02 /* LaunchLibraryResponses */,
 			);
 			path = "API Clients";
 			sourceTree = "<group>";
@@ -186,8 +199,9 @@
 			children = (
 				1F581FE026138584004AA80B /* DepartingEarthDataModel.xcdatamodeld */,
 				1F4F41D326147B97000B9CD9 /* DataController.swift */,
-				1F2B21432614C5E1001A940D /* ModelHelpers.swift */,
-				1F2B21532614EBA9001A940D /* LaunchDateTimes.swift */,
+				1F2B21432614C5E1001A940D /* LaunchHelper.swift */,
+				1F03A44726179697005CB48C /* AgencyHelper.swift */,
+				1F2B21532614EBA9001A940D /* LaunchDateTime.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,16 +344,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F2B21542614EBA9001A940D /* LaunchDateTimes.swift in Sources */,
+				1F2B21542614EBA9001A940D /* LaunchDateTime.swift in Sources */,
 				1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */,
 				1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */,
 				1F2B21492614CBD6001A940D /* UpcomingCollectionHeaderView.swift in Sources */,
 				1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */,
 				1F581FE226138584004AA80B /* DepartingEarthDataModel.xcdatamodeld in Sources */,
-				1F2B21442614C5E1001A940D /* ModelHelpers.swift in Sources */,
+				1F2B21442614C5E1001A940D /* LaunchHelper.swift in Sources */,
 				1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */,
+				1F03A44826179697005CB48C /* AgencyHelper.swift in Sources */,
+				1F03A45026179D85005CB48C /* AgencyDetailAPIResponse.swift in Sources */,
 				1F581FD826138584004AA80B /* AppDelegate.swift in Sources */,
-				1F58202926147104004AA80B /* LaunchLibraryApiResponses.swift in Sources */,
+				1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */,
 				1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

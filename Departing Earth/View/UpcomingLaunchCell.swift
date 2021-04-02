@@ -13,4 +13,5 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var launchProviderNameLabel: UILabel!
     @IBOutlet var launchProviderTypeLabel: UILabel!
     @IBOutlet var launchDateLabel: UILabel!
+    @IBOutlet var logoImageView: UIImageView!
 }

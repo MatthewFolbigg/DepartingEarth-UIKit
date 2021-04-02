@@ -13,6 +13,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     var dataController: DataController!
     var cellSideInsetAmount: CGFloat = 30
     
+    var upcomingLaunchInfo: [LaunchInfo] = []
     var launches: [Launch] = []
     
     //MARK: Life Cycle
@@ -26,14 +27,16 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             guard let returnedLaunches = returnedLaunches else {
                 return
             }
-            for launchInfo in returnedLaunches {
-                let launch = ModelHelpers.createLaunchObjectFrom(launchInfo: launchInfo, context: self.dataController.viewContext)
-                self.launches.append(launch)
+            self.upcomingLaunchInfo = returnedLaunches
+            for info in returnedLaunches {
+                LaunchHelper.createLaunchObjectFrom(launchInfo: info, context: self.dataController.viewContext) { (launch) in
+                    self.launches.append(launch)
+                    self.collectionView.reloadData()
+                }
             }
-            self.collectionView.reloadData()
         }
     }
-        
+            
 }
 
 //MARK: CollectionView Delegate and DataSource
@@ -48,9 +51,10 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! UpcomingLaunchCell
-        cell = setStyleFor(cell: cell)
-        cell = setContentFor(cell: cell, atRow: indexPath.row)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! UpcomingLaunchCell
+        setPlaceholderLogoImageFor(cell: cell)
+        setStyleFor(cell: cell)
+        setContentFor(cell: cell, atRow: indexPath.row)
         return cell
     }
     
@@ -70,20 +74,30 @@ extension UpcomingLaunchesCollectionViewController {
 extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
-    func setStyleFor(cell: UpcomingLaunchCell) -> UpcomingLaunchCell {
+    func setStyleFor(cell: UpcomingLaunchCell) {
         cell.backgroundColor = .systemGray5
         cell.layer.cornerRadius = 15
         cell.layer.cornerCurve = .continuous
-        return cell
     }
     
-    func setContentFor(cell: UpcomingLaunchCell, atRow row: Int) -> UpcomingLaunchCell {
+    func setContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
+        
         let launch = launches[row]
         cell.rocketNameLabel.text = launch.rocket?.name
-        cell.launchProviderNameLabel.text = launch.launchProvider?.name
+        cell.launchDateLabel.text = LaunchDateTime.defaultDateString(isoString: launch.netDate)
+        cell.launchProviderNameLabel.text = launch.launchProvider?.abbreviation
         cell.launchProviderTypeLabel.text = launch.launchProvider?.type
-        cell.launchDateLabel.text = LaunchDateTimes.deafultNetDateFormatFor(launch: launch)
-        return cell
+        guard let agency = launch.launchProvider else { return }
+        AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
+            if let image = image {
+                cell.logoImageView.image = UIImage(data: image.imageData!)
+            }
+        }
+    }
+    
+    func setPlaceholderLogoImageFor(cell: UpcomingLaunchCell) {
+        cell.logoImageView.image = UIImage(systemName: "flame")
+        cell.logoImageView.tintColor = .orange
     }
     
     //MARK: Headers
@@ -105,7 +119,7 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     func calculateUpcomingLaunchCellSize() -> CGSize{
         let collectionViewSize = collectionView.bounds.size
         var itemSize = CGSize()
-        itemSize.height = 120
+        itemSize.height = 150
         itemSize.width = collectionViewSize.width - (cellSideInsetAmount * 2)
         return itemSize
     }
