@@ -18,7 +18,6 @@ class AgencyHelper {
         for agency in fetchedAgencies {
             if agency.agencyId == id {
                 completion(agency)
-                print("Returned Existing Agency")
                 return
             }
         }
@@ -30,19 +29,19 @@ class AgencyHelper {
                 return
             }
             let newAgency = createAgencyFrom(agencyDetail: agencyDetail, context: context)
-            print("Returned New Agency")
             completion(newAgency)
         }
     }
     
-    static func getLogoFor(agency: LaunchAgency, context: NSManagedObjectContext, completion: @escaping (AgencyLogo?) -> Void) {
+    static func getLogoFor(agency: LaunchAgency, context: NSManagedObjectContext, completion: @escaping (UIImage?) -> Void) {
+        
         if agency.logo != nil {
-            completion(agency.logo)
+            completion(UIImage(data: (agency.logo?.imageData)!))
             return
         }
+        
         guard let url = agency.logoUrl else {
             //NO IMAGE AVAILABLE, LOGO URL NIL
-            print("No Logo URL")
             completion(nil)
             return
         }
@@ -55,10 +54,10 @@ class AgencyHelper {
             let logo = AgencyLogo(context: context)
             logo.imageData = image.pngData()
             agency.logo = logo
-            try? context.save()
-            completion(agency.logo)
+            logo.agency = agency
+            do { try context.save() } catch {print(error)}
+            completion(image)
         }
-        
     }
         
     static private func createAgencyFrom(agencyDetail: AgencyDetail, context: NSManagedObjectContext) -> LaunchAgency {

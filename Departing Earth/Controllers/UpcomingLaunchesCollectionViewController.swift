@@ -28,12 +28,11 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
                 return
             }
             self.upcomingLaunchInfo = returnedLaunches
-            for info in returnedLaunches {
-                LaunchHelper.createLaunchObjectFrom(launchInfo: info, context: self.dataController.viewContext) { (launch) in
-                    self.launches.append(launch)
-                    self.collectionView.reloadData()
-                }
+            for _ in returnedLaunches {
+                let blankLaunch = Launch(context: self.dataController.viewContext)
+                self.launches.append(blankLaunch)
             }
+            self.collectionView.reloadData()
         }
     }
             
@@ -52,7 +51,6 @@ extension UpcomingLaunchesCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! UpcomingLaunchCell
-        setPlaceholderLogoImageFor(cell: cell)
         setStyleFor(cell: cell)
         setContentFor(cell: cell, atRow: indexPath.row)
         return cell
@@ -81,17 +79,25 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     func setContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
-        
-        let launch = launches[row]
-        cell.rocketNameLabel.text = launch.rocket?.name
-        cell.launchDateLabel.text = LaunchDateTime.defaultDateString(isoString: launch.netDate)
-        cell.launchProviderNameLabel.text = launch.launchProvider?.abbreviation
-        cell.launchProviderTypeLabel.text = launch.launchProvider?.type
-        guard let agency = launch.launchProvider else { return }
-        AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
-            if let image = image {
-                cell.logoImageView.image = UIImage(data: image.imageData!)
+        cell.setUpdating(on: true)
+        cell.logoImageView.image = nil
+        let launchInfo = upcomingLaunchInfo[row]
+        LaunchHelper.createLaunchObjectFrom(launchInfo: launchInfo, context: self.dataController.viewContext) { (launch) in
+            self.launches[row] = launch
+            
+            cell.rocketNameLabel.text = launch.rocket?.name
+            cell.launchDateLabel.text = LaunchDateTime.defaultDateString(isoString: launch.netDate)
+            cell.launchProviderNameLabel.text = launch.launchProvider?.abbreviation
+            cell.launchProviderTypeLabel.text = launch.launchProvider?.type
+            guard let agency = launch.launchProvider else { return }
+            AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
+                if let imageData = agency.logo?.imageData {
+                    cell.logoImageView.image = UIImage(data: imageData)
+                } else {
+                    self.setPlaceholderLogoImageFor(cell: cell)
+                }
             }
+            cell.setUpdating(on: false)
         }
     }
     
@@ -99,7 +105,7 @@ extension UpcomingLaunchesCollectionViewController {
         cell.logoImageView.image = UIImage(systemName: "flame")
         cell.logoImageView.tintColor = .orange
     }
-    
+        
     //MARK: Headers
     func setUpcomingHeaderStyle(for view: UpcomingCollectionHeaderView) -> UpcomingCollectionHeaderView {
         view.title.text = "Departing Soon"

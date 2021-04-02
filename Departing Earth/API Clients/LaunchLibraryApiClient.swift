@@ -11,8 +11,6 @@ import UIKit
 class LaunchLibraryApiClient {
     //API Documentation: https://thespacedevs.com/llapi
     
-    //agencies/150/
-        
     enum Endpoint {
         //MARK: URL Components - Base API
         //Provides acctual data but throttled. Use in release and real world testing.
@@ -53,7 +51,7 @@ extension LaunchLibraryApiClient {
     //MARK: Get Upcoming Launches
     static func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?, URLResponse?) -> Void) {
         let url = Endpoint.getUpcomingLaunches.url!
-        print("URL: \(url)")
+        print("Getting Upcoming Launches: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             
@@ -93,7 +91,7 @@ extension LaunchLibraryApiClient {
             print("Invalid URL Created. Check Agency ID is valid")
             return
         }
-        print(url)
+        print("Getting Agency for ID \(id): \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             
@@ -132,7 +130,7 @@ extension LaunchLibraryApiClient {
             print("Invalid Logo URL")
             return
         }
-        print("API Call: Getting Image")
+        print("Getting Image: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
