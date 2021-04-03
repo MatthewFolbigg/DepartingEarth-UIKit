@@ -76,6 +76,7 @@ extension UpcomingLaunchesCollectionViewController {
         cell.backgroundColor = .systemGray5
         cell.layer.cornerRadius = 15
         cell.layer.cornerCurve = .continuous
+        cell.logoImageView.backgroundColor = .systemGroupedBackground
     }
     
     func setContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
@@ -87,7 +88,7 @@ extension UpcomingLaunchesCollectionViewController {
             
             cell.rocketNameLabel.text = launch.rocket?.name
             cell.launchDateLabel.text = LaunchDateTime.defaultDateString(isoString: launch.netDate)
-            cell.launchProviderNameLabel.text = launch.launchProvider?.abbreviation
+            cell.launchProviderNameLabel.text = launch.launchProvider?.name
             cell.launchProviderTypeLabel.text = launch.launchProvider?.type
             guard let agency = launch.launchProvider else { return }
             AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
@@ -125,7 +126,7 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     func calculateUpcomingLaunchCellSize() -> CGSize{
         let collectionViewSize = collectionView.bounds.size
         var itemSize = CGSize()
-        itemSize.height = 150
+        itemSize.height = 200
         itemSize.width = collectionViewSize.width - (cellSideInsetAmount * 2)
         return itemSize
     }

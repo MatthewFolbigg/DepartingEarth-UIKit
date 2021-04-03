@@ -13,11 +13,13 @@ struct AgencyDetail: Codable {
     let name: String
     let abbreviation: String
     let logoUrl: String?
+    let type: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
         case abbreviation = "abbrev"
         case logoUrl = "logo_url"
+        case type = "type"
     }
 }

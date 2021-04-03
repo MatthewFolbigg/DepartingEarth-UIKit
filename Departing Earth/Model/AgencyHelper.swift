@@ -66,6 +66,7 @@ class AgencyHelper {
         agency.agencyId = Int64(agencyDetail.id)
         agency.logoUrl = agencyDetail.logoUrl
         agency.abbreviation = agencyDetail.abbreviation
+        agency.type = agencyDetail.type
         try? context.save()
         return agency
     }
