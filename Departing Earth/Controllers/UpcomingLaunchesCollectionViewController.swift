@@ -19,6 +19,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         getUpcomingLaunches()
     }
     
@@ -35,6 +36,14 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             self.collectionView.reloadData()
         }
     }
+    
+    //MARK: UI Setup
+    func setupNavigationBar() {
+        navigationController?.navigationBar.layoutMargins.left = cellSideInsetAmount + 10
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .bold)]
+    }
+    
+    
             
 }
 
@@ -51,20 +60,20 @@ extension UpcomingLaunchesCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! UpcomingLaunchCell
-        setStyleFor(cell: cell)
-        setContentFor(cell: cell, atRow: indexPath.row)
+        setLaunchStyleFor(cell: cell)
+        setLaunchContentFor(cell: cell, atRow: indexPath.row)
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            var header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UpcomingHeader", for: indexPath) as! UpcomingCollectionHeaderView
-            header = setUpcomingHeaderStyle(for: header)
-            return header
-        } else {
-            return UICollectionReusableView()
-        }
-    }
+//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        if kind == UICollectionView.elementKindSectionHeader {
+//            var header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UpcomingHeader", for: indexPath) as! UpcomingCollectionHeaderView
+//            header = setUpcomingHeaderStyle(for: header)
+//            return header
+//        } else {
+//            return UICollectionReusableView()
+//        }
+//    }
     
 }
 
@@ -72,14 +81,13 @@ extension UpcomingLaunchesCollectionViewController {
 extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
-    func setStyleFor(cell: UpcomingLaunchCell) {
+    func setLaunchStyleFor(cell: UpcomingLaunchCell) {
         cell.backgroundColor = .systemGray5
         cell.layer.cornerRadius = 15
         cell.layer.cornerCurve = .continuous
-        cell.logoImageView.backgroundColor = .systemGroupedBackground
     }
     
-    func setContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
+    func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         cell.setUpdating(on: true)
         cell.logoImageView.image = nil
         let launchInfo = upcomingLaunchInfo[row]
@@ -108,12 +116,12 @@ extension UpcomingLaunchesCollectionViewController {
     }
         
     //MARK: Headers
-    func setUpcomingHeaderStyle(for view: UpcomingCollectionHeaderView) -> UpcomingCollectionHeaderView {
-        view.title.text = "Departing Soon"
-        view.titleLeadingContraint.constant = cellSideInsetAmount
-        view.titleTrailingContraint.constant = cellSideInsetAmount
-        return view
-    }
+//    func setUpcomingHeaderStyle(for view: UpcomingCollectionHeaderView) -> UpcomingCollectionHeaderView {
+//        view.title.text = "Departing Soon"
+//        view.titleLeadingContraint.constant = cellSideInsetAmount
+//        view.titleTrailingContraint.constant = cellSideInsetAmount
+//        return view
+//    }
 }
 
 //MARK: CollectionView FlowLayout
@@ -133,7 +141,7 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let insetAmount: CGFloat = cellSideInsetAmount
-        let edgeInsets = UIEdgeInsets(top: 5, left: insetAmount, bottom: 10, right: insetAmount)
+        let edgeInsets = UIEdgeInsets(top: 10, left: insetAmount, bottom: 10, right: insetAmount)
         return edgeInsets
     }
     

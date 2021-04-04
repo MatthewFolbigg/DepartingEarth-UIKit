@@ -18,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let rootViewContoller = window?.rootViewController as? UpcomingLaunchesCollectionViewController
-        rootViewContoller?.dataController = appDelegate.dataController
+        let navigationController = window?.rootViewController as? UINavigationController
+        let firstView = navigationController?.topViewController as! UpcomingLaunchesCollectionViewController
+        //let rootViewContoller = window?.rootViewController as? UpcomingLaunchesCollectionViewController
+        firstView.dataController = appDelegate.dataController
         
     }
 
