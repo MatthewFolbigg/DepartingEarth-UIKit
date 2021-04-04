@@ -39,12 +39,10 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     
     //MARK: UI Setup
     func setupNavigationBar() {
-        navigationController?.navigationBar.layoutMargins.left = cellSideInsetAmount + 10
+        navigationController?.navigationBar.layoutMargins.left = cellSideInsetAmount + 2
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .bold)]
     }
     
-    
-            
 }
 
 //MARK: CollectionView Delegate and DataSource
@@ -89,7 +87,6 @@ extension UpcomingLaunchesCollectionViewController {
     
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         cell.setUpdating(on: true)
-        cell.logoImageView.image = nil
         let launchInfo = upcomingLaunchInfo[row]
         LaunchHelper.createLaunchObjectFrom(launchInfo: launchInfo, context: self.dataController.viewContext) { (launch) in
             self.launches[row] = launch

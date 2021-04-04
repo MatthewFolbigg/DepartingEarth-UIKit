@@ -16,6 +16,11 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        logoImageView.image = nil
+    }
+    
     func setUpdating(on: Bool) {
         let alapha: CGFloat = on ? 0 : 1
         self.launchDateLabel.alpha = alapha
