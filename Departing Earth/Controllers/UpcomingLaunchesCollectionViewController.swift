@@ -21,7 +21,8 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupNavigationBar()
         getUpcomingLaunches()
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor.secondarySystemBackground
+        
     }
     
     func getUpcomingLaunches() {
@@ -48,7 +49,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: smallTitleFont]
         
     }
-    
+        
 }
 
 //MARK: CollectionView Delegate and DataSource

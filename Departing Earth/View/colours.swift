@@ -1,5 +1,5 @@
 //
-//  colours.swift
+//  Colours.swift
 //  Departing Earth
 //
 //  Created by Matthew Folbigg on 05/04/2021.
