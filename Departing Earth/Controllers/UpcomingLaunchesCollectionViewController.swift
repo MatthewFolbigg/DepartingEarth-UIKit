@@ -27,15 +27,27 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         
     }
         
-    func getUpcomingLaunches() {  
+    func getUpcomingLaunches() {
+        let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext)
+        if fetchedLaunches.count > 0 {
+            print("Loaded upcoming from CoreData")
+            self.launches = fetchedLaunches
+            collectionView.reloadData()
+        } else {
+            print("Downloading upcoming from API")
+            downloadUpcomingLaunches()
+        }
+    }
+        
+    func downloadUpcomingLaunches() {
         LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error, response) in
             guard let returnedLaunches = returnedLaunches else {
                 return
             }
             self.upcomingLaunchInfo = returnedLaunches
-            for _ in returnedLaunches {
-                let blankLaunch = Launch(context: self.dataController.viewContext)
-                self.launches.append(blankLaunch)
+            for info in returnedLaunches {
+                let launch = LaunchHelper.createLaunchObjectFrom(launchInfo: info, context: self.dataController.viewContext)
+                    self.launches.append(launch)
             }
             self.collectionView.reloadData()
         }
@@ -102,30 +114,31 @@ extension UpcomingLaunchesCollectionViewController {
     
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         cell.setDownloadingActivity(on: true)
-        let launchInfo = upcomingLaunchInfo[row]
-        let launchId = launchInfo.id
-        cell.cellId = launchInfo.id
-        cell.net = launchInfo.noEarlierThan
-        LaunchHelper.createLaunchObjectFrom(launchInfo: launchInfo, context: self.dataController.viewContext) { (launch) in
+        let launch = launches[row]
+        let launchId = launch.launchId
+        cell.cellId = launchId
+        cell.net = launch.netDate
+        cell.rocketNameLabel.text = launch.rocket?.name
+        let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate) ?? "TBD"
+        cell.launchDateLabel.text = expectedLaunchDate
+        cell.updateCountdown()
+        let providerId = launch.launchProviderId
+        AgencyHelper.getAgencyForId(id: Int(providerId), context: dataController.viewContext) { (agency) in
+            guard let agency = agency else { return }
+            launch.launchProvider = agency
             if cell.cellId == launchId {
-                self.launches[row] = launch
-                cell.rocketNameLabel.text = launch.rocket?.name
-                let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate) ?? "TBD"
-                cell.launchDateLabel.text = expectedLaunchDate
                 cell.launchProviderNameLabel.text = launch.launchProvider?.name
                 cell.launchProviderTypeLabel.text = launch.launchProvider?.type
-                cell.updateCountdown()
-                guard let agency = launch.launchProvider else { return }
-                AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
-                    if cell.cellId == launchId {
-                        guard let data = agency.logo?.imageData else { return }
-                        guard let image = UIImage(data: data) else { return }
-                        cell.setLogo(image: image)
-                    }
+            }
+            AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
+                if cell.cellId == launchId {
+                    guard let data = agency.logo?.imageData else { return }
+                    guard let image = UIImage(data: data) else { return }
+                    cell.setLogo(image: image)
                 }
-                cell.setDownloadingActivity(on: false)
             }
         }
+        cell.setDownloadingActivity(on: false)
     }
 }
 

@@ -6,6 +6,7 @@
     </entity>
     <entity name="Launch" representedClassName="Launch" syncable="YES" codeGenerationType="class">
         <attribute name="launchId" optional="YES" attributeType="String"/>
+        <attribute name="launchProviderId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="netDate" optional="YES" attributeType="String"/>
         <relationship name="launchProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="launch" inverseEntity="LaunchAgency"/>
@@ -28,7 +29,7 @@
     </entity>
     <elements>
         <element name="AgencyLogo" positionX="-406.7578125" positionY="-149.1484375" width="128" height="73"/>
-        <element name="Launch" positionX="-888.09765625" positionY="-60.91796875" width="153.72265625" height="118"/>
+        <element name="Launch" positionX="-888.09765625" positionY="-60.91796875" width="153.72265625" height="119"/>
         <element name="LaunchAgency" positionX="-597.98046875" positionY="-223.6015625" width="128" height="148"/>
         <element name="Rocket" positionX="-589.0625" positionY="40.90625" width="128" height="103"/>
     </elements>

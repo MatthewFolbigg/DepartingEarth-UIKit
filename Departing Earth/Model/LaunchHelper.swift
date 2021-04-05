@@ -11,7 +11,7 @@ import UIKit
 
 class LaunchHelper {
     
-    static func createLaunchObjectFrom(launchInfo: LaunchInfo, context: NSManagedObjectContext, completion: @escaping (Launch) -> Void){
+    static func createLaunchObjectFrom(launchInfo: LaunchInfo, context: NSManagedObjectContext) -> Launch {
         let launch = Launch(context: context)
         let rocket = Rocket(context: context)
         launch.launchId = launchInfo.id
@@ -21,12 +21,9 @@ class LaunchHelper {
         rocket.family = launchInfo.rocket.configuration.family
         rocket.variant = launchInfo.rocket.configuration.variant
         launch.rocket = rocket
-        
-        AgencyHelper.getAgencyForId(id: launchInfo.launchServiceProvider.id, context: context, completion: { (agency) in
-            launch.launchProvider = agency
-            try? context.save()
-            completion(launch)
-        })
+        launch.launchProviderId = Int64(launchInfo.launchServiceProvider.id)
+        try? context.save()
+        return launch
     }
     
     static func fetchStoredLaunches(context: NSManagedObjectContext) -> [Launch] {
