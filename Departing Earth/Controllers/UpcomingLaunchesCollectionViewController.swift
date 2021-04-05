@@ -11,6 +11,9 @@ import CoreData
 
 class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     
+    @IBOutlet var refreshBarButtonItem: UIBarButtonItem!
+    @IBOutlet var mainActivityIndicator: UIActivityIndicatorView!
+    
     var dataController: DataController!
     var cellSideInsetAmount: CGFloat = 25
     
@@ -24,15 +27,18 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         getUpcomingLaunches()
         setupCountdownUpdateTimer()
         collectionView.backgroundColor = UIColor.secondarySystemBackground
-        
+        refreshBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
     }
-        
+    
+    //MARK: Fetching & Downloading Launch Data
     func getUpcomingLaunches() {
+        mainActivityIndicator.startAnimating()
         let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext)
         if fetchedLaunches.count > 0 {
             print("Loaded upcoming from CoreData")
             self.launches = fetchedLaunches
             collectionView.reloadData()
+            mainActivityIndicator.stopAnimating()
         } else {
             print("Downloading upcoming from API")
             downloadUpcomingLaunches()
@@ -42,7 +48,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     func downloadUpcomingLaunches() {
         LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error, response) in
             guard let returnedLaunches = returnedLaunches else {
-                return
+                return //TODO: Handel error as failed refresh/initail DL
             }
             self.upcomingLaunchInfo = returnedLaunches
             for info in returnedLaunches {
@@ -50,9 +56,11 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
                     self.launches.append(launch)
             }
             self.collectionView.reloadData()
+            self.mainActivityIndicator.stopAnimating()
         }
     }
     
+    //MARK: Countdown Refresh Timer
     func setupCountdownUpdateTimer() {
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countdownUpdateTimerDidFire), userInfo: nil, repeats: true)
     }
@@ -75,6 +83,24 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.label,
             NSAttributedString.Key.font: Fonts.navigationTitleSmall.uiFont]
+    }
+    
+    @IBAction func refreshButtonDidTapped() {
+        refreshBarButtonItem.isEnabled = false
+        deleteCurrentLaunches()
+        getUpcomingLaunches()
+        refreshBarButtonItem.isEnabled = true
+    }
+    
+    func deleteCurrentLaunches() {
+        self.launches = []
+        let storedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext)
+        for launch in storedLaunches {
+            print("Deleting Launch: \(launch.launchId)")
+            dataController.viewContext.delete(launch)
+        }
+        try? dataController.viewContext.save()
+        collectionView.reloadData()
     }
         
 }
@@ -111,7 +137,6 @@ extension UpcomingLaunchesCollectionViewController {
 extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
-    
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         cell.setDownloadingActivity(on: true)
         let launch = launches[row]

@@ -28,6 +28,8 @@ class UpcomingLaunchCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         logoImageView.image = nil
+        launchProviderNameLabel.text = nil
+        launchProviderTypeLabel.text = nil
         cellId = nil
     }
         
@@ -35,7 +37,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
         self.layer.cornerRadius = 15
         self.layer.cornerCurve = .continuous
         self.backgroundColor = .tertiarySystemBackground
-        self.logoBackgroundView.backgroundColor = .tertiarySystemBackground
+        self.logoBackgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3) //.tertiarySystemBackground
         setTextStyles()
         self.launchProviderTypeLabel.textColor = Colours.spaceSuitOrange.ui
         self.countdownBackgroundView.layer.cornerRadius = 5
