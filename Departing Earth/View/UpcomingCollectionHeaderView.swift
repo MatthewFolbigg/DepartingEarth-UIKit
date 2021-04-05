@@ -12,5 +12,4 @@ class UpcomingCollectionHeaderView: UICollectionReusableView {
     @IBOutlet var title: UILabel!
     @IBOutlet weak var titleLeadingContraint: NSLayoutConstraint!
     @IBOutlet weak var titleTrailingContraint: NSLayoutConstraint!
-    
 }

@@ -21,6 +21,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupNavigationBar()
         getUpcomingLaunches()
+        collectionView.backgroundColor = .systemBackground
     }
     
     func getUpcomingLaunches() {
@@ -40,7 +41,12 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: UI Setup
     func setupNavigationBar() {
         navigationController?.navigationBar.layoutMargins.left = cellSideInsetAmount + 2
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 32, weight: .bold)]
+        //MARK: TOTO Move to global accessible font structure
+        let largeTitleFont = UIFont.monospacedSystemFont(ofSize: 28, weight: .semibold)
+        let smallTitleFont = UIFont.monospacedSystemFont(ofSize: 18, weight: .semibold)
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: largeTitleFont]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: smallTitleFont]
+        
     }
     
 }
@@ -58,20 +64,10 @@ extension UpcomingLaunchesCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! UpcomingLaunchCell
-        setLaunchStyleFor(cell: cell)
+        cell.setStyle()
         setLaunchContentFor(cell: cell, atRow: indexPath.row)
         return cell
     }
-    
-//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if kind == UICollectionView.elementKindSectionHeader {
-//            var header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UpcomingHeader", for: indexPath) as! UpcomingCollectionHeaderView
-//            header = setUpcomingHeaderStyle(for: header)
-//            return header
-//        } else {
-//            return UICollectionReusableView()
-//        }
-//    }
     
 }
 
@@ -79,11 +75,6 @@ extension UpcomingLaunchesCollectionViewController {
 extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
-    func setLaunchStyleFor(cell: UpcomingLaunchCell) {
-        cell.backgroundColor = .systemGray5
-        cell.layer.cornerRadius = 15
-        cell.layer.cornerCurve = .continuous
-    }
     
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         cell.setUpdating(on: true)
@@ -102,7 +93,7 @@ extension UpcomingLaunchesCollectionViewController {
                     if cell.cellId == launchId {
                         guard let data = agency.logo?.imageData else { return }
                         guard let image = UIImage(data: data) else { return }
-                        cell.logoImageView.image = image
+                        cell.setLogo(image: image)
                     }
                 }
                 cell.setUpdating(on: false)
@@ -115,13 +106,7 @@ extension UpcomingLaunchesCollectionViewController {
         cell.logoImageView.tintColor = .orange
     }
         
-    //MARK: Headers
-//    func setUpcomingHeaderStyle(for view: UpcomingCollectionHeaderView) -> UpcomingCollectionHeaderView {
-//        view.title.text = "Departing Soon"
-//        view.titleLeadingContraint.constant = cellSideInsetAmount
-//        view.titleTrailingContraint.constant = cellSideInsetAmount
-//        return view
-//    }
+
 }
 
 //MARK: CollectionView FlowLayout
@@ -143,6 +128,10 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
         let insetAmount: CGFloat = cellSideInsetAmount
         let edgeInsets = UIEdgeInsets(top: 10, left: insetAmount, bottom: 10, right: insetAmount)
         return edgeInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
     }
     
 }

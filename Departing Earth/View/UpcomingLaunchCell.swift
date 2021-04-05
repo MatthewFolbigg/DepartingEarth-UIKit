@@ -14,7 +14,11 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var launchProviderTypeLabel: UILabel!
     @IBOutlet var launchDateLabel: UILabel!
     @IBOutlet var logoImageView: UIImageView!
+    @IBOutlet var logoBackgroundView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var logoImageViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var logoImageViewWidthContraint: NSLayoutConstraint!
     
     var cellId: String?
     
@@ -22,6 +26,50 @@ class UpcomingLaunchCell: UICollectionViewCell {
         super.prepareForReuse()
         logoImageView.image = nil
         cellId = nil
+    }
+    
+    func setStyle() {
+        self.layer.cornerRadius = 15
+        self.layer.cornerCurve = .continuous
+        self.backgroundColor = .secondarySystemBackground
+        setLogoBackgroundGradient()
+        self.logoBackgroundView.backgroundColor = .white
+        setTextStyles()
+        self.launchProviderTypeLabel.textColor = Colours.spaceSuitOrange.ui
+    }
+    
+    func setTextStyles() {
+        for label in self.cellLabels() {
+            label?.textColor = UIColor.label
+        }
+        self.rocketNameLabel.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .semibold)
+        self.launchProviderNameLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 10, weight: .light)
+        self.launchProviderTypeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .medium)
+        self.launchDateLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .medium)
+    }
+    
+//    func setCellBackgroundGradient() {
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = self.bounds
+//        let colour1 = Colours.white.cg
+//        let colour2 = UIColor.black.cgColor
+//        gradientLayer.colors = [colour1, colour2]
+//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+//        gradientLayer.endPoint = CGPoint(x: 1.4, y: 1.2)
+//        gradientLayer.type = .radial
+//        self.layer.insertSublayer(gradientLayer, at: 0)
+//    }
+    
+    func setLogoBackgroundGradient() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.logoBackgroundView.frame
+        let colour1 = Colours.white.cg
+        let colour2 = UIColor.black.cgColor
+        gradientLayer.colors = [colour1, colour2]
+        gradientLayer.startPoint = CGPoint(x: 1, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: -2.8, y: 0.5)
+        gradientLayer.type = .axial
+        self.logoBackgroundView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     func setUpdating(on: Bool) {
@@ -36,5 +84,32 @@ class UpcomingLaunchCell: UICollectionViewCell {
         } else {
             self.activityIndicator.stopAnimating()
         }
+    }
+    
+    func setLogo(image: UIImage) {
+        let imageSize = image.size
+        setImageViewSize(imageSize: imageSize)
+        self.logoImageView.image = image
+    }
+    
+    func setImageViewSize(imageSize: CGSize) {
+        let height = logoImageViewHeightContraint.constant
+        let heightRatio = imageSize.height/height
+        let width = imageSize.width/heightRatio
+        if width > 200 {
+            logoImageViewWidthContraint.constant = 200
+        } else {
+            logoImageViewWidthContraint.constant = width
+        }
+    }
+    
+    func cellLabels() -> [UILabel?] {
+        let labels = [
+            rocketNameLabel,
+            launchDateLabel,
+            launchProviderNameLabel,
+            launchProviderTypeLabel
+        ]
+        return labels
     }
 }
