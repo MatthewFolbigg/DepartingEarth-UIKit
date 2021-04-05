@@ -12,9 +12,7 @@ import UIKit
 class AgencyHelper {
             
     static func getAgencyForId(id: Int, context: NSManagedObjectContext, completion: @escaping (LaunchAgency?) -> Void) {
-        
         let fetchedAgencies = fetchSavedAgencies(context: context)
-        
         for agency in fetchedAgencies {
             if agency.agencyId == id {
                 completion(agency)

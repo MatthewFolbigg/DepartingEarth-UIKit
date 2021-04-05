@@ -41,4 +41,32 @@ class LaunchDateTime {
         return "\(dayInt) \(monthString!) \(yearInt)"
     }
     
+    static func countdownStringTo(isoString: String) -> String {
+        guard let remainingSeconds = secondsUntil(isoString: isoString) else {
+            return ""
+        }
+        let formattedString = hoursMinutesSecondsStringFrom(seconds: remainingSeconds)
+        return formattedString
+    }
+    
+    static private func secondsUntil(isoString: String) -> Double? {
+        guard let date = convertToDate(isoString: isoString) else {
+            print("Invalid ISO String provided")
+            return nil
+        }
+        let interval = date.timeIntervalSinceNow
+        return interval
+    }
+    
+    static private func hoursMinutesSecondsStringFrom(seconds: Double) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+        formatter.zeroFormattingBehavior = .pad
+        guard let formattedString = formatter.string(from: seconds) else {
+            return ""
+        }
+        return formattedString
+    }
+    
 }

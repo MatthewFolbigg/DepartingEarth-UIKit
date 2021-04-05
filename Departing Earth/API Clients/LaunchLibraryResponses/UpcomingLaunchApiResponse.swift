@@ -21,6 +21,10 @@ struct LaunchInfo: Codable {
     let launchServiceProvider: LaunchServiceProvider
     let noEarlierThan: String
     let launchStatus: LaunchStatus
+    let inhold: Bool
+    let tbdtime: Bool
+    let tbddate: Bool
+    let holdreason: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -30,6 +34,10 @@ struct LaunchInfo: Codable {
         case launchServiceProvider = "launch_service_provider"
         case noEarlierThan = "net"
         case launchStatus = "status"
+        case inhold = "inhold"
+        case tbdtime = "tbdtime"
+        case tbddate = "tbddate"
+        case holdreason = "holdreason"
     }
 }
 

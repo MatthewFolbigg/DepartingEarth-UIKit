@@ -29,5 +29,14 @@ class LaunchHelper {
         })
     }
     
+    static func fetchStoredLaunches(context: NSManagedObjectContext) -> [Launch] {
+        let fetchRequest = NSFetchRequest<Launch>(entityName: "Launch")
+        if let fetchedLaunhces = try? context.fetch(fetchRequest) {
+            return fetchedLaunhces
+        }
+        return []
+    }
+        
+    
 }
 
