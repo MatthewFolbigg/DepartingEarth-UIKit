@@ -16,9 +16,12 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
+    var cellId: String?
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         logoImageView.image = nil
+        cellId = nil
     }
     
     func setUpdating(on: Bool) {

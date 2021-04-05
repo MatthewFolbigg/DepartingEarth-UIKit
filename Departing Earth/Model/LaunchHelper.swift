@@ -14,6 +14,7 @@ class LaunchHelper {
     static func createLaunchObjectFrom(launchInfo: LaunchInfo, context: NSManagedObjectContext, completion: @escaping (Launch) -> Void){
         let launch = Launch(context: context)
         let rocket = Rocket(context: context)
+        launch.launchId = launchInfo.id
         launch.name = launchInfo.name
         launch.netDate = launchInfo.noEarlierThan
         rocket.name = launchInfo.rocket.configuration.name

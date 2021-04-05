@@ -14,6 +14,7 @@ struct UpcomingLaunchApiResponse: Codable {
 
 //MARK: Main Response Object
 struct LaunchInfo: Codable {
+    let id: String
     let name: String
     let rocket: RocketLaunching
     let mission: Mission?
@@ -22,6 +23,7 @@ struct LaunchInfo: Codable {
     let launchStatus: LaunchStatus
     
     enum CodingKeys: String, CodingKey {
+        case id = "id"
         case name = "name"
         case rocket = "rocket"
         case mission = "mission"

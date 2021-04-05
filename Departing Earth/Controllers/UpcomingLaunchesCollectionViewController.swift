@@ -88,22 +88,25 @@ extension UpcomingLaunchesCollectionViewController {
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         cell.setUpdating(on: true)
         let launchInfo = upcomingLaunchInfo[row]
+        let launchId = launchInfo.id
+        cell.cellId = launchId
         LaunchHelper.createLaunchObjectFrom(launchInfo: launchInfo, context: self.dataController.viewContext) { (launch) in
-            self.launches[row] = launch
-            
-            cell.rocketNameLabel.text = launch.rocket?.name
-            cell.launchDateLabel.text = LaunchDateTime.defaultDateString(isoString: launch.netDate)
-            cell.launchProviderNameLabel.text = launch.launchProvider?.name
-            cell.launchProviderTypeLabel.text = launch.launchProvider?.type
-            guard let agency = launch.launchProvider else { return }
-            AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
-                if let imageData = agency.logo?.imageData {
-                    cell.logoImageView.image = UIImage(data: imageData)
-                } else {
-                    self.setPlaceholderLogoImageFor(cell: cell)
+            if cell.cellId == launchId {
+                self.launches[row] = launch
+                cell.rocketNameLabel.text = launch.rocket?.name
+                cell.launchDateLabel.text = LaunchDateTime.defaultDateString(isoString: launch.netDate)
+                cell.launchProviderNameLabel.text = launch.launchProvider?.name
+                cell.launchProviderTypeLabel.text = launch.launchProvider?.type
+                guard let agency = launch.launchProvider else { return }
+                AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
+                    if cell.cellId == launchId {
+                        guard let data = agency.logo?.imageData else { return }
+                        guard let image = UIImage(data: data) else { return }
+                        cell.logoImageView.image = image
+                    }
                 }
+                cell.setUpdating(on: false)
             }
-            cell.setUpdating(on: false)
         }
     }
     
