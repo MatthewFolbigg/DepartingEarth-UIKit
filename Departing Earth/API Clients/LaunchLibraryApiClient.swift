@@ -25,7 +25,7 @@ class LaunchLibraryApiClient {
         private static let agencies = "agencies/"
         
         //MARK: URL Components - Filters and Ordering
-        private static let first50 = "&limit=20&offset=0"
+        private static let first30 = "&limit=30&offset=0"
         
         //MARK: Endpoint Cases
         case getUpcomingLaunches
@@ -37,10 +37,58 @@ class LaunchLibraryApiClient {
         private var urlString: String {
             switch self {
             case .getUpcomingLaunches:
-                return Endpoint.apiUrl + Endpoint.upcomingLaunches + Endpoint.responseAsJson + Endpoint.first50
+                return Endpoint.apiUrl + Endpoint.upcomingLaunches + Endpoint.responseAsJson + Endpoint.first30
             case .getAgencyById(let agencyId):
                 return Endpoint.apiUrl + Endpoint.agencies + "\(agencyId)"
             }
+        }
+    }
+    
+    enum downloadError: Error, LocalizedError {
+        case rateLimited
+        case decodingFailed
+        case nilData
+        case dataTaskError
+        
+        var errorDescription: String? {
+            switch self {
+            case .dataTaskError: return "Comms Failure"
+            case .rateLimited: return "Mission Control Busy"
+            case .decodingFailed: return "Alien Data"
+            case .nilData: return "Silence"
+            }
+        }
+        var failureReason: String? {
+            switch self {
+            case .dataTaskError: return "Failed to reach mission control."
+            case .rateLimited: return "Too many requests made to mission control."
+            case .decodingFailed: return "Data was returned in an alien language."
+            case .nilData: return "No resposne from mission control."
+            }
+        }
+        var recoverySuggestion: String? {
+            switch self {
+            case .dataTaskError: return "Check your network connection and try again."
+            case .rateLimited: return "Give them a break and try again in a few minutes."
+            case .decodingFailed: return "The cryptographers look confused try again later."
+            case .nilData: return "Try again."
+            }
+        }
+        
+    }
+    
+    private static func setErrorType(error: Error?, response: URLResponse?) -> Error? {
+        if let error = error {
+            print(error)
+            return downloadError.dataTaskError
+        }
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return nil
+        }
+        if httpResponse.statusCode == 429 {
+            return downloadError.rateLimited
+        } else {
+            return nil
         }
     }
 }
@@ -49,23 +97,22 @@ class LaunchLibraryApiClient {
 extension LaunchLibraryApiClient {
     
     //MARK: Get Upcoming Launches
-    static func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?, HTTPURLResponse?) -> Void) {
+    static func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?) -> Void) {
         let url = Endpoint.getUpcomingLaunches.url!
         print("Getting Upcoming Launches: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
-            let httpResponse = response as! HTTPURLResponse
-            print("Response: \(httpResponse.statusCode) - \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
-            if let error = error {
+           
+            if let error = setErrorType(error: error, response: response) {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, error)
                 }
                 return
             }
-            
+                        
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, downloadError.nilData)
                 }
                 return
             }
@@ -74,20 +121,20 @@ extension LaunchLibraryApiClient {
             do {
                 let jsonData = try decoder.decode(UpcomingLaunchApiResponse.self, from: data)
                 DispatchQueue.main.async {
-                    completion(jsonData.results, nil, nil)
+                    completion(jsonData.results, nil)
                 }
             } catch {
                 print("JSON Decoding Failed: \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, downloadError.decodingFailed)
                 }
             }
         }
         task.resume()
     }
-    
+        
     //MARK: Get Agency Info by ID
-    static func getAgencyInfo(id: Int, completion: @escaping (AgencyDetail? , Error?, HTTPURLResponse?) -> Void) {
+    static func getAgencyInfo(id: Int, completion: @escaping (AgencyDetail? , Error?) -> Void) {
         guard let url = Endpoint.getAgencyById(id).url else {
             print("Invalid URL Created. Check Agency ID is valid")
             return
@@ -96,19 +143,16 @@ extension LaunchLibraryApiClient {
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             
-            let httpResponse = response as! HTTPURLResponse
-            print("Response: \(httpResponse.statusCode) - \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
-            
-            if let error = error {
+            if let error = setErrorType(error: error, response: response) {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, error)
                 }
                 return
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, downloadError.nilData)
                 }
                 return
             }
@@ -117,11 +161,11 @@ extension LaunchLibraryApiClient {
             do {
                 let agencyInfo = try decoder.decode(AgencyDetail.self, from: data)
                 DispatchQueue.main.async {
-                    completion(agencyInfo, nil, nil)
+                    completion(agencyInfo, nil)
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, downloadError.decodingFailed)
                 }
             }
         }
@@ -129,7 +173,7 @@ extension LaunchLibraryApiClient {
     }
     
     //MARK: Get Image from URL
-    static func getImage(urlString: String, completion: @escaping (UIImage?, Error?, HTTPURLResponse?) -> Void) {
+    static func getImage(urlString: String, completion: @escaping (UIImage?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
             print("Invalid Logo URL")
             return
@@ -138,26 +182,27 @@ extension LaunchLibraryApiClient {
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             
-            let httpResponse = response as! HTTPURLResponse
-            print("Response: \(httpResponse.statusCode) - \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
-            
-            if let error = error {
+            if let error = setErrorType(error: error, response: response) {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, error)
                 }
                 return
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error, httpResponse)
+                    completion(nil, downloadError.nilData)
                 }
                 return
             }
             
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
-                    completion(image, nil, nil)
+                    completion(image, nil)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil, downloadError.decodingFailed)
                 }
             }
         }

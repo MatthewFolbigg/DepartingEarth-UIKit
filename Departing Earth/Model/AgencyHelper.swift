@@ -10,43 +10,50 @@ import CoreData
 import UIKit
 
 class AgencyHelper {
+    
+    
             
-    static func getAgencyForId(id: Int, context: NSManagedObjectContext, completion: @escaping (LaunchAgency?) -> Void) {
+    static func getAgencyForId(id: Int, context: NSManagedObjectContext, completion: @escaping (LaunchAgency?, Error?) -> Void) {
         let fetchedAgencies = fetchSavedAgencies(context: context)
         for agency in fetchedAgencies {
             if agency.agencyId == id {
-                completion(agency)
+                completion(agency, nil)
                 return
             }
         }
-        
-        LaunchLibraryApiClient.getAgencyInfo(id: id) { (agencyDetail, error, response) in
+        LaunchLibraryApiClient.getAgencyInfo(id: id) { (agencyDetail, error) in
+            if let error = error {
+                completion(nil, error)
+            }
             guard let agencyDetail = agencyDetail else {
-                if let error = error { print(error) }
-                completion(nil)
+                //MARK: Add custom error here
+                completion(nil, error)
                 return
             }
             let newAgency = createAgencyFrom(agencyDetail: agencyDetail, context: context)
-            completion(newAgency)
+            completion(newAgency, nil)
         }
     }
     
-    static func getLogoFor(agency: LaunchAgency, context: NSManagedObjectContext, completion: @escaping (UIImage?) -> Void) {
+    static func getLogoFor(agency: LaunchAgency, context: NSManagedObjectContext, completion: @escaping (UIImage?, Error?) -> Void) {
         
         if agency.logo != nil {
-            completion(UIImage(data: (agency.logo?.imageData)!))
+            completion(UIImage(data: (agency.logo?.imageData)!), nil)
             return
         }
         
         guard let url = agency.logoUrl else {
-            //NO IMAGE AVAILABLE, LOGO URL NIL
-            completion(nil)
+            //MARK: Add custom error here to enable placeholder for agencies with no Logo URL
+            completion(nil, nil)
             return
         }
-        LaunchLibraryApiClient.getImage(urlString: url) { (image, error, response) in
+        LaunchLibraryApiClient.getImage(urlString: url) { (image, error) in
+            if let error = error {
+                completion(nil, error)
+            }
             guard let image = image else {
                 if let error = error { print(error) }
-                completion(nil)
+                completion(nil, nil)
                 return
             }
             let logo = AgencyLogo(context: context)
@@ -54,7 +61,7 @@ class AgencyHelper {
             agency.logo = logo
             logo.agency = agency
             do { try context.save() } catch {print(error)}
-            completion(image)
+            completion(image, nil)
         }
     }
         

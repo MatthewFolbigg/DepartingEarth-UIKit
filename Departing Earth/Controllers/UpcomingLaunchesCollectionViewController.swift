@@ -46,8 +46,13 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     }
         
     func downloadUpcomingLaunches() {
-        LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error, response) in
+        LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error) in
+            if let error = error {
+                self.handleError(error: error)
+            }
+            
             guard let returnedLaunches = returnedLaunches else {
+                self.mainActivityIndicator.stopAnimating()
                 return //TODO: Handel error as failed refresh/initail DL
             }
             self.upcomingLaunchInfo = returnedLaunches
@@ -58,6 +63,23 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             self.collectionView.reloadData()
             self.mainActivityIndicator.stopAnimating()
         }
+    }
+    
+    func handleError(error: Error) {
+        if let downloadError = error as? LaunchLibraryApiClient.downloadError {
+            showUserError(error: downloadError)
+        } else {
+            print(error)
+        }
+    }
+    
+    func showUserError(error: Error) {
+        let error = error as NSError
+        let message = "\(error.localizedFailureReason ?? "")\n\(error.localizedRecoverySuggestion ?? "")"
+        let alert = UIAlertController(title: error.localizedDescription, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: Countdown Refresh Timer
@@ -145,22 +167,30 @@ extension UpcomingLaunchesCollectionViewController {
         cell.rocketNameLabel.text = launch.rocket?.name
         let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate) ?? "TBD"
         cell.launchDateLabel.text = expectedLaunchDate
-        
-        
         cell.updateCountdown()
         
         let providerId = launch.launchProviderId
-        AgencyHelper.getAgencyForId(id: Int(providerId), context: dataController.viewContext) { (agency) in
+        AgencyHelper.getAgencyForId(id: Int(providerId), context: dataController.viewContext) { (agency, error)  in
             guard let agency = agency else { return }
             launch.launchProvider = agency
             if cell.cellId == launchId {
                 cell.launchProviderNameLabel.text = launch.launchProvider?.name
-                cell.launchProviderTypeLabel.text = launch.launchProvider?.type
+                cell.launchProviderTypeLabel.text = launch.launchProvider?.type ?? "Unspecified"
             }
-            AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image) in
+            AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image, error) in
                 if cell.cellId == launchId {
-                    guard let data = agency.logo?.imageData else { return }
-                    guard let image = UIImage(data: data) else { return }
+                    guard let data = agency.logo?.imageData else {
+                        let placeholder = UIImage(systemName: "rectangle.dashed")!
+                        cell.logoImageView.tintColor = Colours.spaceSuitOrange.ui
+                        cell.setLogo(image: placeholder)
+                        return
+                    }
+                    guard let image = UIImage(data: data) else {
+                        let placeholder = UIImage(systemName: "rectangle.dashed")!
+                        cell.logoImageView.tintColor = Colours.spaceSuitOrange.ui
+                        cell.setLogo(image: placeholder)
+                        return
+                    }
                     cell.setLogo(image: image)
                 }
             }
