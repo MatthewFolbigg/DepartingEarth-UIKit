@@ -10,6 +10,10 @@ import UIKit
 
 enum Colours {
     case spaceSuitOrange
+    case cosmonautSuitGreen
+    case nasaWormRed
+    case moonSurfaceGrey
+    case moonCraterGrey
     case white
 
     var ui: UIColor {
@@ -32,8 +36,12 @@ enum Colours {
     //CGColor(red: 246/255, green: 247/255, blue: 249/255, alpha: 1)
     var rgbValues: [String: Float] {
         switch self {
-        case .spaceSuitOrange: return [ "red": 230,   "green": 115,   "blue": 50  ]
-        case .white:           return [ "red": 246,   "green": 247,   "blue": 249  ]
+        case .spaceSuitOrange:   return [ "red": 230,   "green": 115,   "blue": 50   ]
+        case.cosmonautSuitGreen: return [ "red": 161,   "green": 214,   "blue": 172  ]
+        case.nasaWormRed:        return [ "red": 187,   "green": 39,    "blue": 45   ]
+        case .moonSurfaceGrey:   return [ "red": 227,   "green": 227,    "blue": 227   ]
+        case .moonCraterGrey:    return [ "red": 100,   "green": 100,    "blue": 100   ]
+        case .white:             return [ "red": 246,   "green": 247,   "blue": 249  ]
         }
     }
 }

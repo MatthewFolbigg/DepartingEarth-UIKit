@@ -96,7 +96,6 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         self.launches = []
         let storedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext)
         for launch in storedLaunches {
-            print("Deleting Launch: \(launch.launchId)")
             dataController.viewContext.delete(launch)
         }
         try? dataController.viewContext.save()
@@ -138,15 +137,18 @@ extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
-        cell.setDownloadingActivity(on: true)
         let launch = launches[row]
+        cell.launch = launch
+        cell.setDownloadingActivity(on: true)
         let launchId = launch.launchId
         cell.cellId = launchId
-        cell.net = launch.netDate
         cell.rocketNameLabel.text = launch.rocket?.name
         let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate) ?? "TBD"
         cell.launchDateLabel.text = expectedLaunchDate
+        
+        
         cell.updateCountdown()
+        
         let providerId = launch.launchProviderId
         AgencyHelper.getAgencyForId(id: Int(providerId), context: dataController.viewContext) { (agency) in
             guard let agency = agency else { return }

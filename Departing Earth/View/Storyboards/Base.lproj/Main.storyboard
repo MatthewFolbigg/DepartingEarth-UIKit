@@ -111,8 +111,15 @@
                                             <color key="textColor" systemColor="systemOrangeColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ved-OQ-7aS">
+                                            <rect key="frame" x="322" y="162" width="20" height="11"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="12" id="xph-5J-drz"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Uug-i2-5s1" firstAttribute="leading" secondItem="ved-OQ-7aS" secondAttribute="trailing" id="3lC-ZH-u3p"/>
                                         <constraint firstItem="tRt-50-Wte" firstAttribute="top" secondItem="Uug-i2-5s1" secondAttribute="bottom" constant="2" id="5HC-RD-ewZ"/>
                                         <constraint firstItem="2fr-X0-0XH" firstAttribute="top" secondItem="Zju-sy-Dtl" secondAttribute="bottom" constant="5" id="8XE-dS-UhV"/>
                                         <constraint firstAttribute="trailing" secondItem="Qcl-hn-qdq" secondAttribute="trailing" id="DKO-DV-Oc8"/>
@@ -129,6 +136,7 @@
                                         <constraint firstItem="tRt-50-Wte" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f2h-NQ-uyq" secondAttribute="trailing" constant="15" id="awu-ZT-tsq"/>
                                         <constraint firstAttribute="trailing" secondItem="Uug-i2-5s1" secondAttribute="trailing" constant="25" id="bFd-Kq-Kw9"/>
                                         <constraint firstItem="R4C-R2-Umy" firstAttribute="centerX" secondItem="rm2-0D-WBe" secondAttribute="centerX" id="bUH-Pu-YUz"/>
+                                        <constraint firstItem="ved-OQ-7aS" firstAttribute="centerY" secondItem="Uug-i2-5s1" secondAttribute="centerY" id="dE9-43-4gI"/>
                                         <constraint firstItem="mPd-El-0zb" firstAttribute="top" secondItem="rm2-0D-WBe" secondAttribute="top" constant="7.5" id="ecz-kR-Epu"/>
                                         <constraint firstItem="JMa-yw-lPB" firstAttribute="leading" secondItem="rm2-0D-WBe" secondAttribute="leading" constant="25" id="hAC-oQ-iwl"/>
                                         <constraint firstAttribute="trailing" secondItem="tRt-50-Wte" secondAttribute="trailing" constant="25" id="jlU-av-Fwt"/>
@@ -153,6 +161,7 @@
                                     <outlet property="logoImageView" destination="mPd-El-0zb" id="xWh-1E-bzU"/>
                                     <outlet property="logoImageViewWidthContraint" destination="1pe-5w-a3D" id="vl2-mj-5tn"/>
                                     <outlet property="rocketNameLabel" destination="Zju-sy-Dtl" id="kwI-ix-cXs"/>
+                                    <outlet property="statusImageView" destination="ved-OQ-7aS" id="I35-51-2az"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -228,6 +237,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

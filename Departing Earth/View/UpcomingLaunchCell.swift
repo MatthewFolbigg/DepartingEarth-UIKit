@@ -19,11 +19,12 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var countdownLabel: UILabel!
     @IBOutlet var countdownBackgroundView: UIView!
+    @IBOutlet var statusImageView: UIImageView!
     
     @IBOutlet weak var logoImageViewWidthContraint: NSLayoutConstraint!
     
     var cellId: String?
-    var net: String?
+    var launch: Launch!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -77,12 +78,30 @@ class UpcomingLaunchCell: UICollectionViewCell {
     }
     
     func updateCountdown() {
-        if let net = self.net {
-            let countdownString = LaunchDateTime.countdownStringTo(isoString: net)
-            self.countdownLabel.text = "T- \(countdownString)"
-        } else {
-            self.countdownLabel.text = "-- -- -- --"
+        let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId)) ?? LaunchHelper.LaunchStatus.tbd
+        updateUiForLaunchStatus(launchStatus: launchStatus)
+        updateCountdownTimerForLaunchStatus(launchStatus: launchStatus)
+    }
+            
+    private func updateCountdownTimerForLaunchStatus(launchStatus: LaunchHelper.LaunchStatus) {
+        switch launchStatus {
+        case .hold: self.countdownLabel.text = launchStatus.description
+        case .tbd: self.countdownLabel.text = "-- -- -- --"
+        case .success: self.countdownLabel.text = launchStatus.description
+        default:
+            if let net = self.launch?.netDate {
+                let countdownString = LaunchDateTime.countdownStringTo(isoString: net)
+                self.countdownLabel.text = "T- \(countdownString)"
+            } else {
+                self.countdownLabel.text = "-- -- -- --"
+            }
         }
+    }
+    
+    private func updateUiForLaunchStatus(launchStatus: LaunchHelper.LaunchStatus) {
+        expectedLabel.text = launchStatus.countdownDescription
+        statusImageView.tintColor = launchStatus.colour
+        countdownBackgroundView.backgroundColor = launchStatus.alternateColour
     }
     
     func setLogo(image: UIImage) {

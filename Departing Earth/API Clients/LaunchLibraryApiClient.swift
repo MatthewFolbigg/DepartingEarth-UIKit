@@ -25,7 +25,7 @@ class LaunchLibraryApiClient {
         private static let agencies = "agencies/"
         
         //MARK: URL Components - Filters and Ordering
-        private static let first50 = "&limit=30&offset=0"
+        private static let first50 = "&limit=20&offset=0"
         
         //MARK: Endpoint Cases
         case getUpcomingLaunches
@@ -49,22 +49,23 @@ class LaunchLibraryApiClient {
 extension LaunchLibraryApiClient {
     
     //MARK: Get Upcoming Launches
-    static func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?, URLResponse?) -> Void) {
+    static func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?, HTTPURLResponse?) -> Void) {
         let url = Endpoint.getUpcomingLaunches.url!
         print("Getting Upcoming Launches: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
-            
+            let httpResponse = response as! HTTPURLResponse
+            print("Response: \(httpResponse.statusCode) - \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
                 return
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
                 return
             }
@@ -78,7 +79,7 @@ extension LaunchLibraryApiClient {
             } catch {
                 print("JSON Decoding Failed: \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
             }
         }
@@ -86,7 +87,7 @@ extension LaunchLibraryApiClient {
     }
     
     //MARK: Get Agency Info by ID
-    static func getAgencyInfo(id: Int, completion: @escaping (AgencyDetail? , Error?, URLResponse?) -> Void) {
+    static func getAgencyInfo(id: Int, completion: @escaping (AgencyDetail? , Error?, HTTPURLResponse?) -> Void) {
         guard let url = Endpoint.getAgencyById(id).url else {
             print("Invalid URL Created. Check Agency ID is valid")
             return
@@ -95,16 +96,19 @@ extension LaunchLibraryApiClient {
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
             
+            let httpResponse = response as! HTTPURLResponse
+            print("Response: \(httpResponse.statusCode) - \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
+            
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
                 return
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
                 return
             }
@@ -117,7 +121,7 @@ extension LaunchLibraryApiClient {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
             }
         }
@@ -125,7 +129,7 @@ extension LaunchLibraryApiClient {
     }
     
     //MARK: Get Image from URL
-    static func getImage(urlString: String, completion: @escaping (UIImage?, Error?, URLResponse?) -> Void) {
+    static func getImage(urlString: String, completion: @escaping (UIImage?, Error?, HTTPURLResponse?) -> Void) {
         guard let url = URL(string: urlString) else {
             print("Invalid Logo URL")
             return
@@ -133,16 +137,20 @@ extension LaunchLibraryApiClient {
         print("Getting Image: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
+            
+            let httpResponse = response as! HTTPURLResponse
+            print("Response: \(httpResponse.statusCode) - \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
+            
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
                 return
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(nil, error, response)
+                    completion(nil, error, httpResponse)
                 }
                 return
             }
