@@ -14,8 +14,11 @@
         <attribute name="statusDescription" optional="YES" attributeType="String"/>
         <attribute name="statusId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timePending" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="launchProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="launch" inverseEntity="LaunchAgency"/>
-        <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launch" inverseEntity="Rocket"/>
+        <attribute name="windowEnd" optional="YES" attributeType="String"/>
+        <attribute name="windowStart" optional="YES" attributeType="String"/>
+        <relationship name="launchPad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchPad" inverseName="launches" inverseEntity="LaunchPad"/>
+        <relationship name="launchProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="launches" inverseEntity="LaunchAgency"/>
+        <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launches" inverseEntity="Rocket"/>
     </entity>
     <entity name="LaunchAgency" representedClassName="LaunchAgency" syncable="YES" codeGenerationType="class">
         <attribute name="abbreviation" optional="YES" attributeType="String"/>
@@ -23,19 +26,28 @@
         <attribute name="logoUrl" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
-        <relationship name="launch" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="launchProvider" inverseEntity="Launch"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="launchProvider" inverseEntity="Launch"/>
         <relationship name="logo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AgencyLogo" inverseName="agency" inverseEntity="AgencyLogo"/>
+    </entity>
+    <entity name="LaunchPad" representedClassName="LaunchPad" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String"/>
+        <attribute name="loacationName" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="launchPad" inverseEntity="Launch"/>
     </entity>
     <entity name="Rocket" representedClassName="Rocket" syncable="YES" codeGenerationType="class">
         <attribute name="family" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="variant" optional="YES" attributeType="String"/>
-        <relationship name="launch" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
+        <relationship name="launches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="AgencyLogo" positionX="-406.7578125" positionY="-149.1484375" width="128" height="73"/>
-        <element name="Launch" positionX="-888.09765625" positionY="-60.91796875" width="153.72265625" height="194"/>
-        <element name="LaunchAgency" positionX="-597.98046875" positionY="-223.6015625" width="128" height="148"/>
-        <element name="Rocket" positionX="-589.0625" positionY="40.90625" width="128" height="103"/>
+        <element name="AgencyLogo" positionX="-412.6484375" positionY="14" width="128" height="73"/>
+        <element name="Launch" positionX="-863.15625" positionY="-165.625" width="153.72265625" height="253"/>
+        <element name="LaunchAgency" positionX="-581.0625" positionY="-60.87890625" width="128" height="134"/>
+        <element name="LaunchPad" positionX="-577.2890625" positionY="-213.95703125" width="128" height="119"/>
+        <element name="Rocket" positionX="-575.39453125" positionY="109.53125" width="128" height="89"/>
     </elements>
 </model>

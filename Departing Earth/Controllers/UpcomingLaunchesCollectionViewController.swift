@@ -146,12 +146,11 @@ extension UpcomingLaunchesCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destination = storyboard?.instantiateViewController(identifier: "LaunchDetail") as! LaunchDetailViewController
-        destination.launch = launches[indexPath.row]
-        self.present(destination, animated: true) {
-            print("Presented")
-        }
+        let launch = launches[indexPath.row]
+        destination.launch = launch
+        destination.title = launch.rocket?.name
+        self.showDetailViewController(destination, sender: nil)
     }
-    
 }
 
 //MARK: Cells and Supplementary Views

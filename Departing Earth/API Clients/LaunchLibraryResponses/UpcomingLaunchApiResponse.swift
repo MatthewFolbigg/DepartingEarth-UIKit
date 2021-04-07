@@ -25,6 +25,9 @@ struct LaunchInfo: Codable {
     let tbdtime: Bool
     let tbddate: Bool
     let holdreason: String?
+    let windowStart: String
+    let windowEnd: String
+    let pad: Pad
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -38,6 +41,9 @@ struct LaunchInfo: Codable {
         case tbdtime = "tbdtime"
         case tbddate = "tbddate"
         case holdreason = "holdreason"
+        case windowStart = "window_start"
+        case windowEnd = "window_end"
+        case pad = "pad"
     }
 }
 
@@ -74,5 +80,17 @@ struct Orbit: Codable {
 
 struct LaunchStatus: Codable {
     let id: Int
+    let name: String
+}
+
+struct Pad: Codable {
+    let id: Int
+    let name: String
+    let latitude: String
+    let longitude: String
+    let location: PadLocation
+}
+
+struct PadLocation: Codable {
     let name: String
 }

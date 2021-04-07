@@ -62,18 +62,32 @@ class LaunchHelper {
     static func createLaunchObjectFrom(launchInfo: LaunchInfo, context: NSManagedObjectContext) -> Launch {
         let launch = Launch(context: context)
         let rocket = Rocket(context: context)
+        let pad = LaunchPad(context: context)
+        
         launch.launchId = launchInfo.id
         launch.name = launchInfo.name
         launch.netDate = launchInfo.noEarlierThan
-        rocket.name = launchInfo.rocket.configuration.name
-        rocket.family = launchInfo.rocket.configuration.family
-        rocket.variant = launchInfo.rocket.configuration.variant
-        launch.rocket = rocket
         launch.launchProviderId = Int64(launchInfo.launchServiceProvider.id)
         launch.datePending = launchInfo.tbddate
         launch.timePending = launchInfo.tbdtime
         launch.onHold = launchInfo.inhold
+        launch.windowStart = launchInfo.windowStart
+        launch.windowEnd = launchInfo.windowEnd
         setLaunchStatusId(launch: launch, launchInfo: launchInfo)
+        
+        rocket.name = launchInfo.rocket.configuration.name
+        rocket.family = launchInfo.rocket.configuration.family
+        rocket.variant = launchInfo.rocket.configuration.variant
+        
+        pad.name = launchInfo.pad.name
+        pad.latitude = launchInfo.pad.latitude
+        pad.longitude = launchInfo.pad.longitude
+        pad.id = Int64(launchInfo.pad.id)
+        pad.loacationName = launchInfo.pad.location.name
+        
+        launch.rocket = rocket
+        launch.launchPad = pad
+        
         try? context.save()
         return launch
     }

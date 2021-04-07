@@ -170,7 +170,7 @@
                             <outlet property="delegate" destination="xOj-Qe-v8h" id="uHS-o6-66a"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Departing Soon" id="zUW-ik-gvo">
+                    <navigationItem key="navigationItem" title="Departing Soon" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="zUW-ik-gvo">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="dSu-Fz-4CH">
                             <color key="tintColor" systemColor="systemOrangeColor"/>
                             <connections>
@@ -185,9 +185,9 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzI-X1-HHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="389.85507246376812" y="770.75892857142856"/>
+            <point key="canvasLocation" x="374" y="771"/>
         </scene>
-        <!--Launch Detail View Controller-->
+        <!--Launch-->
         <scene sceneID="hgE-qW-N32">
             <objects>
                 <viewController storyboardIdentifier="LaunchDetail" id="c5b-Pk-32q" customClass="LaunchDetailViewController" customModule="Departing_Earth" customModuleProvider="target" sceneMemberID="viewController">
@@ -195,27 +195,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPw-Ep-zlQ">
-                                <rect key="frame" x="168" y="194" width="78" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofG-iC-b40" userLabel="Title">
+                                <rect key="frame" x="20" y="69" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="rocket name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeB-Sj-ZgZ">
+                                <rect key="frame" x="20" y="143" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znv-xv-RXy">
+                                <rect key="frame" x="20" y="222" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usj-7a-lUs">
+                                <rect key="frame" x="20" y="293" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Long" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRr-YW-Dcr">
+                                <rect key="frame" x="20" y="322" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pad Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-j9-AI4">
+                                <rect key="frame" x="20" y="251" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Agency name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-am-e1T">
+                                <rect key="frame" x="20" y="114" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ess-HC-5d4">
+                                <rect key="frame" x="20" y="351" width="374" height="233"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="saw-vG-ahW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bPw-Ep-zlQ" firstAttribute="top" secondItem="saw-vG-ahW" secondAttribute="top" constant="150" id="2S3-wy-RDk"/>
-                            <constraint firstItem="bPw-Ep-zlQ" firstAttribute="centerX" secondItem="iJ2-dd-xga" secondAttribute="centerX" id="tgP-6p-B4S"/>
+                            <constraint firstItem="ofG-iC-b40" firstAttribute="leading" secondItem="saw-vG-ahW" secondAttribute="leading" constant="20" id="WPp-H6-11j"/>
+                            <constraint firstItem="saw-vG-ahW" firstAttribute="trailing" secondItem="ofG-iC-b40" secondAttribute="trailing" constant="20" id="gJI-iz-bEg"/>
+                            <constraint firstItem="ofG-iC-b40" firstAttribute="top" secondItem="saw-vG-ahW" secondAttribute="top" constant="25" id="zrg-qU-3l3"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Launch" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="never" id="8XU-qr-ouv">
+                        <barButtonItem key="backBarButtonItem" title="back back" id="LhW-bv-5cu"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="testLabel" destination="bPw-Ep-zlQ" id="x8b-he-9QT"/>
+                        <outlet property="agencyNameLabel" destination="gt5-am-e1T" id="CNf-f4-cbl"/>
+                        <outlet property="latitudeLabel" destination="Usj-7a-lUs" id="cF3-2M-f7P"/>
+                        <outlet property="locationNameLabel" destination="Znv-xv-RXy" id="74C-KR-MUt"/>
+                        <outlet property="longitudeLabel" destination="aRr-YW-Dcr" id="G73-Wu-Y3f"/>
+                        <outlet property="padMapView" destination="Ess-HC-5d4" id="Mod-sp-W9K"/>
+                        <outlet property="padNameLabel" destination="mVz-j9-AI4" id="tML-zi-qvx"/>
+                        <outlet property="rocketNameLabel" destination="xeB-Sj-ZgZ" id="aUa-5r-VL8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zi6-ND-8Z6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="771"/>
+            <point key="canvasLocation" x="1295.6521739130435" y="770.75892857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8VD-ju-KD7">
