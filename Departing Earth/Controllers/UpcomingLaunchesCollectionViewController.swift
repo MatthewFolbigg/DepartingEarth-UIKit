@@ -164,7 +164,7 @@ extension UpcomingLaunchesCollectionViewController {
         let launchId = launch.launchId
         cell.cellId = launchId
         cell.rocketNameLabel.text = launch.rocket?.name
-        let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate) ?? "TBD"
+        let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate)
         cell.launchDateLabel.text = expectedLaunchDate
         cell.updateCountdown()
         

@@ -80,24 +80,9 @@ class UpcomingLaunchCell: UICollectionViewCell {
     func updateCountdown() {
         let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId)) ?? LaunchHelper.LaunchStatus.tbd
         updateUiForLaunchStatus(launchStatus: launchStatus)
-        updateCountdownTimerForLaunchStatus(launchStatus: launchStatus)
+        self.countdownLabel.text = LaunchDateTime.getCountdownTimerString(launch: launch)
     }
-            
-    private func updateCountdownTimerForLaunchStatus(launchStatus: LaunchHelper.LaunchStatus) {
-        switch launchStatus {
-        case .hold: self.countdownLabel.text = launchStatus.description
-        case .tbd: self.countdownLabel.text = "-- -- -- --"
-        case .success: self.countdownLabel.text = launchStatus.description
-        default:
-            if let net = self.launch?.netDate {
-                let countdownString = LaunchDateTime.countdownStringTo(isoString: net)
-                self.countdownLabel.text = "T- \(countdownString)"
-            } else {
-                self.countdownLabel.text = "-- -- -- --"
-            }
-        }
-    }
-    
+                
     private func updateUiForLaunchStatus(launchStatus: LaunchHelper.LaunchStatus) {
         expectedLabel.text = launchStatus.countdownDescription
         statusImageView.tintColor = launchStatus.colour

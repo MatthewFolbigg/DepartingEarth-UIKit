@@ -21,7 +21,7 @@ class LaunchHelper {
         var description: String {
             switch self {
             case .go: return "Go"
-            case .tbd: return "TBC"
+            case .tbd: return "Pending"
             case .success: return "Success"
             case .failure: return "Failure"
             case .hold: return "On Hold"
@@ -30,11 +30,11 @@ class LaunchHelper {
         
         var countdownDescription: String {
             switch self {
-            case .go: return "Launching:"
-            case .tbd: return "Estimated:"
-            case .success: return "Launched:"
-            case .failure: return "Failed:"
-            case .hold: return "Holding:"
+            case .go: return "Launching"
+            case .tbd: return "Estimated"
+            case .success: return "Launched"
+            case .failure: return "Failed"
+            case .hold: return "Holding"
             }
         }
         

@@ -26,7 +26,7 @@ class LaunchDateTime {
         return date
     }
     
-    static func defaultDateString (isoString: String?) -> String? {
+    static func defaultDateString (isoString: String?) -> String {
         guard let isoString = isoString else { return "TBD" }
         guard let date = convertToDate(isoString: isoString) else {
             print("Invalid ISO String provided in attempt to get default date string")
@@ -67,6 +67,24 @@ class LaunchDateTime {
             return ""
         }
         return formattedString
+    }
+    
+    static func getCountdownTimerString(launch: Launch) -> String? {
+        guard let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId)) else {
+            return nil
+        }
+        switch launchStatus {
+        case .hold: return launchStatus.description
+        case .tbd: return "-- -- -- --"
+        case .success: return launchStatus.description
+        default:
+            if let net = launch.netDate {
+                let countdown = LaunchDateTime.countdownStringTo(isoString: net)
+                return "T- \(countdown)"
+            } else {
+                return "-- -- -- --"
+            }
+        }
     }
     
 }
