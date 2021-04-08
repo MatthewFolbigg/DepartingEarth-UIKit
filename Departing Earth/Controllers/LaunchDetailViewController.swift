@@ -36,6 +36,7 @@ class LaunchDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
+        self.navigationController?.navigationBar.tintColor = Colours.spaceSuitOrange.ui
         
         guard let launch = launch else {
             self.dismiss(animated: true, completion: nil)
@@ -132,9 +133,12 @@ class LaunchDetailViewController: UIViewController {
         guard let long = Double(launch.launchPad?.longitude ?? "")  else {return}
         padMapView.mapType = .satelliteFlyover
         padMapView.isRotateEnabled = false
-        let zoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: CLLocationDistance(5000))
-        padMapView.setCameraZoomRange(zoomRange, animated: true)
-        padMapView.centerCoordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        
+        let cameraRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500))
+        let cameraRegionLimit = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: CLLocationDistance(2000), longitudinalMeters: CLLocationDistance(2000))
+        let cameraBounds = MKMapView.CameraBoundary(coordinateRegion: cameraRegionLimit)
+        padMapView.setCameraBoundary(cameraBounds, animated: false)
+        padMapView.setRegion(cameraRegion, animated: true)
     }
         
 }

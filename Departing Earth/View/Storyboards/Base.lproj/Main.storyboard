@@ -182,11 +182,12 @@
                     <connections>
                         <outlet property="mainActivityIndicator" destination="Oif-7d-NUl" id="BhX-Gj-l4Y"/>
                         <outlet property="refreshBarButtonItem" destination="dSu-Fz-4CH" id="IQP-Qt-hB9"/>
+                        <segue destination="c5b-Pk-32q" kind="show" id="awi-j9-QRT"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzI-X1-HHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="771"/>
+            <point key="canvasLocation" x="330" y="771"/>
         </scene>
         <!--Launch-->
         <scene sceneID="hgE-qW-N32">
@@ -197,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3W-Mt-qc7">
-                                <rect key="frame" x="25" y="69" width="364" height="50"/>
+                                <rect key="frame" x="25" y="98" width="364" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T- 00d 00h 00m 00s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-Gz-zgP">
                                         <rect key="frame" x="102.5" y="14.5" width="159" height="21"/>
@@ -214,7 +215,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCr-cP-NAk" userLabel="MapSectionBackgroundView">
-                                <rect key="frame" x="25" y="264" width="364" height="481"/>
+                                <rect key="frame" x="25" y="293" width="364" height="481"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satelliteFlyover" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ess-HC-5d4">
                                         <rect key="frame" x="20" y="81" width="324" height="380"/>
@@ -250,7 +251,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YoV-TG-aBP">
-                                <rect key="frame" x="25" y="129" width="364" height="125"/>
+                                <rect key="frame" x="25" y="158" width="364" height="125"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ufy-dB-wlG" userLabel="StatusIndicatorImageView">
                                         <rect key="frame" x="20" y="20.5" width="25" height="24"/>
@@ -288,6 +289,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrX-TE-QYM">
                                         <rect key="frame" x="303.5" y="47.5" width="35.5" height="30.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <state key="normal">
                                             <imageReference key="image" image="calendar.badge.plus" catalog="system" symbolScale="large"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21" weight="semibold"/>
@@ -326,7 +328,7 @@
                         <viewLayoutGuide key="safeArea" id="saw-vG-ahW"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="g3W-Mt-qc7" firstAttribute="top" secondItem="saw-vG-ahW" secondAttribute="top" constant="25" id="4cV-bh-UCT"/>
+                            <constraint firstItem="g3W-Mt-qc7" firstAttribute="top" secondItem="saw-vG-ahW" secondAttribute="top" constant="10" id="4cV-bh-UCT"/>
                             <constraint firstItem="KCr-cP-NAk" firstAttribute="leading" secondItem="saw-vG-ahW" secondAttribute="leading" constant="25" id="61q-VI-79R"/>
                             <constraint firstItem="g3W-Mt-qc7" firstAttribute="leading" secondItem="saw-vG-ahW" secondAttribute="leading" constant="25" id="7lL-eX-RjO"/>
                             <constraint firstItem="saw-vG-ahW" firstAttribute="trailing" secondItem="g3W-Mt-qc7" secondAttribute="trailing" constant="25" id="Jc0-sr-Dgs"/>
@@ -398,6 +400,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

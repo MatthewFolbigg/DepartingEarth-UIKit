@@ -14,9 +14,9 @@ class LaunchLibraryApiClient {
     enum Endpoint {
         //MARK: URL Components - Base API
         //Provides acctual data but throttled. Use in release and real world testing.
-        //private static let apiUrl = "https://ll.thespacedevs.com/2.0.0/"
+        private static let apiUrl = "https://ll.thespacedevs.com/2.0.0/"
         //Provides Stale data but not throttled. Use when building and testing
-        private static let apiUrl = "https://lldev.thespacedevs.com/2.0.0/"
+        //private static let apiUrl = "https://lldev.thespacedevs.com/2.0.0/"
         private static let responseAsJson = "?format=json"
         
         //MARK: URL Components - Request Types

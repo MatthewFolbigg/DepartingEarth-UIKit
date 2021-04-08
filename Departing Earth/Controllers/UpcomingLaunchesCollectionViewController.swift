@@ -149,7 +149,8 @@ extension UpcomingLaunchesCollectionViewController {
         let launch = launches[indexPath.row]
         destination.launch = launch
         destination.title = launch.rocket?.name
-        self.showDetailViewController(destination, sender: nil)
+        self.navigationController?.pushViewController(destination, animated: true)
+        //self.showDetailViewController(destination, sender: nil)
     }
 }
 
