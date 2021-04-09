@@ -33,7 +33,7 @@ enum Colours {
         let colour  = CGColor(red: red, green: green, blue: blue, alpha: alapha)
         return colour
     }
-    //CGColor(red: 246/255, green: 247/255, blue: 249/255, alpha: 1)
+
     var rgbValues: [String: Float] {
         switch self {
         case .spaceSuitOrange:   return [ "red": 230,   "green": 115,   "blue": 50   ]

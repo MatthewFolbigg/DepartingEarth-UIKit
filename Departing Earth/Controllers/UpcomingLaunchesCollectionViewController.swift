@@ -149,6 +149,8 @@ extension UpcomingLaunchesCollectionViewController {
         let launch = launches[indexPath.row]
         destination.launch = launch
         destination.title = launch.rocket?.name
+        let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId))
+        destination.launchStatus = launchStatus
         self.navigationController?.pushViewController(destination, animated: true)
         //self.showDetailViewController(destination, sender: nil)
     }
