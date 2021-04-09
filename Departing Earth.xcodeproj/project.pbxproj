@@ -100,6 +100,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F220C122620B2720065AE41 /* Model Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1F2B21432614C5E1001A940D /* LaunchHelper.swift */,
+				1F03A44726179697005CB48C /* AgencyHelper.swift */,
+				1F2B21532614EBA9001A940D /* LaunchDateTime.swift */,
+			);
+			path = "Model Helpers";
+			sourceTree = "<group>";
+		};
 		1F2B21382614B9B9001A940D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +164,7 @@
 				1F4F41D826147CD0000B9CD9 /* App */,
 				1F58201526138BEC004AA80B /* API Clients */,
 				1F58201726138C13004AA80B /* Model */,
+				1F220C122620B2720065AE41 /* Model Helpers */,
 				1F2B21382614B9B9001A940D /* View */,
 				1F58201D26138F8C004AA80B /* Controllers */,
 				1F581FE326138585004AA80B /* Assets.xcassets */,
@@ -201,10 +212,8 @@
 		1F58201726138C13004AA80B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F4F41D326147B97000B9CD9 /* DataController.swift */,
 				1FB9D061261B7E0D00648E9D /* CoreData */,
-				1F2B21432614C5E1001A940D /* LaunchHelper.swift */,
-				1F03A44726179697005CB48C /* AgencyHelper.swift */,
-				1F2B21532614EBA9001A940D /* LaunchDateTime.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,7 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				1F581FE026138584004AA80B /* DepartingEarthDataModel.xcdatamodeld */,
-				1F4F41D326147B97000B9CD9 /* DataController.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";

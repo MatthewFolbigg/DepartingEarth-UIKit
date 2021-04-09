@@ -102,30 +102,23 @@ extension LaunchLibraryApiClient {
         print("Getting Upcoming Launches: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
-           
-            if let error = setErrorType(error: error, response: response) {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let error = setErrorType(error: error, response: response) {
                     completion(nil, error)
+                    return
                 }
-                return
-            }
-                        
-            guard let data = data else {
-                DispatchQueue.main.async {
+                guard let data = data else {
                     completion(nil, downloadError.nilData)
+                    return
                 }
-                return
-            }
             
-            let decoder = JSONDecoder()
-            do {
-                let jsonData = try decoder.decode(UpcomingLaunchApiResponse.self, from: data)
-                DispatchQueue.main.async {
+                let decoder = JSONDecoder()
+                do {
+                    let jsonData = try decoder.decode(UpcomingLaunchApiResponse.self, from: data)
                     completion(jsonData.results, nil)
-                }
-            } catch {
-                print("JSON Decoding Failed: \(error.localizedDescription)")
-                DispatchQueue.main.async {
+                
+                } catch {
+                    print("JSON Decoding Failed: \(error.localizedDescription)")
                     completion(nil, downloadError.decodingFailed)
                 }
             }
@@ -142,29 +135,22 @@ extension LaunchLibraryApiClient {
         print("Getting Agency for ID \(id): \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
-            
-            if let error = setErrorType(error: error, response: response) {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let error = setErrorType(error: error, response: response) {
                     completion(nil, error)
+                    return
                 }
-                return
-            }
-            
-            guard let data = data else {
-                DispatchQueue.main.async {
+                
+                guard let data = data else {
                     completion(nil, downloadError.nilData)
+                    return
                 }
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            do {
-                let agencyInfo = try decoder.decode(AgencyDetail.self, from: data)
-                DispatchQueue.main.async {
+                
+                let decoder = JSONDecoder()
+                do {
+                    let agencyInfo = try decoder.decode(AgencyDetail.self, from: data)
                     completion(agencyInfo, nil)
-                }
-            } catch {
-                DispatchQueue.main.async {
+                } catch {
                     completion(nil, downloadError.decodingFailed)
                 }
             }
@@ -181,27 +167,20 @@ extension LaunchLibraryApiClient {
         print("Getting Image: \(url)")
         let session = URLSession.shared
         let task = session.dataTask(with: url) { (data, response, error) in
-            
-            if let error = setErrorType(error: error, response: response) {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if let error = setErrorType(error: error, response: response) {
                     completion(nil, error)
+                    return
                 }
-                return
-            }
-            
-            guard let data = data else {
-                DispatchQueue.main.async {
+                
+                guard let data = data else {
                     completion(nil, downloadError.nilData)
+                    return
                 }
-                return
-            }
-            
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
+                
+                if let image = UIImage(data: data) {
                     completion(image, nil)
-                }
-            } else {
-                DispatchQueue.main.async {
+                } else {
                     completion(nil, downloadError.decodingFailed)
                 }
             }

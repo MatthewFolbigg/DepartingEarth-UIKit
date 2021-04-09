@@ -145,6 +145,7 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("DidSelectStart")
         let destination = storyboard?.instantiateViewController(identifier: "LaunchDetail") as! LaunchDetailViewController
         let launch = launches[indexPath.row]
         destination.launch = launch
@@ -152,7 +153,7 @@ extension UpcomingLaunchesCollectionViewController {
         let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId))
         destination.launchStatus = launchStatus
         self.navigationController?.pushViewController(destination, animated: true)
-        //self.showDetailViewController(destination, sender: nil)
+        print("DidSelectEnd")
     }
 }
 
@@ -167,7 +168,7 @@ extension UpcomingLaunchesCollectionViewController {
         let launchId = launch.launchId
         cell.cellId = launchId
         cell.rocketNameLabel.text = launch.rocket?.name
-        let expectedLaunchDate = LaunchDateTime.defaultDateString(isoString: launch.netDate)
+        let expectedLaunchDate = LaunchDateTime.launchDateString(isoString: launch.netDate)
         cell.launchDateLabel.text = expectedLaunchDate
         cell.updateCountdown()
         

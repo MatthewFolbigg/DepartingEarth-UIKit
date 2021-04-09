@@ -80,7 +80,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
     func updateCountdown() {
         let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId)) ?? LaunchHelper.LaunchStatus.tbd
         updateUiForLaunchStatus(launchStatus: launchStatus)
-        self.countdownLabel.text = LaunchDateTime.getCountdownTimerString(launch: launch)
+        self.countdownLabel.text = LaunchDateTime.countdownTimerString(launch: launch)
     }
                 
     private func updateUiForLaunchStatus(launchStatus: LaunchHelper.LaunchStatus) {

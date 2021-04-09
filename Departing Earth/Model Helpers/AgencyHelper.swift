@@ -11,8 +11,6 @@ import UIKit
 
 class AgencyHelper {
     
-    
-            
     static func getAgencyForId(id: Int, context: NSManagedObjectContext, completion: @escaping (LaunchAgency?, Error?) -> Void) {
         let fetchedAgencies = fetchSavedAgencies(context: context)
         for agency in fetchedAgencies {
