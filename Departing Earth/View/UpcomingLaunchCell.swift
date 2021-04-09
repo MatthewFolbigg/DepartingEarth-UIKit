@@ -20,6 +20,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var countdownLabel: UILabel!
     @IBOutlet var countdownBackgroundView: UIView!
     @IBOutlet var statusImageView: UIImageView!
+    @IBOutlet var humanIconImageView: UIImageView!
     
     @IBOutlet weak var logoImageViewWidthContraint: NSLayoutConstraint!
     
@@ -87,6 +88,11 @@ class UpcomingLaunchCell: UICollectionViewCell {
         expectedLabel.text = launchStatus.countdownDescription
         statusImageView.tintColor = launchStatus.colour
         countdownBackgroundView.backgroundColor = launchStatus.alternateColour
+        if let mission = launch.mission {
+            if mission.type == "Human Exploration" {
+                humanIconImageView.isHidden = false
+            }
+        }
     }
     
     func setLogo(image: UIImage) {

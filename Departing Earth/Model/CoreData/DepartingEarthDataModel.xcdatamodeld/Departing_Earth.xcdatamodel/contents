@@ -18,6 +18,7 @@
         <attribute name="windowStart" optional="YES" attributeType="String"/>
         <relationship name="launchPad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchPad" inverseName="launches" inverseEntity="LaunchPad"/>
         <relationship name="launchProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="launches" inverseEntity="LaunchAgency"/>
+        <relationship name="mission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Mission" inverseName="launch" inverseEntity="Mission"/>
         <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launches" inverseEntity="Rocket"/>
     </entity>
     <entity name="LaunchAgency" representedClassName="LaunchAgency" syncable="YES" codeGenerationType="class">
@@ -30,12 +31,21 @@
         <relationship name="logo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AgencyLogo" inverseName="agency" inverseEntity="AgencyLogo"/>
     </entity>
     <entity name="LaunchPad" representedClassName="LaunchPad" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String"/>
         <attribute name="loacationName" optional="YES" attributeType="String"/>
         <attribute name="longitude" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="padID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Launch" inverseName="launchPad" inverseEntity="Launch"/>
+    </entity>
+    <entity name="Mission" representedClassName="Mission" syncable="YES" codeGenerationType="class">
+        <attribute name="missionID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="objectives" optional="YES" attributeType="String"/>
+        <attribute name="orbit" optional="YES" attributeType="String"/>
+        <attribute name="orbitID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="launch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Launch" inverseName="mission" inverseEntity="Launch"/>
     </entity>
     <entity name="Rocket" representedClassName="Rocket" syncable="YES" codeGenerationType="class">
         <attribute name="family" optional="YES" attributeType="String"/>
@@ -44,10 +54,11 @@
         <relationship name="launches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Launch" inverseName="rocket" inverseEntity="Launch"/>
     </entity>
     <elements>
-        <element name="AgencyLogo" positionX="-412.6484375" positionY="14" width="128" height="73"/>
-        <element name="Launch" positionX="-863.15625" positionY="-165.625" width="153.72265625" height="253"/>
-        <element name="LaunchAgency" positionX="-581.0625" positionY="-60.87890625" width="128" height="134"/>
-        <element name="LaunchPad" positionX="-577.2890625" positionY="-213.95703125" width="128" height="119"/>
-        <element name="Rocket" positionX="-575.39453125" positionY="109.53125" width="128" height="89"/>
+        <element name="AgencyLogo" positionX="-359.0078125" positionY="11.28125" width="128" height="73"/>
+        <element name="Launch" positionX="-902.16015625" positionY="-91.0625" width="153.72265625" height="268"/>
+        <element name="LaunchAgency" positionX="-516.4609375" positionY="12.96484375" width="128" height="134"/>
+        <element name="LaunchPad" positionX="-606.34375" positionY="-208.421875" width="128" height="133"/>
+        <element name="Rocket" positionX="-605.6953125" positionY="162.609375" width="128" height="89"/>
+        <element name="Mission" positionX="-545.0546875" positionY="-72.56640625" width="128" height="148"/>
     </elements>
 </model>

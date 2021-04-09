@@ -17,13 +17,21 @@ class LaunchDetailViewController: UIViewController {
     @IBOutlet var dateStatusLabel: UILabel!
     @IBOutlet var countdownLabel: UILabel!
     @IBOutlet var countdownBackgroundView: UIView!
-    
+        
     @IBOutlet var dateTimeSectionBackground: UIView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var dateImageView: UIImageView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var timeImageView: UIImageView!
     @IBOutlet var addToCalendarButton: UIButton!
+    
+    @IBOutlet var missionSectionBackground: UIView!
+    @IBOutlet var missionNameLabel: UILabel!
+    @IBOutlet var missionTypeLabel: UILabel!
+    @IBOutlet var orbitNameLabel: UILabel!
+    @IBOutlet var orbitNameImageView: UIImageView!
+    @IBOutlet var missionTypeImageView: UIImageView!
+    @IBOutlet var missionInformationButton: UIButton!
     
     @IBOutlet var locationNameLabel: UILabel!
     @IBOutlet var padNameLabel: UILabel!
@@ -39,6 +47,13 @@ class LaunchDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        guard let mission = launch.mission else {
+            return
+        }
+        missionNameLabel.text = mission.name ?? "Pending"
+        missionTypeLabel.text = mission.type ?? "Pending"
+        orbitNameLabel.text = mission.orbit ?? "Pending"
     }
     
     //MARK: IB Actions
@@ -51,6 +66,12 @@ class LaunchDetailViewController: UIViewController {
    
     @IBAction func addToCalendarButtonDidPressed() {
         createCalendarEvent()
+    }
+    
+    @IBAction func missionInfoButtonDidPressed() {
+        if let mission = launch.mission {
+            print(mission.objectives)
+        }
     }
     
     func mapItemForLaunch() -> MKMapItem? {
@@ -75,7 +96,7 @@ class LaunchDetailViewController: UIViewController {
     }
     
     func setupBackgroundViews() {
-        let backgrounds: [UIView] = [countdownBackgroundView, dateTimeSectionBackground, mapSectionBackgroundView, padMapView]
+        let backgrounds: [UIView] = [countdownBackgroundView, dateTimeSectionBackground, missionSectionBackground, mapSectionBackgroundView, padMapView]
         for background in backgrounds {
             background.backgroundColor = .secondarySystemGroupedBackground
             background.layer.cornerRadius = background.frame.width/cornerRadiusConstant
@@ -89,7 +110,10 @@ class LaunchDetailViewController: UIViewController {
             dateImageView,
             timeImageView,
             openInMapsButton,
-            addToCalendarButton
+            addToCalendarButton,
+            orbitNameImageView,
+            orbitNameImageView,
+            missionInformationButton
         ]
         for item in itemsToTint {
             item.tintColor = Colours.spaceSuitOrange.ui
@@ -103,6 +127,9 @@ class LaunchDetailViewController: UIViewController {
         dateStatusLabel.font = Fonts.customMonospaced(15, .semibold).uiFont
         dateLabel.font = Fonts.customMonospacedDigit(15, .light).uiFont
         timeLabel.font = Fonts.customMonospacedDigit(15, .light).uiFont
+        missionNameLabel.font = Fonts.customMonospaced(15, .semibold).uiFont
+        missionTypeLabel.font = Fonts.customMonospacedDigit(15, .light).uiFont
+        orbitNameLabel.font = Fonts.customMonospacedDigit(15, .light).uiFont
     }
     
     //MARK: Countdown Section
@@ -174,7 +201,7 @@ class LaunchDetailViewController: UIViewController {
 }
 
 extension LaunchDetailViewController: EKEventEditViewDelegate, UINavigationControllerDelegate {
-    
+    //TODO: Once access is granted refresh. Currently requires reloading the eventeditview before access is recognised
     func createCalendarEvent() {
         eventStore.requestAccess(to: .event) { granted, error in
             guard granted else {

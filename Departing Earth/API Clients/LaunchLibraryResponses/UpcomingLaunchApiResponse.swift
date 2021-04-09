@@ -17,7 +17,7 @@ struct LaunchInfo: Codable {
     let id: String
     let name: String
     let rocket: RocketLaunching
-    let mission: Mission?
+    let mission: MissionInfo?
     let launchServiceProvider: LaunchServiceProvider
     let noEarlierThan: String
     let launchStatus: LaunchStatus
@@ -66,7 +66,8 @@ struct RocketConfiguration: Codable {
 }
 
 //MARK: Mission
-struct Mission: Codable {
+struct MissionInfo: Codable {
+    let id: Int
     let name: String
     let description: String
     let type: String
@@ -74,6 +75,7 @@ struct Mission: Codable {
 }
 
 struct Orbit: Codable {
+    let id: Int
     let name: String
     let abbrev: String
 }

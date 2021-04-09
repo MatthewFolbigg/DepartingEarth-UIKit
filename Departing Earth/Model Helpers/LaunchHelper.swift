@@ -63,6 +63,7 @@ class LaunchHelper {
         let launch = Launch(context: context)
         let rocket = Rocket(context: context)
         let pad = LaunchPad(context: context)
+        let mission = Mission(context: context)
         
         launch.launchId = launchInfo.id
         launch.name = launchInfo.name
@@ -82,11 +83,19 @@ class LaunchHelper {
         pad.name = launchInfo.pad.name
         pad.latitude = launchInfo.pad.latitude
         pad.longitude = launchInfo.pad.longitude
-        pad.id = Int64(launchInfo.pad.id)
+        pad.padID = Int64(launchInfo.pad.id)
         pad.loacationName = launchInfo.pad.location.name
+        
+        mission.missionID = Int64(launchInfo.mission?.id ?? 0)
+        mission.name = launchInfo.mission?.name
+        mission.type = launchInfo.mission?.type
+        mission.objectives = launchInfo.mission?.description
+        mission.orbit = launchInfo.mission?.orbit?.name
+        mission.orbitID = Int64(launchInfo.mission?.orbit?.id  ?? 0)
         
         launch.rocket = rocket
         launch.launchPad = pad
+        launch.mission = mission
         
         try? context.save()
         return launch

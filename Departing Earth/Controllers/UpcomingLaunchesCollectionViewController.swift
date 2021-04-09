@@ -27,7 +27,15 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         getUpcomingLaunches()
         setupCountdownUpdateTimer()
         collectionView.backgroundColor = UIColor.secondarySystemBackground
+        collectionView.contentInsetAdjustmentBehavior = .always
         refreshBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+                return
+            }
+        flowLayout.invalidateLayout()
     }
     
     //MARK: Fetching & Downloading Launch Data
@@ -145,7 +153,6 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DidSelectStart")
         let destination = storyboard?.instantiateViewController(identifier: "LaunchDetail") as! LaunchDetailViewController
         let launch = launches[indexPath.row]
         destination.launch = launch
@@ -153,7 +160,6 @@ extension UpcomingLaunchesCollectionViewController {
         let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId))
         destination.launchStatus = launchStatus
         self.navigationController?.pushViewController(destination, animated: true)
-        print("DidSelectEnd")
     }
 }
 
@@ -213,7 +219,8 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
         let collectionViewSize = collectionView.bounds.size
         var itemSize = CGSize()
         itemSize.height = 220
-        itemSize.width = collectionViewSize.width - (cellSideInsetAmount * 2)
+        let fullWidth = collectionViewSize.width - (cellSideInsetAmount * 2)
+        itemSize.width = fullWidth
         return itemSize
     }
     
@@ -224,6 +231,9 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
     
