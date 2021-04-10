@@ -32,6 +32,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
         logoImageView.image = nil
         launchProviderNameLabel.text = nil
         launchProviderTypeLabel.text = nil
+        humanIconImageView.isHidden = true
         cellId = nil
     }
         

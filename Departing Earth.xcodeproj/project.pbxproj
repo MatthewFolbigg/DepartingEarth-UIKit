@@ -25,6 +25,7 @@
 		1F581FFD26138585004AA80B /* Departing_EarthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FFC26138585004AA80B /* Departing_EarthUITests.swift */; };
 		1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */; };
 		1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */; };
+		1F933DDE2621C507009A4F15 /* missionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */; };
 		1FB9D051261B716B00648E9D /* LaunchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9D050261B716B00648E9D /* LaunchDetailViewController.swift */; };
 		1FB9D059261B758B00648E9D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9D058261B758B00648E9D /* Fonts.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 		1F581FFE26138585004AA80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F58201026138BE4004AA80B /* LaunchLibraryApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryApiClient.swift; sourceTree = "<group>"; };
 		1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchApiResponse.swift; sourceTree = "<group>"; };
+		1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missionDetailViewController.swift; sourceTree = "<group>"; };
 		1FB9D050261B716B00648E9D /* LaunchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewController.swift; sourceTree = "<group>"; };
 		1FB9D058261B758B00648E9D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,6 +225,7 @@
 			children = (
 				1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */,
 				1FB9D050261B716B00648E9D /* LaunchDetailViewController.swift */,
+				1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F933DDE2621C507009A4F15 /* missionDetailViewController.swift in Sources */,
 				1F2B21542614EBA9001A940D /* LaunchDateTime.swift in Sources */,
 				1FB9D059261B758B00648E9D /* Fonts.swift in Sources */,
 				1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */,

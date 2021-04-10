@@ -54,6 +54,10 @@ class LaunchDetailViewController: UIViewController {
         missionNameLabel.text = mission.name ?? "Pending"
         missionTypeLabel.text = mission.type ?? "Pending"
         orbitNameLabel.text = mission.orbit ?? "Pending"
+        if mission.objectives == nil {
+            missionInformationButton.isEnabled = false
+            missionInformationButton.tintColor = .gray
+        }
     }
     
     //MARK: IB Actions
@@ -70,7 +74,9 @@ class LaunchDetailViewController: UIViewController {
     
     @IBAction func missionInfoButtonDidPressed() {
         if let mission = launch.mission {
-            print(mission.objectives)
+            let destination = storyboard?.instantiateViewController(identifier: "missionDetailViewController") as! MissionDetailViewController
+            destination.mission = mission
+            present(destination, animated: true, completion: nil)
         }
     }
     

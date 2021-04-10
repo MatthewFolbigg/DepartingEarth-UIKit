@@ -97,6 +97,9 @@ class LaunchHelper {
         launch.launchPad = pad
         launch.mission = mission
         
+        let updatedAt = Date()
+        launch.lastUpdated = updatedAt
+        
         try? context.save()
         return launch
     }
@@ -128,12 +131,31 @@ class LaunchHelper {
         
     }
     
-    static func fetchStoredLaunches(context: NSManagedObjectContext) -> [Launch] {
-        let fetchRequest = NSFetchRequest<Launch>(entityName: "Launch")
-        if let fetchedLaunhces = try? context.fetch(fetchRequest) {
-            return fetchedLaunhces
+    static func checkAgeOfDataIsAcceptable(launch: Launch) -> Bool {
+        guard let lastUpdated = launch.lastUpdated else { return false }
+        let now = Date()
+        let ageInSeconds = now.timeIntervalSince(lastUpdated)
+        let maximumAcceptableAgeInSeconds: Double = 3600 //1 Hour
+        if ageInSeconds > maximumAcceptableAgeInSeconds {
+            return false
+        } else {
+            return true
         }
-        return []
+    }
+    
+    static func fetchStoredLaunches(context: NSManagedObjectContext) -> [Launch]? {
+        let fetchRequest = NSFetchRequest<Launch>(entityName: "Launch")
+        let fetchedLaunhces = try? context.fetch(fetchRequest)
+        return fetchedLaunhces
+    }
+    
+    static func deleteStoredLaunches(context: NSManagedObjectContext) {
+        if let storedLaunches = LaunchHelper.fetchStoredLaunches(context: context) {
+            for launch in storedLaunches {
+                context.delete(launch)
+            }
+            try? context.save()
+        }
     }
         
     

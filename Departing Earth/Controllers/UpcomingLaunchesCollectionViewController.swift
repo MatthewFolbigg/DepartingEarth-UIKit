@@ -17,7 +17,6 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     var dataController: DataController!
     var cellSideInsetAmount: CGFloat = 25
     
-    var upcomingLaunchInfo: [LaunchInfo] = []
     var launches: [Launch] = []
     
     //MARK: Life Cycle
@@ -30,7 +29,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         collectionView.contentInsetAdjustmentBehavior = .always
         refreshBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
     }
-    
+        
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
                 return
@@ -41,36 +40,61 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: Fetching & Downloading Launch Data
     func getUpcomingLaunches() {
         mainActivityIndicator.startAnimating()
-        let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext)
-        if fetchedLaunches.count > 0 {
-            print("Loaded upcoming from CoreData")
-            self.launches = fetchedLaunches
-            collectionView.reloadData()
-            mainActivityIndicator.stopAnimating()
+        guard let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext) else {
+            downloadUpcomingLaunches()
+            return
+        }
+        guard fetchedLaunches.count > 0 else {
+            downloadUpcomingLaunches()
+            return
+        }
+        let ageOfDataIsAcceptable = LaunchHelper.checkAgeOfDataIsAcceptable(launch: fetchedLaunches[0])
+        if ageOfDataIsAcceptable {
+            handelFetchedLaunches(launches: fetchedLaunches)
+            print("Was age of data Accepted? : \(ageOfDataIsAcceptable)")
         } else {
-            print("Downloading upcoming from API")
             downloadUpcomingLaunches()
         }
     }
+    
+    func handelFetchedLaunches(launches: [Launch]) {
+        print("Loaded upcoming from CoreData")
+        self.launches = launches
+        collectionView.reloadData()
+        mainActivityIndicator.stopAnimating()
+    }
         
-    func downloadUpcomingLaunches() {
+    func downloadUpcomingLaunches(completion: @escaping (Bool) -> Void = {_ in }) {
+        print("Downloading upcoming from API")
         LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error) in
             if let error = error {
                 self.handleError(error: error)
+                completion(false)
+                return
             }
             
             guard let returnedLaunches = returnedLaunches else {
                 self.mainActivityIndicator.stopAnimating()
-                return //TODO: Handel error as failed refresh/initail DL
+                completion(false)
+                return
             }
-            self.upcomingLaunchInfo = returnedLaunches
-            for info in returnedLaunches {
-                let launch = LaunchHelper.createLaunchObjectFrom(launchInfo: info, context: self.dataController.viewContext)
-                    self.launches.append(launch)
-            }
+            completion(true)
+            self.handleDownloadedLaunchInfo(launchInfo: returnedLaunches)
+        }
+    }
+    
+    func handleDownloadedLaunchInfo(launchInfo: [LaunchInfo]?) {
+        guard let launchInfo = launchInfo else {
             self.collectionView.reloadData()
             self.mainActivityIndicator.stopAnimating()
+            return
         }
+        for info in launchInfo {
+            let launch = LaunchHelper.createLaunchObjectFrom(launchInfo: info, context: self.dataController.viewContext)
+                self.launches.append(launch)
+        }
+        self.collectionView.reloadData()
+        self.mainActivityIndicator.stopAnimating()
     }
     
     func handleError(error: Error) {
@@ -116,22 +140,22 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     }
     
     @IBAction func refreshButtonDidTapped() {
-        refreshBarButtonItem.isEnabled = false
-        deleteCurrentLaunches()
-        getUpcomingLaunches()
-        refreshBarButtonItem.isEnabled = true
-    }
-    
-    func deleteCurrentLaunches() {
+        // Gets new launches first, only deletes previous saved/shown launches if the get request is successful.
         self.launches = []
-        let storedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext)
-        for launch in storedLaunches {
-            dataController.viewContext.delete(launch)
-        }
-        try? dataController.viewContext.save()
         collectionView.reloadData()
+        mainActivityIndicator.startAnimating()
+        refreshBarButtonItem.isEnabled = false
+        downloadUpcomingLaunches { (success) in
+            if !success {
+                if let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: self.dataController.viewContext) {
+                    self.handelFetchedLaunches(launches: fetchedLaunches)
+                }
+            } else {
+                LaunchHelper.deleteStoredLaunches(context: self.dataController.viewContext)
+            }
+            self.refreshBarButtonItem.isEnabled = true
+        }
     }
-        
 }
 
 //MARK: CollectionView Delegate and DataSource

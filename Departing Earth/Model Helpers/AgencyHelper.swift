@@ -70,6 +70,8 @@ class AgencyHelper {
         agency.logoUrl = agencyDetail.logoUrl
         agency.abbreviation = agencyDetail.abbreviation
         agency.type = agencyDetail.type
+        let updatedAt = Date()
+        agency.lastUpdated = updatedAt
         try? context.save()
         return agency
     }

@@ -6,6 +6,7 @@
     </entity>
     <entity name="Launch" representedClassName="Launch" syncable="YES" codeGenerationType="class">
         <attribute name="datePending" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="launchId" optional="YES" attributeType="String"/>
         <attribute name="launchProviderId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -16,14 +17,15 @@
         <attribute name="timePending" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="windowEnd" optional="YES" attributeType="String"/>
         <attribute name="windowStart" optional="YES" attributeType="String"/>
-        <relationship name="launchPad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchPad" inverseName="launches" inverseEntity="LaunchPad"/>
+        <relationship name="launchPad" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LaunchPad" inverseName="launches" inverseEntity="LaunchPad"/>
         <relationship name="launchProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LaunchAgency" inverseName="launches" inverseEntity="LaunchAgency"/>
         <relationship name="mission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Mission" inverseName="launch" inverseEntity="Mission"/>
-        <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rocket" inverseName="launches" inverseEntity="Rocket"/>
+        <relationship name="rocket" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Rocket" inverseName="launches" inverseEntity="Rocket"/>
     </entity>
     <entity name="LaunchAgency" representedClassName="LaunchAgency" syncable="YES" codeGenerationType="class">
         <attribute name="abbreviation" optional="YES" attributeType="String"/>
         <attribute name="agencyId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="logoUrl" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
@@ -55,10 +57,10 @@
     </entity>
     <elements>
         <element name="AgencyLogo" positionX="-359.0078125" positionY="11.28125" width="128" height="73"/>
-        <element name="Launch" positionX="-902.16015625" positionY="-91.0625" width="153.72265625" height="268"/>
-        <element name="LaunchAgency" positionX="-516.4609375" positionY="12.96484375" width="128" height="134"/>
+        <element name="Launch" positionX="-902.16015625" positionY="-91.0625" width="153.72265625" height="269"/>
+        <element name="LaunchAgency" positionX="-516.4609375" positionY="12.96484375" width="128" height="149"/>
         <element name="LaunchPad" positionX="-606.34375" positionY="-208.421875" width="128" height="133"/>
-        <element name="Rocket" positionX="-605.6953125" positionY="162.609375" width="128" height="89"/>
         <element name="Mission" positionX="-545.0546875" positionY="-72.56640625" width="128" height="148"/>
+        <element name="Rocket" positionX="-605.6953125" positionY="162.609375" width="128" height="89"/>
     </elements>
 </model>
