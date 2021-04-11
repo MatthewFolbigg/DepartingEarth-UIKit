@@ -10,10 +10,10 @@ import UIKit
 
 class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var rocketNameLabel: UILabel!
-    @IBOutlet var launchProviderNameLabel: UILabel!
-    @IBOutlet var launchProviderTypeLabel: UILabel!
+    @IBOutlet var providerNameLabel: UILabel!
+    @IBOutlet var providerTypeLabel: UILabel!
     @IBOutlet var launchDateLabel: UILabel!
-    @IBOutlet var expectedLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var logoBackgroundView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -24,14 +24,16 @@ class UpcomingLaunchCell: UICollectionViewCell {
     
     @IBOutlet weak var logoImageViewWidthContraint: NSLayoutConstraint!
     
+    var labels: [UILabel] { [ rocketNameLabel, launchDateLabel, providerNameLabel, providerTypeLabel, statusLabel, countdownLabel] }
+    
     var cellId: String?
-    var launch: Launch!
+    var launch: Launch?
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        providerNameLabel.text = nil
+        providerTypeLabel.text = nil
         logoImageView.image = nil
-        launchProviderNameLabel.text = nil
-        launchProviderTypeLabel.text = nil
         humanIconImageView.isHidden = true
         cellId = nil
     }
@@ -42,21 +44,21 @@ class UpcomingLaunchCell: UICollectionViewCell {
         self.backgroundColor = .tertiarySystemBackground
         self.logoBackgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3) //.tertiarySystemBackground
         setTextStyles()
-        self.launchProviderTypeLabel.textColor = Colours.spaceSuitOrange.ui
+        self.providerTypeLabel.textColor = Colours.spaceSuitOrange.ui
         self.countdownBackgroundView.layer.cornerRadius = 5
         self.countdownBackgroundView.layer.cornerCurve = .continuous
         self.countdownBackgroundView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.5)
     }
     
     private func setTextStyles() {
-        for label in self.cellLabels() {
-            label?.textColor = UIColor.label
+        for label in self.labels {
+            label.textColor = UIColor.label
         }
         self.rocketNameLabel.font = Fonts.cellTitle.uiFont
-        self.launchProviderNameLabel.font = Fonts.cellSmall.uiFont
-        self.launchProviderTypeLabel.font = Fonts.cellBody.uiFont
+        self.providerNameLabel.font = Fonts.cellSmall.uiFont
+        self.providerTypeLabel.font = Fonts.cellBody.uiFont
         self.launchDateLabel.font = Fonts.cellBody.uiFont
-        self.expectedLabel.font = Fonts.cellSmall.uiFont
+        self.statusLabel.font = Fonts.cellSmall.uiFont
         self.countdownLabel.font = Fonts.customMonospaced(14, .bold).uiFont
         self.countdownLabel.textColor = .white
     }
@@ -66,8 +68,8 @@ class UpcomingLaunchCell: UICollectionViewCell {
         UIView.animate(withDuration: animationDuration) {
             let alpha: CGFloat = on ? 0 : 1
             self.launchDateLabel.alpha = alpha
-            self.launchProviderNameLabel.alpha = alpha
-            self.launchProviderTypeLabel.alpha = alpha
+            self.providerNameLabel.alpha = alpha
+            self.providerTypeLabel.alpha = alpha
             self.logoImageView.alpha = alpha
             self.rocketNameLabel.alpha = alpha
             self.updateCountdown()
@@ -80,15 +82,18 @@ class UpcomingLaunchCell: UICollectionViewCell {
     }
     
     func updateCountdown() {
-        let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId)) ?? LaunchHelper.LaunchStatus.tbd
-        updateUiForLaunchStatus(launchStatus: launchStatus)
-        self.countdownLabel.text = LaunchDateTime.countdownTimerString(launch: launch)
+        guard let launch = launch else { return }
+        let statusController = StatusController(launch: launch)
+        self.countdownLabel.text =
+            "T- \(statusController.countdownComponents.days) \(statusController.countdownComponents.hours) \(statusController.countdownComponents.minutes) \(statusController.countdownComponents.seconds)"
     }
                 
-    private func updateUiForLaunchStatus(launchStatus: LaunchHelper.LaunchStatus) {
-        expectedLabel.text = launchStatus.countdownDescription
-        statusImageView.tintColor = launchStatus.colour
-        countdownBackgroundView.backgroundColor = launchStatus.alternateColour
+    func updateStatusSpecificUI() {
+        guard let launch = launch else { return }
+        let statusController = StatusController(launch: launch)
+        statusLabel.text = statusController.dateDescription
+        statusImageView.tintColor = statusController.color
+        countdownBackgroundView.backgroundColor = statusController.secondaryColor
         if let mission = launch.mission {
             if mission.type == "Human Exploration" {
                 humanIconImageView.isHidden = false
@@ -113,9 +118,5 @@ class UpcomingLaunchCell: UICollectionViewCell {
         }
     }
     
-    private func cellLabels() -> [UILabel?] {
-        let labels = [ rocketNameLabel, launchDateLabel, launchProviderNameLabel, launchProviderTypeLabel, expectedLabel, countdownLabel]
-        return labels
-    }
     
 }

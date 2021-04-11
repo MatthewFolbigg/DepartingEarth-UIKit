@@ -91,8 +91,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2h-NQ-uyq" userLabel="Countdown Background View">
                                             <rect key="frame" x="25" y="165" width="180" height="30"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbf-7i-0ZP">
-                                                    <rect key="frame" x="65.5" y="4.5" width="49" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbf-7i-0ZP">
+                                                    <rect key="frame" x="79.5" y="4.5" width="21" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -165,16 +165,16 @@
                                     <outlet property="activityIndicator" destination="R4C-R2-Umy" id="DPJ-I1-mEb"/>
                                     <outlet property="countdownBackgroundView" destination="f2h-NQ-uyq" id="FzW-O4-lLA"/>
                                     <outlet property="countdownLabel" destination="hbf-7i-0ZP" id="CDK-b3-F6i"/>
-                                    <outlet property="expectedLabel" destination="Uug-i2-5s1" id="x3j-lj-G7P"/>
                                     <outlet property="humanIconImageView" destination="tN1-qv-3uF" id="v6R-jG-nX5"/>
                                     <outlet property="launchDateLabel" destination="tRt-50-Wte" id="1cS-lc-U1K"/>
-                                    <outlet property="launchProviderNameLabel" destination="JMa-yw-lPB" id="CUK-x4-34g"/>
-                                    <outlet property="launchProviderTypeLabel" destination="2fr-X0-0XH" id="4PX-3t-vHe"/>
                                     <outlet property="logoBackgroundView" destination="Qcl-hn-qdq" id="kWn-oH-TH2"/>
                                     <outlet property="logoImageView" destination="mPd-El-0zb" id="xWh-1E-bzU"/>
                                     <outlet property="logoImageViewWidthContraint" destination="1pe-5w-a3D" id="vl2-mj-5tn"/>
+                                    <outlet property="providerNameLabel" destination="JMa-yw-lPB" id="A44-Jr-Ut3"/>
+                                    <outlet property="providerTypeLabel" destination="2fr-X0-0XH" id="6xO-06-ewL"/>
                                     <outlet property="rocketNameLabel" destination="Zju-sy-Dtl" id="kwI-ix-cXs"/>
                                     <outlet property="statusImageView" destination="ved-OQ-7aS" id="I35-51-2az"/>
+                                    <outlet property="statusLabel" destination="Uug-i2-5s1" id="3M0-21-h4S"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -535,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCh-s5-ZTT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079.7101449275365" y="763.39285714285711"/>
+            <point key="canvasLocation" x="2045" y="771"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8VD-ju-KD7">

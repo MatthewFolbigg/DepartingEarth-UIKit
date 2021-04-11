@@ -40,20 +40,20 @@ class LaunchDetailViewController: UIViewController {
     @IBOutlet var openInMapsButton: UIButton!
     
     var launch: Launch!
-    var launchStatus: LaunchHelper.LaunchStatus!
+    var statusController: StatusController!
     let cornerRadiusConstant: CGFloat = 20
     let eventStore = EKEventStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        statusController = StatusController(launch: launch)
         setupUI()
-        
         guard let mission = launch.mission else {
             return
         }
         missionNameLabel.text = mission.name ?? "Pending"
         missionTypeLabel.text = mission.type ?? "Pending"
-        orbitNameLabel.text = mission.orbit ?? "Pending"
+        orbitNameLabel.text = mission.orbit?.name ?? "Pending"
         if mission.objectives == nil {
             missionInformationButton.isEnabled = false
             missionInformationButton.tintColor = .gray
@@ -63,8 +63,8 @@ class LaunchDetailViewController: UIViewController {
     //MARK: IB Actions
     @IBAction func openInMapsButtonDidPressed() {
         //TODO: Set up a placemark that can be passed to open in maps intead of having to unwrap lat long twice (here and setup)
-        guard let lat = Double(launch.launchPad?.latitude ?? "") else { return }
-        guard let long = Double(launch.launchPad?.longitude ?? "")  else {return }
+        guard let lat = Double(launch.pad?.latitude ?? "") else { return }
+        guard let long = Double(launch.pad?.longitude ?? "")  else {return }
         openInMaps(lat: lat, Long: long)
     }
    
@@ -81,8 +81,8 @@ class LaunchDetailViewController: UIViewController {
     }
     
     func mapItemForLaunch() -> MKMapItem? {
-        guard let lat = Double(launch.launchPad?.latitude ?? "") else { return nil }
-        guard let long = Double(launch.launchPad?.longitude ?? "")  else { return nil }
+        guard let lat = Double(launch.pad?.latitude ?? "") else { return nil }
+        guard let long = Double(launch.pad?.longitude ?? "")  else { return nil }
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
@@ -149,33 +149,23 @@ class LaunchDetailViewController: UIViewController {
     }
     
     @objc func updateCountdownLabel() {
-        if let launch = launch {
-            let countdown = LaunchDateTime.countdownTimerString(launch: launch)
-            countdownLabel.text = countdown
-        }
+        countdownLabel.text = "T- \(statusController.countdownComponents.days) \(statusController.countdownComponents.hours) \(statusController.countdownComponents.minutes) \(statusController.countdownComponents.seconds)"
     }
     
     //MARK: Date Time Section
     func setupDateTimeSection() {
-        statusIndicatorImageView.tintColor = launchStatus.colour
-        
-        dateStatusLabel.text = "\(launchStatus.countdownDescription)"
-        dateLabel.text = LaunchDateTime.launchDateString(isoString: launch.netDate)
-        
-        switch launchStatus {
-        case .go, .success, .failure: timeLabel.text = LaunchDateTime.launchTimeString(isoString: launch.netDate)
-        case .hold: timeLabel.text = launchStatus.description
-        case .tbd: timeLabel.text = launchStatus.description
-        default: timeLabel.text = ""
-        }
+        dateLabel.text = statusController.launchDate
+        dateStatusLabel.text = statusController.launchDescription
+        statusIndicatorImageView.tintColor = statusController.color
+        timeLabel.text = statusController.launchTime
     }
         
     //MARK: Pad Map
     func setupPadMapSection() {
-        locationNameLabel.text = launch.launchPad?.loacationName
-        padNameLabel.text = launch.launchPad?.name
-        guard let lat = Double(launch.launchPad?.latitude ?? "") else { return }
-        guard let long = Double(launch.launchPad?.longitude ?? "")  else {return }
+        locationNameLabel.text = launch.pad?.loacationName
+        padNameLabel.text = launch.pad?.name
+        guard let lat = Double(launch.pad?.latitude ?? "") else { return }
+        guard let long = Double(launch.pad?.longitude ?? "")  else {return }
         setMapInteractionSettings(lat: lat, long: long)
         setMapCamera(lat: lat, long: long)
     }
@@ -201,7 +191,7 @@ class LaunchDetailViewController: UIViewController {
             MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: region.span)
         ]
         guard let mapItem = mapItemForLaunch() else { return }
-        mapItem.name = "\(launch.name ?? "Launching from"): \(launch.launchPad?.name ?? "Unnamed")"
+        mapItem.name = "\(launch.name ?? "Launching from"): \(launch.pad?.name ?? "Unnamed")"
         mapItem.openInMaps(launchOptions: options)
     }
 }
@@ -218,12 +208,12 @@ extension LaunchDetailViewController: EKEventEditViewDelegate, UINavigationContr
         let launchEvent = EKEvent(eventStore: eventStore)
         launchEvent.title = launch.name
         launchEvent.isAllDay = true
-        launchEvent.startDate = LaunchDateTime.launchDate(launch: launch)
-        launchEvent.endDate = LaunchDateTime.launchDate(launch: launch)
+        launchEvent.startDate = launch.date
+        launchEvent.endDate = launch.date
         launchEvent.calendar = eventStore.defaultCalendarForNewEvents
         launchEvent.notes = "Launch Notes"
         if let mapItem = mapItemForLaunch() {
-            mapItem.name = "\(launch.launchPad?.name ?? "Unnamed Pad")"
+            mapItem.name = "\(launch.pad?.name ?? "Unnamed Pad")"
             launchEvent.structuredLocation = EKStructuredLocation(mapItem: mapItem)
         }
         

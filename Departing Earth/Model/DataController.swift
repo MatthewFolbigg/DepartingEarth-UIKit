@@ -14,6 +14,7 @@ class DataController {
     
     init(modelName: String) {
         persistantContainer = NSPersistentContainer(name: modelName)
+        viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     
     func load(completion: @escaping (NSPersistentStoreDescription?) -> Void) {

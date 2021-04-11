@@ -16,50 +16,66 @@ struct UpcomingLaunchApiResponse: Codable {
 struct LaunchInfo: Codable {
     let id: String
     let name: String
-    let rocket: RocketLaunching
-    let mission: MissionInfo?
-    let launchServiceProvider: LaunchServiceProvider
-    let noEarlierThan: String
     let launchStatus: LaunchStatus
+    let noEarlierThan: String
+    let windowStart: String
+    let windowEnd: String
     let inhold: Bool
     let tbdtime: Bool
     let tbddate: Bool
     let holdreason: String?
-    let windowStart: String
-    let windowEnd: String
-    let pad: Pad
+    let launchServiceProvider: providerInfo
+    let rocket: RocketInfo
+    let mission: MissionInfo?
+    let pad: PadInfo
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
-        case rocket = "rocket"
-        case mission = "mission"
-        case launchServiceProvider = "launch_service_provider"
-        case noEarlierThan = "net"
         case launchStatus = "status"
+        case noEarlierThan = "net"
+        case windowStart = "window_start"
+        case windowEnd = "window_end"
         case inhold = "inhold"
         case tbdtime = "tbdtime"
         case tbddate = "tbddate"
         case holdreason = "holdreason"
-        case windowStart = "window_start"
-        case windowEnd = "window_end"
+        case launchServiceProvider = "launch_service_provider"
+        case rocket = "rocket"
+        case mission = "mission"
         case pad = "pad"
     }
 }
 
-//MARK: Launch Provider
-struct LaunchServiceProvider: Codable {
-    let name: String
-    let type: String?
+//MARK: Launch Status
+struct LaunchStatus: Codable {
     let id: Int
+    let name: String
+}
+
+//MARK: Launch Provider
+struct providerInfo: Codable {
+    let id: Int
+    let name: String
+    let abbreviation: String
+    let logoUrl: String?
+    let type: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case abbreviation = "abbrev"
+        case logoUrl = "logo_url"
+        case type = "type"
+    }
 }
 
 //MARK: Rocket
-struct RocketLaunching: Codable {
-    let configuration: RocketConfiguration
+struct RocketInfo: Codable {
+    let configuration: ConfigurationInfo
 }
 
-struct RocketConfiguration: Codable {
+struct ConfigurationInfo: Codable {
     let name: String
     let family: String
     let variant: String
@@ -71,28 +87,32 @@ struct MissionInfo: Codable {
     let name: String
     let description: String
     let type: String
-    let orbit: Orbit?
+    let orbit: OrbitInfo?
 }
 
-struct Orbit: Codable {
+struct OrbitInfo: Codable {
     let id: Int
     let name: String
     let abbrev: String
 }
 
-struct LaunchStatus: Codable {
-    let id: Int
-    let name: String
-}
-
-struct Pad: Codable {
+//MARK: Pad
+struct PadInfo: Codable {
     let id: Int
     let name: String
     let latitude: String
     let longitude: String
-    let location: PadLocation
+    let location: PadLocationInfo
 }
 
-struct PadLocation: Codable {
+struct PadLocationInfo: Codable {
     let name: String
 }
+
+//MARK: Program
+struct programInfo: Codable {
+    let id: Int
+    let name: String
+    let description: String
+}
+

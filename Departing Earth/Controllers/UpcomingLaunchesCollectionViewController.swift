@@ -14,106 +14,79 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     @IBOutlet var refreshBarButtonItem: UIBarButtonItem!
     @IBOutlet var mainActivityIndicator: UIActivityIndicatorView!
     
+    var launchManager: LaunchManager!
     var dataController: DataController!
-    var cellSideInsetAmount: CGFloat = 25
     
+    var cellSideInsetAmount: CGFloat = 25
     var launches: [Launch] = []
     
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
-        getUpcomingLaunches()
+        setupUI()
+        launchManager = LaunchManager(context: dataController.viewContext)
+        loadUpcomingLaunches()
         setupCountdownUpdateTimer()
-        collectionView.backgroundColor = UIColor.secondarySystemBackground
-        collectionView.contentInsetAdjustmentBehavior = .always
-        refreshBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
     }
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super .viewWillTransition(to: size, with: coordinator)
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-                return
-            }
+            return
+        }
         flowLayout.invalidateLayout()
     }
     
     //MARK: Fetching & Downloading Launch Data
-    func getUpcomingLaunches() {
+    func loadUpcomingLaunches() {
         mainActivityIndicator.startAnimating()
-        guard let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: dataController.viewContext) else {
-            downloadUpcomingLaunches()
-            return
-        }
-        guard fetchedLaunches.count > 0 else {
-            downloadUpcomingLaunches()
-            return
-        }
-        let ageOfDataIsAcceptable = LaunchHelper.checkAgeOfDataIsAcceptable(launch: fetchedLaunches[0])
-        if ageOfDataIsAcceptable {
-            handelFetchedLaunches(launches: fetchedLaunches)
-            print("Was age of data Accepted? : \(ageOfDataIsAcceptable)")
+        let fetchedLaunches = launchManager.fetchStoredLaunches()
+        if fetchedLaunches?.count ?? 0 > 0 {
+            handelFetchedLaunches(launches: fetchedLaunches!)
         } else {
             downloadUpcomingLaunches()
         }
     }
     
     func handelFetchedLaunches(launches: [Launch]) {
-        print("Loaded upcoming from CoreData")
+        print("Loaded upcoming launches from CoreData")
         self.launches = launches
-        collectionView.reloadData()
         mainActivityIndicator.stopAnimating()
+        collectionView.reloadData()
     }
-        
-    func downloadUpcomingLaunches(completion: @escaping (Bool) -> Void = {_ in }) {
-        print("Downloading upcoming from API")
+    
+    func downloadUpcomingLaunches() {
+        refreshBarButtonItem.isEnabled = false
         LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error) in
-            if let error = error {
-                self.handleError(error: error)
-                completion(false)
-                return
-            }
-            
             guard let returnedLaunches = returnedLaunches else {
                 self.mainActivityIndicator.stopAnimating()
-                completion(false)
+                self.refreshBarButtonItem.isEnabled = true
+                if let error = error {
+                    let fetchedLaunches = self.launchManager.fetchStoredLaunches()
+                    if fetchedLaunches?.count ?? 0 > 0 {
+                        self.handelFetchedLaunches(launches: fetchedLaunches!)
+                    }
+                    self.handleDownloadError(error: error)
+                }
                 return
             }
-            completion(true)
-            self.handleDownloadedLaunchInfo(launchInfo: returnedLaunches)
-        }
-    }
-    
-    func handleDownloadedLaunchInfo(launchInfo: [LaunchInfo]?) {
-        guard let launchInfo = launchInfo else {
-            self.collectionView.reloadData()
             self.mainActivityIndicator.stopAnimating()
-            return
+            self.launchManager.deleteStoredLaunches()
+            self.launches = self.launchManager.createLaunchesFrom(results: returnedLaunches)
+            self.collectionView.reloadData()
+            self.refreshBarButtonItem.isEnabled = true
+            self.mainActivityIndicator.stopAnimating()
         }
-        for info in launchInfo {
-            let launch = LaunchHelper.createLaunchObjectFrom(launchInfo: info, context: self.dataController.viewContext)
-                self.launches.append(launch)
-        }
-        self.collectionView.reloadData()
-        self.mainActivityIndicator.stopAnimating()
     }
     
-    func handleError(error: Error) {
+    func handleDownloadError(error: Error) {
         if let downloadError = error as? LaunchLibraryApiClient.downloadError {
             showUserError(error: downloadError)
         } else {
             print(error)
         }
     }
-    
-    func showUserError(error: Error) {
-        let error = error as NSError
-        let message = "\(error.localizedFailureReason ?? "")\n\(error.localizedRecoverySuggestion ?? "")"
-        let alert = UIAlertController(title: error.localizedDescription, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
+        
     //MARK: Countdown Refresh Timer
     func setupCountdownUpdateTimer() {
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countdownUpdateTimerDidFire), userInfo: nil, repeats: true)
@@ -127,7 +100,13 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         }
     }
     
-    //MARK: UI Setup
+    //MARK: UI
+    func setupUI() {
+        setupNavigationBar()
+        setupCollectionViewUI()
+        refreshBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
+    }
+    
     func setupNavigationBar() {
         navigationController?.navigationBar.layoutMargins.left = cellSideInsetAmount + 2
         navigationController?.navigationBar.largeTitleTextAttributes = [
@@ -139,22 +118,27 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             NSAttributedString.Key.font: Fonts.navigationTitleSmall.uiFont]
     }
     
+    func setupCollectionViewUI() {
+        collectionView.backgroundColor = UIColor.secondarySystemBackground
+        collectionView.contentInsetAdjustmentBehavior = .always
+    }
+    
+    func showUserError(error: Error) {
+        let error = error as NSError
+        let message = "\(error.localizedFailureReason ?? "")\n\(error.localizedRecoverySuggestion ?? "")"
+        let alert = UIAlertController(title: error.localizedDescription, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: IB Actions
     @IBAction func refreshButtonDidTapped() {
         // Gets new launches first, only deletes previous saved/shown launches if the get request is successful.
         self.launches = []
         collectionView.reloadData()
         mainActivityIndicator.startAnimating()
-        refreshBarButtonItem.isEnabled = false
-        downloadUpcomingLaunches { (success) in
-            if !success {
-                if let fetchedLaunches = LaunchHelper.fetchStoredLaunches(context: self.dataController.viewContext) {
-                    self.handelFetchedLaunches(launches: fetchedLaunches)
-                }
-            } else {
-                LaunchHelper.deleteStoredLaunches(context: self.dataController.viewContext)
-            }
-            self.refreshBarButtonItem.isEnabled = true
-        }
+        downloadUpcomingLaunches()
     }
 }
 
@@ -181,8 +165,8 @@ extension UpcomingLaunchesCollectionViewController {
         let launch = launches[indexPath.row]
         destination.launch = launch
         destination.title = launch.rocket?.name
-        let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId))
-        destination.launchStatus = launchStatus
+        //let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId))
+        //destination.launchStatus = launchStatus
         self.navigationController?.pushViewController(destination, animated: true)
     }
 }
@@ -193,41 +177,19 @@ extension UpcomingLaunchesCollectionViewController {
     //MARK: Cells
     func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
         let launch = launches[row]
-        cell.launch = launch
+        let statusController = StatusController(launch: launch)
         cell.setDownloadingActivity(on: true)
-        let launchId = launch.launchId
-        cell.cellId = launchId
-        cell.rocketNameLabel.text = launch.rocket?.name
-        let expectedLaunchDate = LaunchDateTime.launchDateString(isoString: launch.netDate)
-        cell.launchDateLabel.text = expectedLaunchDate
-        cell.updateCountdown()
         
-        let providerId = launch.launchProviderId
-        AgencyHelper.getAgencyForId(id: Int(providerId), context: dataController.viewContext) { (agency, error)  in
-            guard let agency = agency else { return }
-            launch.launchProvider = agency
-            if cell.cellId == launchId {
-                cell.launchProviderNameLabel.text = launch.launchProvider?.name
-                cell.launchProviderTypeLabel.text = launch.launchProvider?.type ?? "Unspecified"
-            }
-            AgencyHelper.getLogoFor(agency: agency, context: self.dataController.viewContext) { (image, error) in
-                if cell.cellId == launchId {
-                    guard let data = agency.logo?.imageData else {
-                        let placeholder = UIImage(systemName: "rectangle.dashed")!
-                        cell.logoImageView.tintColor = Colours.spaceSuitOrange.ui
-                        cell.setLogo(image: placeholder)
-                        return
-                    }
-                    guard let image = UIImage(data: data) else {
-                        let placeholder = UIImage(systemName: "rectangle.dashed")!
-                        cell.logoImageView.tintColor = Colours.spaceSuitOrange.ui
-                        cell.setLogo(image: placeholder)
-                        return
-                    }
-                    cell.setLogo(image: image)
-                }
-            }
-        }
+        cell.cellId = launch.launchID //Can be used to identify a specific cell when setting propeties asyncronously
+        
+        cell.launch = launch
+        cell.rocketNameLabel.text = launch.rocket?.name
+        cell.providerNameLabel.text = launch.provider?.name
+        cell.providerTypeLabel.text = launch.provider?.type ?? "Unspecified"
+        cell.launchDateLabel.text = statusController.targetedDate
+        cell.updateCountdown()
+        cell.updateStatusSpecificUI()
+        
         cell.setDownloadingActivity(on: false)
     }
 }
@@ -243,14 +205,12 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
         let collectionViewSize = collectionView.bounds.size
         var itemSize = CGSize()
         itemSize.height = 220
-        let fullWidth = collectionViewSize.width - (cellSideInsetAmount * 2)
-        itemSize.width = fullWidth
+        itemSize.width = collectionViewSize.width - (cellSideInsetAmount * 2)
         return itemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let insetAmount: CGFloat = cellSideInsetAmount
-        let edgeInsets = UIEdgeInsets(top: 10, left: insetAmount, bottom: 10, right: insetAmount)
+        let edgeInsets = UIEdgeInsets(top: 10, left: cellSideInsetAmount, bottom: 10, right: cellSideInsetAmount)
         return edgeInsets
     }
     
