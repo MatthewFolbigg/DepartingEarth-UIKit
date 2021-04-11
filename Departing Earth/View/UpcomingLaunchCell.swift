@@ -84,6 +84,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
     func updateCountdown() {
         guard let launch = launch else { return }
         let statusController = StatusController(launch: launch)
+        if launch.isPendingDate || launch.isPendingTime { self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui }
         self.countdownLabel.text =
             "T- \(statusController.countdownComponents.days) \(statusController.countdownComponents.hours) \(statusController.countdownComponents.minutes) \(statusController.countdownComponents.seconds)"
     }

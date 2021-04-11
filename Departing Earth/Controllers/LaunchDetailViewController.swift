@@ -48,13 +48,12 @@ class LaunchDetailViewController: UIViewController {
         super.viewDidLoad()
         statusController = StatusController(launch: launch)
         setupUI()
-        guard let mission = launch.mission else {
-            return
-        }
-        missionNameLabel.text = mission.name ?? "Pending"
-        missionTypeLabel.text = mission.type ?? "Pending"
-        orbitNameLabel.text = mission.orbit?.name ?? "Pending"
-        if mission.objectives == nil {
+        
+        let mission = launch.mission
+        missionNameLabel.text = mission?.name ?? "Pending"
+        missionTypeLabel.text = mission?.type ?? "Pending"
+        orbitNameLabel.text = mission?.orbit?.name ?? "Pending"
+        if mission?.objectives == nil {
             missionInformationButton.isEnabled = false
             missionInformationButton.tintColor = .gray
         }

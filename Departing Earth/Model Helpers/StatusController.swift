@@ -43,37 +43,37 @@ struct StatusController {
     var color: UIColor {
         if status == .go {
             if launch.isPendingDate || launch.isPendingTime {
-                return .green
+                return Colours.cosmonautSuitGreen.ui
             }
         }
         if status == .tbd {
             if !launch.isPendingDate && !launch.isPendingTime {
-                return .green
+                return Colours.cosmonautSuitGreen.ui
             }
         }
 
         
         switch status {
-        case .go: return UIColor.green
-        case .tbd:  return UIColor.lightGray
-        case .hold: return UIColor.lightGray
-        case .success: return UIColor.green
-        case .failure: return UIColor.red
+        case .go: return Colours.cosmonautSuitGreen.ui
+        case .tbd:  return Colours.moonSurfaceGrey.ui
+        case .hold: return Colours.moonCraterGrey.ui
+        case .success: return Colours.cosmonautSuitGreen.ui
+        case .failure: return Colours.nasaWormRed.ui
         }
     }
     
     var secondaryColor: UIColor {
         switch status {
-        case .go, .tbd, .hold: return UIColor.lightGray
-        case .success: return UIColor.green
-        case .failure: return UIColor.red
+        case .go, .tbd, .hold: return Colours.moonCraterGrey.ui
+        case .success: return Colours.cosmonautSuitGreen.ui
+        case .failure: return Colours.nasaWormRed.ui
         }
     }
     
     var launchDescription: String {
         if status == .go {
             if launch.isPendingDate || launch.isPendingTime {
-                return "Pending Schedule"
+                return "Launching"
             }
         }
         if status == .tbd {
