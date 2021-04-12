@@ -70,12 +70,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="1Ro-wm-eq3" secondAttribute="trailing" id="mgJ-a6-tFi"/>
                                             </constraints>
                                         </view>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mPd-El-0zb">
-                                            <rect key="frame" x="107" y="7.5" width="200" height="45"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="1pe-5w-a3D"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rocket Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zju-sy-Dtl">
                                             <rect key="frame" x="25" y="87" width="120" height="24"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
@@ -146,14 +140,11 @@
                                         <constraint firstAttribute="trailing" secondItem="Uug-i2-5s1" secondAttribute="trailing" constant="25" id="bFd-Kq-Kw9"/>
                                         <constraint firstItem="R4C-R2-Umy" firstAttribute="centerX" secondItem="rm2-0D-WBe" secondAttribute="centerX" id="bUH-Pu-YUz"/>
                                         <constraint firstItem="ved-OQ-7aS" firstAttribute="centerY" secondItem="Uug-i2-5s1" secondAttribute="centerY" id="dE9-43-4gI"/>
-                                        <constraint firstItem="mPd-El-0zb" firstAttribute="top" secondItem="rm2-0D-WBe" secondAttribute="top" constant="7.5" id="ecz-kR-Epu"/>
                                         <constraint firstItem="tN1-qv-3uF" firstAttribute="height" secondItem="Zju-sy-Dtl" secondAttribute="height" multiplier="0.833333" id="gWD-vf-Xiy"/>
                                         <constraint firstItem="JMa-yw-lPB" firstAttribute="leading" secondItem="rm2-0D-WBe" secondAttribute="leading" constant="25" id="hAC-oQ-iwl"/>
                                         <constraint firstAttribute="trailing" secondItem="tRt-50-Wte" secondAttribute="trailing" constant="25" id="jlU-av-Fwt"/>
                                         <constraint firstAttribute="bottom" secondItem="tRt-50-Wte" secondAttribute="bottom" constant="25" id="lc2-yW-ulr"/>
-                                        <constraint firstItem="mPd-El-0zb" firstAttribute="centerX" secondItem="rm2-0D-WBe" secondAttribute="centerX" id="nHi-vp-wiX"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zju-sy-Dtl" secondAttribute="trailing" constant="-145" id="qcd-hL-lN2"/>
-                                        <constraint firstItem="mPd-El-0zb" firstAttribute="centerY" secondItem="Qcl-hn-qdq" secondAttribute="centerY" id="rEV-yd-SU9"/>
                                         <constraint firstItem="tN1-qv-3uF" firstAttribute="centerY" secondItem="Zju-sy-Dtl" secondAttribute="centerY" id="t5t-h8-Jyc"/>
                                         <constraint firstItem="Qcl-hn-qdq" firstAttribute="top" secondItem="rm2-0D-WBe" secondAttribute="top" id="wFM-UF-Vbk"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JMa-yw-lPB" secondAttribute="trailing" constant="25" id="y3j-xN-MYx"/>
@@ -168,8 +159,6 @@
                                     <outlet property="humanIconImageView" destination="tN1-qv-3uF" id="v6R-jG-nX5"/>
                                     <outlet property="launchDateLabel" destination="tRt-50-Wte" id="1cS-lc-U1K"/>
                                     <outlet property="logoBackgroundView" destination="Qcl-hn-qdq" id="kWn-oH-TH2"/>
-                                    <outlet property="logoImageView" destination="mPd-El-0zb" id="xWh-1E-bzU"/>
-                                    <outlet property="logoImageViewWidthContraint" destination="1pe-5w-a3D" id="vl2-mj-5tn"/>
                                     <outlet property="providerNameLabel" destination="JMa-yw-lPB" id="A44-Jr-Ut3"/>
                                     <outlet property="providerTypeLabel" destination="2fr-X0-0XH" id="6xO-06-ewL"/>
                                     <outlet property="rocketNameLabel" destination="Zju-sy-Dtl" id="kwI-ix-cXs"/>
