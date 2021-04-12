@@ -21,14 +21,13 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var countdownBackgroundView: UIView!
     @IBOutlet var statusImageView: UIImageView!
     @IBOutlet var humanIconImageView: UIImageView!
-    
     @IBOutlet weak var logoImageViewWidthContraint: NSLayoutConstraint!
     
     var labels: [UILabel] { [ rocketNameLabel, launchDateLabel, providerNameLabel, providerTypeLabel, statusLabel, countdownLabel] }
     
     var cellId: String?
     var launch: Launch?
-    
+        
     override func prepareForReuse() {
         super.prepareForReuse()
         providerNameLabel.text = nil
@@ -37,7 +36,8 @@ class UpcomingLaunchCell: UICollectionViewCell {
         humanIconImageView.isHidden = true
         cellId = nil
     }
-        
+       
+    //MARK: Setting UI
     func setStyle() {
         self.layer.cornerRadius = 15
         self.layer.cornerCurve = .continuous
@@ -63,24 +63,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
         self.countdownLabel.textColor = .white
     }
     
-    func setDownloadingActivity(on: Bool) {
-        let animationDuration: Double = on ? 0 : 0.2
-        UIView.animate(withDuration: animationDuration) {
-            let alpha: CGFloat = on ? 0 : 1
-            self.launchDateLabel.alpha = alpha
-            self.providerNameLabel.alpha = alpha
-            self.providerTypeLabel.alpha = alpha
-            self.logoImageView.alpha = alpha
-            self.rocketNameLabel.alpha = alpha
-            self.updateCountdown()
-        }
-        if on {
-            self.activityIndicator.startAnimating()
-        } else {
-            self.activityIndicator.stopAnimating()
-        }
-    }
-    
+    //MARK: Setting for Launch
     func updateCountdown() {
         guard let launch = launch else { return }
         let statusController = StatusController(launch: launch)
@@ -102,6 +85,25 @@ class UpcomingLaunchCell: UICollectionViewCell {
         }
     }
     
+    //MARK: Activity Indicators
+    func setDownloadingActivity(on: Bool) {
+        let animationDuration: Double = on ? 0 : 0.2
+        UIView.animate(withDuration: animationDuration) {
+            let alpha: CGFloat = on ? 0 : 1
+            self.launchDateLabel.alpha = alpha
+            self.providerNameLabel.alpha = alpha
+            self.providerTypeLabel.alpha = alpha
+            self.logoImageView.alpha = alpha
+            self.rocketNameLabel.alpha = alpha
+            self.updateCountdown()
+        }
+        if on {
+            self.activityIndicator.startAnimating()
+        } else {
+            self.activityIndicator.stopAnimating()
+        }
+    }
+//MARK: Images
     func setLogo(image: UIImage) {
         let imageSize = image.size
         setImageViewSize(imageSize: imageSize)
