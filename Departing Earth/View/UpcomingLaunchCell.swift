@@ -14,12 +14,15 @@ class UpcomingLaunchCell: UICollectionViewCell {
     @IBOutlet var providerTypeLabel: UILabel!
     @IBOutlet var launchDateLabel: UILabel!
     @IBOutlet var statusLabel: UILabel!
+    @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var logoBackgroundView: UIView!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var countdownLabel: UILabel!
     @IBOutlet var countdownBackgroundView: UIView!
     @IBOutlet var statusImageView: UIImageView!
     @IBOutlet var humanIconImageView: UIImageView!
+
+    @IBOutlet weak var logoImageViewWidthContraint: NSLayoutConstraint!
     
     var labels: [UILabel] { [ rocketNameLabel, launchDateLabel, providerNameLabel, providerTypeLabel, statusLabel, countdownLabel] }
     
@@ -30,6 +33,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
         super.prepareForReuse()
         providerNameLabel.text = nil
         providerTypeLabel.text = nil
+        logoImageView.image = nil
         humanIconImageView.isHidden = true
         cellId = nil
     }
@@ -90,6 +94,7 @@ class UpcomingLaunchCell: UICollectionViewCell {
             self.launchDateLabel.alpha = alpha
             self.providerNameLabel.alpha = alpha
             self.providerTypeLabel.alpha = alpha
+            self.logoImageView.alpha = alpha
             self.rocketNameLabel.alpha = alpha
             self.updateCountdown()
         }
@@ -99,4 +104,23 @@ class UpcomingLaunchCell: UICollectionViewCell {
             self.activityIndicator.stopAnimating()
         }
     }
+//MARK: Images
+    func setLogo(image: UIImage) {
+        let imageSize = image.size
+        setImageViewSize(imageSize: imageSize)
+        self.logoImageView.image = image
+    }
+    
+    private func setImageViewSize(imageSize: CGSize) {
+        let height = logoImageView.frame.height
+        let heightRatio = imageSize.height/height
+        let width = imageSize.width/heightRatio
+        if width > 200 {
+            logoImageViewWidthContraint.constant = 200
+        } else {
+            logoImageViewWidthContraint.constant = width
+        }
+    }
+    
+    
 }

@@ -17,7 +17,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     var launchManager: LaunchManager!
     var dataController: DataController!
     
-    var cellSideInsetAmount: CGFloat = 25
+    var cellSideInsetAmount: CGFloat = 15
     var launches: [Launch] = []
     
     //MARK: Life Cycle
@@ -95,8 +95,10 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     @objc func countdownUpdateTimerDidFire() {
         let visibleCells = collectionView.visibleCells
         for cell in visibleCells {
-            guard let cell = cell as? UpcomingLaunchCell else { return }
-            cell.updateCountdown()
+            guard let cell = cell as? LaunchCell else { return }
+            guard let launch = cell.launch else { return }
+            guard let status = cell.statusController else { return }
+            cell.updateCountdown(launch: launch, status: status)
         }
     }
     
@@ -119,7 +121,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     }
     
     func setupCollectionViewUI() {
-        collectionView.backgroundColor = UIColor.secondarySystemBackground
+        collectionView.backgroundColor = UIColor.systemGroupedBackground
         collectionView.contentInsetAdjustmentBehavior = .always
     }
     
@@ -154,8 +156,8 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! UpcomingLaunchCell
-        cell.setStyle()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchCell", for: indexPath) as! LaunchCell
+        cell.setupCell()
         setLaunchContentFor(cell: cell, atRow: indexPath.row)
         return cell
     }
@@ -175,23 +177,40 @@ extension UpcomingLaunchesCollectionViewController {
 extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
-    func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
-        let launch = launches[row]
-        let statusController = StatusController(launch: launch)
-        cell.setDownloadingActivity(on: true)
-        
-        cell.cellId = launch.launchID //Can be used to identify a specific cell when setting propeties asyncronously
-        
-        cell.launch = launch
-        cell.rocketNameLabel.text = launch.rocket?.name
-        cell.providerNameLabel.text = launch.provider?.name
-        cell.providerTypeLabel.text = launch.provider?.type ?? "Unspecified"
-        cell.launchDateLabel.text = statusController.targetedDate
-        cell.updateCountdown()
-        cell.updateStatusSpecificUI()
-        
-        cell.setDownloadingActivity(on: false)
-    }
+//    func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
+//        let launch = launches[row]
+//        let statusController = StatusController(launch: launch)
+//        cell.setDownloadingActivity(on: true)
+//
+//        cell.cellId = launch.launchID //Can be used to identify a specific cell when setting propeties asyncronously
+//
+//        cell.launch = launch
+//        cell.rocketNameLabel.text = launch.rocket?.name
+//        cell.providerNameLabel.text = launch.provider?.name
+//        cell.providerTypeLabel.text = launch.provider?.type ?? "Unspecified"
+//        cell.launchDateLabel.text = statusController.targetedDate
+//        cell.updateCountdown()
+//        cell.updateStatusSpecificUI()
+//
+//        let url = (launch.provider?.logoURL)!
+//        LaunchLibraryApiClient.getImage(urlString: url) { (image, error) in
+//            if let image = image {
+//                cell.logoImageView.image = image
+//            }
+//        }
+//
+//        cell.setDownloadingActivity(on: false)
+//    }
+//}
+
+func setLaunchContentFor(cell: LaunchCell, atRow row: Int) {
+    let launch = launches[row]
+    let statusController = StatusController(launch: launch)
+    cell.launch = launch
+    cell.statusController = statusController
+    cell.setupCell()
+    
+}
 }
 
 //MARK: CollectionView FlowLayout
