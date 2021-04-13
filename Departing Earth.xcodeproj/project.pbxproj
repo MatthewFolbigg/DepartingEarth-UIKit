@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F1C098D26258CBF00F60879 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C098C26258CBF00F60879 /* LaunchCell.swift */; };
 		1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */; };
-		1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */; };
 		1F360378261B1A7600099E02 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F360377261B1A7600099E02 /* Colours.swift */; };
 		1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F41D326147B97000B9CD9 /* DataController.swift */; };
 		1F581FD826138584004AA80B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F581FD726138584004AA80B /* AppDelegate.swift */; };
@@ -51,7 +50,6 @@
 /* Begin PBXFileReference section */
 		1F1C098C26258CBF00F60879 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 		1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchesCollectionViewController.swift; sourceTree = "<group>"; };
-		1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchCell.swift; sourceTree = "<group>"; };
 		1F360377261B1A7600099E02 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		1F4F41D326147B97000B9CD9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		1F581FD426138584004AA80B /* Departing Earth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departing Earth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +117,6 @@
 			children = (
 				1F58201626138BFB004AA80B /* Storyboards */,
 				1FB9D05D261B7DE000648E9D /* App UI */,
-				1F2B21332614B9AF001A940D /* UpcomingLaunchCell.swift */,
 				1F1C098C26258CBF00F60879 /* LaunchCell.swift */,
 			);
 			path = View;
@@ -383,7 +380,6 @@
 				1FB9D051261B716B00648E9D /* LaunchDetailViewController.swift in Sources */,
 				1F933DE926221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift in Sources */,
 				1F360378261B1A7600099E02 /* Colours.swift in Sources */,
-				1F2B21342614B9AF001A940D /* UpcomingLaunchCell.swift in Sources */,
 				1F581FD826138584004AA80B /* AppDelegate.swift in Sources */,
 				1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */,
 				1F8843512622523D00D3B271 /* LaunchManager.swift in Sources */,

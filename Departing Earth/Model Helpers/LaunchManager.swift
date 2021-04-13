@@ -35,7 +35,9 @@ class LaunchManager {
     
     //MARK: Fetches
     func fetchStoredLaunches() -> [Launch]? {
+        let sort = NSSortDescriptor(key: "date", ascending: true)
         let fetchRequest = NSFetchRequest<Launch>(entityName: "Launch")
+        fetchRequest.sortDescriptors = [sort]
         let fetchedLaunhces = try? context.fetch(fetchRequest)
         return fetchedLaunhces
     }

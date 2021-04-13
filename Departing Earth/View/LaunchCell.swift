@@ -36,6 +36,9 @@ class LaunchCell: UICollectionViewCell {
     var statusController: StatusController?
     var cornerRadiusConstant: CGFloat = 30
     
+    override func prepareForReuse() {
+    }
+    
     func setupCell() {
         guard let launch = launch else { return }
         guard let statusController = statusController else { return }
@@ -50,7 +53,7 @@ class LaunchCell: UICollectionViewCell {
         contentView.layer.cornerCurve = .continuous
         contentView.layer.cornerRadius = contentView.frame.width/30
     }
-    
+        
     private func updateLabelText(launch: Launch) {
         if (launch.provider?.name?.count) ?? 25 > 24 {
             providerNameLabel.text = launch.provider?.abbreviation
@@ -60,6 +63,7 @@ class LaunchCell: UICollectionViewCell {
         providerNameLabel.font = Fonts.cellTitle.uiFont
         rocketNameLabel.text = launch.rocket?.name
         rocketNameLabel.font = Fonts.cellSubtitle.uiFont
+        rocketNameLabel.textColor = Colours.spaceSuitOrange.ui
         launchDateLabel.text = statusController?.launchDate
         launchDateLabel.font = Fonts.cellDate.uiFont
         launchDateDescriptionLabel.text = statusController?.dateDescription

@@ -167,8 +167,6 @@ extension UpcomingLaunchesCollectionViewController {
         let launch = launches[indexPath.row]
         destination.launch = launch
         destination.title = launch.rocket?.name
-        //let launchStatus = LaunchHelper.LaunchStatus(rawValue: Int(launch.statusId))
-        //destination.launchStatus = launchStatus
         self.navigationController?.pushViewController(destination, animated: true)
     }
 }
@@ -177,40 +175,14 @@ extension UpcomingLaunchesCollectionViewController {
 extension UpcomingLaunchesCollectionViewController {
     
     //MARK: Cells
-//    func setLaunchContentFor(cell: UpcomingLaunchCell, atRow row: Int) {
-//        let launch = launches[row]
-//        let statusController = StatusController(launch: launch)
-//        cell.setDownloadingActivity(on: true)
-//
-//        cell.cellId = launch.launchID //Can be used to identify a specific cell when setting propeties asyncronously
-//
-//        cell.launch = launch
-//        cell.rocketNameLabel.text = launch.rocket?.name
-//        cell.providerNameLabel.text = launch.provider?.name
-//        cell.providerTypeLabel.text = launch.provider?.type ?? "Unspecified"
-//        cell.launchDateLabel.text = statusController.targetedDate
-//        cell.updateCountdown()
-//        cell.updateStatusSpecificUI()
-//
-//        let url = (launch.provider?.logoURL)!
-//        LaunchLibraryApiClient.getImage(urlString: url) { (image, error) in
-//            if let image = image {
-//                cell.logoImageView.image = image
-//            }
-//        }
-//
-//        cell.setDownloadingActivity(on: false)
-//    }
-//}
-
-func setLaunchContentFor(cell: LaunchCell, atRow row: Int) {
-    let launch = launches[row]
-    let statusController = StatusController(launch: launch)
-    cell.launch = launch
-    cell.statusController = statusController
-    cell.setupCell()
+    func setLaunchContentFor(cell: LaunchCell, atRow row: Int) {
+        let launch = launches[row]
+        let statusController = StatusController(launch: launch)
+        cell.launch = launch
+        cell.statusController = statusController
+        cell.setupCell()
+    }
     
-}
 }
 
 //MARK: CollectionView FlowLayout
@@ -223,7 +195,7 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     func calculateUpcomingLaunchCellSize() -> CGSize{
         let collectionViewSize = collectionView.bounds.size
         var itemSize = CGSize()
-        itemSize.height = 220
+        itemSize.height = 175
         itemSize.width = collectionViewSize.width - (cellSideInsetAmount * 2)
         return itemSize
     }
@@ -234,7 +206,7 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 10
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20

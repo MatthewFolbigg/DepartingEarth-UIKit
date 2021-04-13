@@ -11,6 +11,7 @@ import UIKit
 enum Fonts {
     case cellTitle
     case cellSubtitle
+    case cellSubtitleTwo
     case cellSmall
     case cellCountdown
     case cellDate
@@ -27,6 +28,8 @@ enum Fonts {
             return UIFont.monospacedDigitSystemFont(ofSize: 22, weight: .semibold)
         case .cellSubtitle:
             return UIFont.monospacedSystemFont(ofSize: 16, weight: .medium)
+        case .cellSubtitleTwo:
+            return UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
         case .cellSmall:
             return UIFont.monospacedDigitSystemFont(ofSize: 8, weight: .light)
         case .cellCountdown:
