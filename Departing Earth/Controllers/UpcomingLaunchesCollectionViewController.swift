@@ -11,22 +11,26 @@ import CoreData
 
 class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     
-    @IBOutlet var refreshBarButtonItem: UIBarButtonItem!
+    @IBOutlet var filterBarButtonItem: UIBarButtonItem!
     @IBOutlet var mainActivityIndicator: UIActivityIndicatorView!
     
     var launchManager: LaunchManager!
     var dataController: DataController!
     
     var cellSideInsetAmount: CGFloat = 15
+    var allLaunches: [Launch] = []
     var launches: [Launch] = []
+    var selectedProvider: String = "All"
     
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupRereshControl()
         launchManager = LaunchManager(context: dataController.viewContext)
         loadUpcomingLaunches()
         setupCountdownUpdateTimer()
+        setupFilterMenu()
     }
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -51,16 +55,19 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     func handelFetchedLaunches(launches: [Launch]) {
         print("Loaded upcoming launches from CoreData")
         self.launches = launches
+        self.allLaunches = self.launches
         mainActivityIndicator.stopAnimating()
+        self.collectionView.refreshControl?.endRefreshing()
         collectionView.reloadData()
     }
     
     func downloadUpcomingLaunches() {
-        refreshBarButtonItem.isEnabled = false
+        filterBarButtonItem.isEnabled = false
         LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error) in
             guard let returnedLaunches = returnedLaunches else {
                 self.mainActivityIndicator.stopAnimating()
-                self.refreshBarButtonItem.isEnabled = true
+                self.collectionView.refreshControl?.endRefreshing()
+                self.filterBarButtonItem.isEnabled = true
                 if let error = error {
                     let fetchedLaunches = self.launchManager.fetchStoredLaunches()
                     if fetchedLaunches?.count ?? 0 > 0 {
@@ -70,12 +77,15 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
                 }
                 return
             }
-            self.mainActivityIndicator.stopAnimating()
             self.launchManager.deleteStoredLaunches()
             self.launches = self.launchManager.createLaunchesFrom(results: returnedLaunches)
+            self.allLaunches = self.launches
             self.collectionView.reloadData()
-            self.refreshBarButtonItem.isEnabled = true
+            self.filterBarButtonItem.isEnabled = true
             self.mainActivityIndicator.stopAnimating()
+            self.selectedProvider = "All"
+            self.setupFilterMenu()
+            self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
@@ -106,7 +116,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     func setupUI() {
         setupNavigationBar()
         setupCollectionViewUI()
-        refreshBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
+        filterBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
     }
     
     func setupNavigationBar() {
@@ -135,13 +145,43 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     }
     
     //MARK: IB Actions
-    @IBAction func refreshButtonDidTapped() {
-        // Gets new launches first, only deletes previous saved/shown launches if the get request is successful.
-        self.launches = []
-        collectionView.reloadData()
-        mainActivityIndicator.startAnimating()
-        downloadUpcomingLaunches()
+    @IBAction func filterBarButtonDidTapped() {
+        setupFilterMenu()
     }
+    
+    //MARK: Filter Menu
+    func setupFilterMenu() {
+        let state: UIMenuElement.State = self.selectedProvider == "All" ? .on : .off
+        let allAction = UIAction(title: "All", state: state) { (action) in
+            self.selectedProvider = "All"
+            self.launches = self.allLaunches
+            self.setupFilterMenu()
+            self.collectionView.reloadData()
+        }
+        var menu = UIMenu(title: "Launch Provider", image: nil, identifier: nil, options: .displayInline, children: [allAction])
+        let providers = launchManager.fetchStoredProviders()
+        for provider in providers ?? [] {
+            if provider.launches!.count == 0 {} else {
+            let state: UIMenuElement.State = provider.name == selectedProvider ? .on : .off
+            let title = provider.name?.count ?? 0 < 26 ? provider.name : provider.abbreviation
+            let filterAction = UIAction(title: title ?? "", state: state) { (action) in
+                let filtered = self.allLaunches.filter { launch in
+                    launch.provider == provider
+                }
+                self.launches = filtered
+                self.selectedProvider = provider.name ?? ""
+                self.setupFilterMenu()
+                self.collectionView.reloadData()
+            }
+            var children = menu.children
+            children.append(filterAction)
+            menu = menu.replacingChildren(children)
+            }
+        }
+        filterBarButtonItem.menu = menu
+    }
+    
+    
 }
 
 //MARK: CollectionView Delegate and DataSource
@@ -181,6 +221,20 @@ extension UpcomingLaunchesCollectionViewController {
         cell.launch = launch
         cell.statusController = statusController
         cell.setupCell()
+    }
+    
+    func setupRereshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(collectionViewRefreshControlDidActivate), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc func collectionViewRefreshControlDidActivate() {
+        print("REFRESH NOW")
+        // Gets new launches first, only deletes previous saved/shown launches if the get request is successful.
+        self.launches = []
+        collectionView.reloadData()
+        downloadUpcomingLaunches()
     }
     
 }

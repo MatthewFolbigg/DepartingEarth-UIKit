@@ -252,16 +252,13 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Departing Soon" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="zUW-ik-gvo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="dSu-Fz-4CH">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="line.horizontal.3.decrease.circle" catalog="system" id="aG7-cy-x2X">
                             <color key="tintColor" systemColor="systemOrangeColor"/>
-                            <connections>
-                                <action selector="refreshButtonDidTapped" destination="xOj-Qe-v8h" id="xxA-fM-6yI"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterBarButtonItem" destination="aG7-cy-x2X" id="VdO-nH-ZOb"/>
                         <outlet property="mainActivityIndicator" destination="Oif-7d-NUl" id="BhX-Gj-l4Y"/>
-                        <outlet property="refreshBarButtonItem" destination="dSu-Fz-4CH" id="IQP-Qt-hB9"/>
                         <segue destination="c5b-Pk-32q" kind="show" id="awi-j9-QRT"/>
                     </connections>
                 </collectionViewController>
@@ -537,7 +534,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zi6-ND-8Z6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1205.7971014492755" y="770.75892857142856"/>
+            <point key="canvasLocation" x="1290" y="771"/>
         </scene>
         <!--Mission Detail View Controller-->
         <scene sceneID="CCG-hH-nPs">
@@ -603,7 +600,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCh-s5-ZTT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2045" y="771"/>
+            <point key="canvasLocation" x="2232" y="771"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8VD-ju-KD7">
@@ -632,6 +629,7 @@
         <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="map" catalog="system" width="128" height="110"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -105,23 +105,23 @@ class LaunchCell: UICollectionViewCell {
         minutesLabel.text = status.countdownComponents.minutes
         secondsLabel.text = status.countdownComponents.seconds
         tMinusPlusLabel.text = status.countdownComponents.t
-    
-        if daysLabel.text == "00" { daysLabel.textColor = .secondaryLabel }
-        if daysLabel.text == "00" && hoursLabel.text == "00" { hoursLabel.textColor = .secondaryLabel }
-        if daysLabel.text == "00" && hoursLabel.text == "00" && minutesLabel.text == "00" && minutesLabel.text == "00" {
-            for label in countdownLabels ?? [] { label.textColor = Colours.cosmonautSuitGreen.ui }
-        }
-        for label in countdownLabels ?? [] {
-            if label.text == "--" {
-                label.textColor = .tertiaryLabel
-                tMinusPlusLabel.textColor = .tertiaryLabel
-            }
-        }
-        if tMinusPlusLabel.text == "+" {
-            for background in countdownBackgrounds ?? [] {
-                background.backgroundColor = status.color
-            }
-        }
+//
+//        if daysLabel.text == "00" { daysLabel.textColor = .secondaryLabel }
+//        if daysLabel.text == "00" && hoursLabel.text == "00" { hoursLabel.textColor = .secondaryLabel }
+//        if daysLabel.text == "00" && hoursLabel.text == "00" && minutesLabel.text == "00" && minutesLabel.text == "00" {
+//            for label in countdownLabels ?? [] { label.textColor = Colours.cosmonautSuitGreen.ui }
+//        }
+//        for label in countdownLabels ?? [] {
+//            if label.text == "--" {
+//                label.textColor = .tertiaryLabel
+//                tMinusPlusLabel.textColor = .tertiaryLabel
+//            }
+//        }
+//        if tMinusPlusLabel.text == "+" {
+//            for background in countdownBackgrounds ?? [] {
+//                background.backgroundColor = status.color
+//            }
+//        }
         
     }
     

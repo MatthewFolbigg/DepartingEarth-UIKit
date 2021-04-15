@@ -42,6 +42,27 @@ class LaunchManager {
         return fetchedLaunhces
     }
     
+    func fetchStoredProviders() -> [Provider]? {
+        let sort = NSSortDescriptor(key: "name", ascending: true)
+        let fetchRequest = NSFetchRequest<Provider>(entityName: "Provider")
+        fetchRequest.sortDescriptors = [sort]
+        let fetchedProviders = try? context.fetch(fetchRequest)
+        return fetchedProviders
+    }
+    
+//    func fetchConfirmedLaunches() -> [Launch]? {
+//        let sort = NSSortDescriptor(key: "date", ascending: true)
+//        let pendingDatePredicate = NSPredicate(format: "isPendingDate == %d", false)
+//        let pendingTimePredicate = NSPredicate(format: "isPendingTime == %d", false)
+//        let goStatusTimePredicate = NSPredicate(format: "statusID == %i", 1)
+//        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [goStatusTimePredicate])
+//        let fetchRequest = NSFetchRequest<Launch>(entityName: "Launch")
+//        fetchRequest.sortDescriptors = [sort]
+//        fetchRequest.predicate = compoundPredicate
+//        let fetchedLaunhces = try? context.fetch(fetchRequest)
+//        return fetchedLaunhces
+//    }
+    
     //MARK: Deletion
     func deleteStoredLaunches() {
         if let storedLaunches = fetchStoredLaunches() {
