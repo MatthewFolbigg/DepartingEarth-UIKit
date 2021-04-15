@@ -32,7 +32,16 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         loadUpcomingLaunches()
         setupCountdownUpdateTimer()
         setupFilterMenu()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let lastUpdate = UserDefaults.standard.object(forKey: "lastUpdated") as? Date{
+            if lastUpdate.timeIntervalSinceNow < -21600 { //If last update is older than 6 hours
+                print("updating because data is old")
+                downloadUpcomingLaunches()
+            }
+        }
     }
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -46,14 +55,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: Fetching & Downloading Launch Data
     func loadUpcomingLaunches() {
         mainActivityIndicator.startAnimating()
-        if let lastUpdate = UserDefaults.standard.object(forKey: "lastUpdated") as? Date{
-            print(lastUpdate.timeIntervalSinceNow)
-            if lastUpdate.timeIntervalSinceNow < -21600 { //If last update is older than 6 hours
-                print("updating because data is old")
-                downloadUpcomingLaunches()
-            }
-        }
-        
+     
         let fetchedLaunches = launchManager.fetchStoredLaunches()
         if fetchedLaunches?.count ?? 0 > 0 {
             handelFetchedLaunches(launches: fetchedLaunches!)
