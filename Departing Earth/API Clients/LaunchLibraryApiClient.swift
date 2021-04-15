@@ -24,7 +24,7 @@ class LaunchLibraryApiClient {
         private static let agencies = "agencies/"
         
         //URL Components - Filters and Ordering
-        private static let first30 = "&limit=100&offset=0"
+        private static let first30 = "&limit=80offset=0"
         
         //Endpoint Cases
         case getUpcomingLaunches

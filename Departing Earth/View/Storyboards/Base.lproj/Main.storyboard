@@ -20,7 +20,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="duq-0I-kQO">
                             <size key="itemSize" width="414" height="233"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="30"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -30,7 +30,7 @@
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchCell" id="242-hC-7e0" customClass="LaunchCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="175"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="efE-dO-MTg">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
@@ -246,6 +246,27 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="UpcomingHeader" id="hxk-zI-RUc" customClass="UpcomingLaunchesSectionHeader" customModule="Departing_Earth" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SpaceX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="Tfn-U4-buO">
+                                    <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" secondItem="Tfn-U4-buO" secondAttribute="height" id="3KE-rH-3E7"/>
+                                <constraint firstItem="Tfn-U4-buO" firstAttribute="leading" secondItem="hxk-zI-RUc" secondAttribute="leading" constant="20" id="FaO-g3-bKz"/>
+                                <constraint firstAttribute="trailing" secondItem="Tfn-U4-buO" secondAttribute="trailing" constant="20" id="G2O-82-HX0"/>
+                                <constraint firstItem="Tfn-U4-buO" firstAttribute="top" secondItem="hxk-zI-RUc" secondAttribute="top" id="WUa-Mu-YZb"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="filterLabel" destination="Tfn-U4-buO" id="9lA-tJ-OEv"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="xOj-Qe-v8h" id="oVm-LQ-u5y"/>
                             <outlet property="delegate" destination="xOj-Qe-v8h" id="uHS-o6-66a"/>

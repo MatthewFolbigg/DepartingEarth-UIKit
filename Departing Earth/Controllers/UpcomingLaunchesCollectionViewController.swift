@@ -83,8 +83,6 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             self.collectionView.reloadData()
             self.filterBarButtonItem.isEnabled = true
             self.mainActivityIndicator.stopAnimating()
-            self.selectedProvider = "All"
-            self.setupFilterMenu()
             self.collectionView.refreshControl?.endRefreshing()
         }
     }
@@ -144,11 +142,6 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    //MARK: IB Actions
-    @IBAction func filterBarButtonDidTapped() {
-        setupFilterMenu()
-    }
-    
     //MARK: Filter Menu
     func setupFilterMenu() {
         let state: UIMenuElement.State = self.selectedProvider == "All" ? .on : .off
@@ -171,6 +164,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
                 self.launches = filtered
                 self.selectedProvider = provider.name ?? ""
                 self.setupFilterMenu()
+                self.collectionViewLayout.invalidateLayout()
                 self.collectionView.reloadData()
             }
             var children = menu.children
@@ -209,6 +203,21 @@ extension UpcomingLaunchesCollectionViewController {
         destination.title = launch.rocket?.name
         self.navigationController?.pushViewController(destination, animated: true)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "UpcomingHeader", for: indexPath) as? UpcomingLaunchesSectionHeader {
+            headerCell.setupCell()
+            if selectedProvider == "All" {
+                headerCell.filterLabel.text = nil
+            } else {
+                headerCell.filterLabel.text = "\(selectedProvider)"
+            }
+            return headerCell
+        } else {
+            return UICollectionReusableView()
+        }
+    }
+    
 }
 
 //MARK: Cells and Supplementary Views
@@ -232,9 +241,9 @@ extension UpcomingLaunchesCollectionViewController {
     @objc func collectionViewRefreshControlDidActivate() {
         print("REFRESH NOW")
         // Gets new launches first, only deletes previous saved/shown launches if the get request is successful.
-        self.launches = []
-        collectionView.reloadData()
         downloadUpcomingLaunches()
+        self.selectedProvider = "All"
+        self.setupFilterMenu()
     }
     
 }
@@ -264,6 +273,25 @@ extension UpcomingLaunchesCollectionViewController: UICollectionViewDelegateFlow
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        var itemSize = CGSize()
+        if section == 0 {
+            let collectionViewSize = collectionView.bounds.size
+            var itemSize = CGSize()
+            if selectedProvider == "All" {
+                itemSize.height = 0
+            } else {
+                itemSize.height = 20
+            }
+            itemSize.width = collectionViewSize.width
+            return itemSize
+        } else {
+            itemSize.height = 0
+            itemSize.width = 0
+            return itemSize
+        }
     }
     
 }
