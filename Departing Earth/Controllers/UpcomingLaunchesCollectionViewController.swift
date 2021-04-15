@@ -25,12 +25,14 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        //UserDefaults.standard.setValue(Date.distantPast, forKey: "lastUpdated")
         setupUI()
         setupRereshControl()
         launchManager = LaunchManager(context: dataController.viewContext)
         loadUpcomingLaunches()
         setupCountdownUpdateTimer()
         setupFilterMenu()
+        
     }
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -44,6 +46,14 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: Fetching & Downloading Launch Data
     func loadUpcomingLaunches() {
         mainActivityIndicator.startAnimating()
+        if let lastUpdate = UserDefaults.standard.object(forKey: "lastUpdated") as? Date{
+            print(lastUpdate.timeIntervalSinceNow)
+            if lastUpdate.timeIntervalSinceNow < -21600 { //If last update is older than 6 hours
+                print("updating because data is old")
+                downloadUpcomingLaunches()
+            }
+        }
+        
         let fetchedLaunches = launchManager.fetchStoredLaunches()
         if fetchedLaunches?.count ?? 0 > 0 {
             handelFetchedLaunches(launches: fetchedLaunches!)
@@ -79,8 +89,10 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             }
             self.launchManager.deleteStoredLaunches()
             self.launches = self.launchManager.createLaunchesFrom(results: returnedLaunches)
+            UserDefaults.standard.setValue(Date(), forKey: "lastUpdated")
             self.allLaunches = self.launches
             self.collectionView.reloadData()
+            self.setupFilterMenu()
             self.filterBarButtonItem.isEnabled = true
             self.mainActivityIndicator.stopAnimating()
             self.collectionView.refreshControl?.endRefreshing()
