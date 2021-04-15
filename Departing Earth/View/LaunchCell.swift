@@ -25,6 +25,8 @@ class LaunchCell: UICollectionViewCell {
     @IBOutlet var minutesBackgroundView: UIView!
     @IBOutlet var secondsBackgroundView: UIView!
     @IBOutlet var statusColorView: UIView!
+    @IBOutlet var tMinusPlusLabel: UILabel!
+    @IBOutlet var tMinusPlusBackgroundView: UIView!
  
     //MARK: Other IBOutlets
     @IBOutlet var rocketNameLabel: UILabel!
@@ -35,6 +37,8 @@ class LaunchCell: UICollectionViewCell {
     var launch: Launch?
     var statusController: StatusController?
     var cornerRadiusConstant: CGFloat = 30
+    var countdownLabels: [UILabel]?
+    var countdownBackgrounds: [UIView]?
     
     override func prepareForReuse() {
     }
@@ -42,6 +46,8 @@ class LaunchCell: UICollectionViewCell {
     func setupCell() {
         guard let launch = launch else { return }
         guard let statusController = statusController else { return }
+        countdownLabels = [ daysLabel, hoursLabel, minutesLabel, secondsLabel, tMinusPlusLabel ]
+        countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView, tMinusPlusBackgroundView ]
         setupBackground()
         setupCountdown()
         updateLabelText(launch: launch)
@@ -72,8 +78,7 @@ class LaunchCell: UICollectionViewCell {
     
     //MARK: Countdown Methods
     func setupCountdown() {
-        let countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView ]
-        let countdownLabels = [ daysLabel, hoursLabel, minutesLabel, secondsLabel ]
+        let countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView, tMinusPlusBackgroundView ]
         let countdownTitleLabels = [ daysTitleLabel, hoursTitleLabel, minutesTitleLabel, secondsTitleLabel ]
         statusColorView?.layer.cornerCurve = .continuous
         statusColorView?.layer.cornerRadius = (statusColorView?.frame.width)!/(cornerRadiusConstant*2)
@@ -81,11 +86,12 @@ class LaunchCell: UICollectionViewCell {
             countdownBackground?.layer.cornerCurve = .continuous
             countdownBackground?.layer.cornerRadius = (countdownBackground?.frame.width)!/(cornerRadiusConstant/4)
         }
+        tMinusPlusBackgroundView.layer.cornerRadius = tMinusPlusBackgroundView.frame.width/(cornerRadiusConstant/8)
         for title in countdownTitleLabels {
             title?.font = Fonts.cellSmall.uiFont
         }
-        for label in countdownLabels {
-            label?.font = Fonts.cellCountdown.uiFont
+        for label in countdownLabels! {
+            label.font = Fonts.cellCountdown.uiFont
         }
     }
             
@@ -98,6 +104,25 @@ class LaunchCell: UICollectionViewCell {
         hoursLabel.text = status.countdownComponents.hours
         minutesLabel.text = status.countdownComponents.minutes
         secondsLabel.text = status.countdownComponents.seconds
+        tMinusPlusLabel.text = status.countdownComponents.t
+    
+        if daysLabel.text == "00" { daysLabel.textColor = .secondaryLabel }
+        if daysLabel.text == "00" && hoursLabel.text == "00" { hoursLabel.textColor = .secondaryLabel }
+        if daysLabel.text == "00" && hoursLabel.text == "00" && minutesLabel.text == "00" && minutesLabel.text == "00" {
+            for label in countdownLabels ?? [] { label.textColor = Colours.cosmonautSuitGreen.ui }
+        }
+        for label in countdownLabels ?? [] {
+            if label.text == "--" {
+                label.textColor = .tertiaryLabel
+                tMinusPlusLabel.textColor = .tertiaryLabel
+            }
+        }
+        if tMinusPlusLabel.text == "+" {
+            for background in countdownBackgrounds ?? [] {
+                background.backgroundColor = status.color
+            }
+        }
+        
     }
     
 }

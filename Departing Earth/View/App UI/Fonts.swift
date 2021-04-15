@@ -33,9 +33,9 @@ enum Fonts {
         case .cellSmall:
             return UIFont.monospacedDigitSystemFont(ofSize: 8, weight: .light)
         case .cellCountdown:
-            return UIFont.monospacedSystemFont(ofSize: 18, weight: .semibold)
+            return UIFont.monospacedSystemFont(ofSize: 16, weight: .semibold)
         case .cellDate:
-            return UIFont.monospacedDigitSystemFont(ofSize: 18, weight: .semibold)
+            return UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .semibold)
         case .cellBody:
             return UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
             

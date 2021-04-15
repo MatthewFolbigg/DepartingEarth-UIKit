@@ -13,6 +13,7 @@ struct Countdown {
     var hours: String
     var minutes: String
     var seconds: String
+    var t: String
 }
 
 struct StatusController {
@@ -104,22 +105,35 @@ struct StatusController {
         switch status {
         case .go: return "Launching"
         case .tbd: return "Targeting"
-        case .success: return "Launched"
+        case .success: return "Departed"
         case .failure: return "Failed"
         case .hold: return "Holding"
         }
     }
     
     var countdownComponents: Countdown {
-        let noCountdown = Countdown(days: blankClockElement, hours: blankClockElement, minutes: blankClockElement, seconds: blankClockElement)
+        var isPreLaunch = "-"
+        let noCountdown = Countdown(days: blankClockElement, hours: blankClockElement, minutes: blankClockElement, seconds: blankClockElement, t: isPreLaunch)
         guard let date = launch.date else { return noCountdown }
         if launch.isPendingDate || launch.isPendingTime { return noCountdown }
         let countdownComponents = dateTimeStyles.countdownComponentsFromNowTo(date: date)
-        let days = String(format: "%02d", countdownComponents.day!)
-        let hours = String(format: "%02d", countdownComponents.hour!)
-        let minutes = String(format: "%02d", countdownComponents.minute!)
-        let seconds = String(format: "%02d", countdownComponents.second!)
-        let countdown = Countdown(days: days, hours: hours, minutes: minutes, seconds: seconds)
+        let components = [countdownComponents.day, countdownComponents.hour, countdownComponents.minute, countdownComponents.second]
+        for component in components {
+            if component! < 0 {
+                isPreLaunch = "+"
+            }
+        }
+        
+        var days = String(format: "%02d", countdownComponents.day!)
+        var hours = String(format: "%02d", countdownComponents.hour!)
+        var minutes = String(format: "%02d", countdownComponents.minute!)
+        var seconds = String(format: "%02d", countdownComponents.second!)
+        if countdownComponents.day! < 0 { days =  String(format: "%02d", countdownComponents.day! * -1) }
+        if countdownComponents.hour! < 0 { hours =  String(format: "%02d", countdownComponents.hour! * -1) }
+        if countdownComponents.minute! < 0 { minutes =  String(format: "%02d", countdownComponents.minute! * -1) }
+        if countdownComponents.second! < 0 { seconds =  String(format: "%02d", countdownComponents.second! * -1) }
+    
+        let countdown = Countdown(days: days, hours: hours, minutes: minutes, seconds: seconds, t: isPreLaunch)
         return countdown
     }
     
