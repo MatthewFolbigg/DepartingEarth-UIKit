@@ -15,10 +15,13 @@ enum Fonts {
     case cellSmall
     case cellCountdown
     case cellDate
+    case cellBody
+    
+    case detailSmall
+    case detailCountdown
     
     case customMonospaced(CGFloat, UIFont.Weight)
     case customMonospacedDigit(CGFloat, UIFont.Weight)
-    case cellBody
     case navigationTitleLarge
     case navigationTitleSmall
     
@@ -39,6 +42,10 @@ enum Fonts {
         case .cellBody:
             return UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
             
+        case .detailCountdown:
+            return UIFont.monospacedSystemFont(ofSize: 26, weight: .semibold)
+        case .detailSmall:
+            return UIFont.monospacedDigitSystemFont(ofSize: 10, weight: .light)
             
         case .customMonospaced(let size, let weight):
             return UIFont.monospacedSystemFont(ofSize: size, weight: weight)

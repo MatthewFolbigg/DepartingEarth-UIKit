@@ -21,7 +21,6 @@ class MissionDetailViewController: UIViewController {
         setTextForLabels()
         setFontsForLabels()
         textBackgroundView.layer.cornerRadius = textBackgroundView.frame.width/20
-        
     }
     
     func setTextForLabels() {

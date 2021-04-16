@@ -43,7 +43,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
             }
         }
     }
-        
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super .viewWillTransition(to: size, with: coordinator)
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
@@ -211,7 +211,7 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destination = storyboard?.instantiateViewController(identifier: "LaunchDetail") as! LaunchDetailViewController
+        let destination = storyboard?.instantiateViewController(identifier: "LaunchDetailCollectionViewController") as! LaunchDetailCollectionViewController
         let launch = launches[indexPath.row]
         destination.launch = launch
         destination.title = launch.rocket?.name
