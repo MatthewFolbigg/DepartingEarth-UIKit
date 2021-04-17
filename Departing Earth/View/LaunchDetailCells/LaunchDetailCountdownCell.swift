@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LaunchDetailCountdownCell: UICollectionViewCell {
+class LaunchDetailCountdownCell: LaunchDetailCell {
     
     @IBOutlet var tLabel: UILabel!
     @IBOutlet var daysLabel: UILabel!
@@ -27,11 +27,10 @@ class LaunchDetailCountdownCell: UICollectionViewCell {
     @IBOutlet var minuteTitleLabel: UILabel!
     @IBOutlet var secondTitleLabel: UILabel!
     
-    var launch: Launch?
-    var status: StatusController?
-    var cornerRadiusConstant: CGFloat = 30
-    
-    func setupCell() {
+     
+    override func setupCell() {
+        super.setupCell()
+        self.tag = 1
         setupBackground()
         setupCountdowUI()
     }
@@ -67,9 +66,4 @@ class LaunchDetailCountdownCell: UICollectionViewCell {
         //statusColorView.backgroundColor = status.color
     }
     
-    private func setupBackground() {
-        contentView.backgroundColor = .secondarySystemGroupedBackground
-        contentView.layer.cornerCurve = .continuous
-        contentView.layer.cornerRadius = contentView.frame.width/30
-    }
 }

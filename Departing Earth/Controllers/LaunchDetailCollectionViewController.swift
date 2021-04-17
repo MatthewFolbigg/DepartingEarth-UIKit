@@ -11,7 +11,7 @@ import UIKit
 class LaunchDetailCollectionViewController: UICollectionViewController {
     var launch: Launch!
     var statusController: StatusController!
-    var cellSideInsetAmount: CGFloat = 5
+    var cellSideInsetAmount: CGFloat = 8
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
 extension LaunchDetailCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -77,6 +77,15 @@ extension LaunchDetailCollectionViewController {
             }
         }
         
+        if indexPath.row == 3 {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailPadCell", for: indexPath) as? LaunchDetailPadCell {
+                cell.launch = launch
+                cell.status = statusController
+                cell.setupCell()
+                return cell
+            }
+        }
+        
         return UICollectionViewCell()
     }
 }
@@ -85,9 +94,11 @@ extension LaunchDetailCollectionViewController {
 extension LaunchDetailCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var itemSize = defaultCellSize()
-        if indexPath.row == 0 { itemSize.height = 85 }
-        if indexPath.row == 1 { itemSize.height = 130 }
-        if indexPath.row == 2 { itemSize.height = 130 }
+        
+        if indexPath.row == 0 { itemSize.height = 90 }
+        if indexPath.row == 1 { itemSize.height = 90 }
+        if indexPath.row == 2 { itemSize.height = 90 }
+        if indexPath.row == 3 { itemSize.height = 400 }
         return itemSize
     }
     
@@ -105,10 +116,10 @@ extension LaunchDetailCollectionViewController: UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+        return 8
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 4
+        return 8
     }
     
 }

@@ -23,6 +23,8 @@
 		1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */; };
 		1F5E90132628B1D80056CF7D /* UpcomingLaunchesCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5E90122628B1D80056CF7D /* UpcomingLaunchesCollectionViewHeader.swift */; };
 		1F7FEB942629938800457093 /* LaunchDetailMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FEB932629938800457093 /* LaunchDetailMissionCell.swift */; };
+		1F7FEB99262B3A1200457093 /* LaunchDetaiPadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FEB98262B3A1200457093 /* LaunchDetaiPadCell.swift */; };
+		1F7FEB9E262B3DAB00457093 /* LaunchDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7FEB9D262B3DAB00457093 /* LaunchDetailCell.swift */; };
 		1F8843512622523D00D3B271 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8843502622523D00D3B271 /* LaunchManager.swift */; };
 		1F88435926226ED600D3B271 /* DateTimeStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F88435826226ED600D3B271 /* DateTimeStyles.swift */; };
 		1F933DDE2621C507009A4F15 /* missionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */; };
@@ -75,6 +77,8 @@
 		1F58202826147104004AA80B /* UpcomingLaunchApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchApiResponse.swift; sourceTree = "<group>"; };
 		1F5E90122628B1D80056CF7D /* UpcomingLaunchesCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchesCollectionViewHeader.swift; sourceTree = "<group>"; };
 		1F7FEB932629938800457093 /* LaunchDetailMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailMissionCell.swift; sourceTree = "<group>"; };
+		1F7FEB98262B3A1200457093 /* LaunchDetaiPadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetaiPadCell.swift; sourceTree = "<group>"; };
+		1F7FEB9D262B3DAB00457093 /* LaunchDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailCell.swift; sourceTree = "<group>"; };
 		1F8843502622523D00D3B271 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
 		1F88435826226ED600D3B271 /* DateTimeStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeStyles.swift; sourceTree = "<group>"; };
 		1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missionDetailViewController.swift; sourceTree = "<group>"; };
@@ -255,9 +259,11 @@
 		1FE5ED1E2628F64C006C4985 /* LaunchDetailCells */ = {
 			isa = PBXGroup;
 			children = (
+				1F7FEB9D262B3DAB00457093 /* LaunchDetailCell.swift */,
+				1FE5ED2526298152006C4985 /* LaunchDetailCountdownCell.swift */,
 				1FE5ED192628EEFE006C4985 /* LaunchDetailDateCell.swift */,
 				1F7FEB932629938800457093 /* LaunchDetailMissionCell.swift */,
-				1FE5ED2526298152006C4985 /* LaunchDetailCountdownCell.swift */,
+				1F7FEB98262B3A1200457093 /* LaunchDetaiPadCell.swift */,
 			);
 			path = LaunchDetailCells;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 				1FE5ED1A2628EEFE006C4985 /* LaunchDetailDateCell.swift in Sources */,
 				1F7FEB942629938800457093 /* LaunchDetailMissionCell.swift in Sources */,
 				1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */,
+				1F7FEB99262B3A1200457093 /* LaunchDetaiPadCell.swift in Sources */,
 				1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */,
 				1F88435926226ED600D3B271 /* DateTimeStyles.swift in Sources */,
 				1F58201126138BE4004AA80B /* LaunchLibraryApiClient.swift in Sources */,
@@ -407,6 +414,7 @@
 				1F5E90132628B1D80056CF7D /* UpcomingLaunchesCollectionViewHeader.swift in Sources */,
 				1FB9D051261B716B00648E9D /* LaunchDetailViewController.swift in Sources */,
 				1F933DE926221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift in Sources */,
+				1F7FEB9E262B3DAB00457093 /* LaunchDetailCell.swift in Sources */,
 				1F360378261B1A7600099E02 /* Colours.swift in Sources */,
 				1F581FD826138584004AA80B /* AppDelegate.swift in Sources */,
 				1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */,
