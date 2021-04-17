@@ -189,7 +189,6 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         filterBarButtonItem.menu = menu
     }
     
-    
 }
 
 //MARK: CollectionView Delegate and DataSource

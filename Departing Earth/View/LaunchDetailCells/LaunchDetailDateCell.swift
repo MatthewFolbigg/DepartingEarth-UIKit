@@ -16,6 +16,8 @@ class LaunchDetailDateCell: LaunchDetailCell {
     @IBOutlet var dateImageView: UIImageView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var timeImageView: UIImageView!
+    
+    @IBOutlet var addToCalButton: UIButton!
   
     override func setupCell() {
         super.setupCell()
@@ -29,10 +31,15 @@ class LaunchDetailDateCell: LaunchDetailCell {
         statusIndicatorView.backgroundColor = status.color
         dateImageView.tintColor = .secondaryLabel
         timeImageView.tintColor = .secondaryLabel
+        addToCalButton.tintColor = Colours.spaceSuitOrange.ui
         
         dateStatusLabel.text = status.launchDescription
         dateLabel.text = status.launchDate
         timeLabel.text = status.launchTime
+    }
+    
+    @IBAction func addToCalButtonDidPressed() {
+        print("Add to cal")
     }
     
 }

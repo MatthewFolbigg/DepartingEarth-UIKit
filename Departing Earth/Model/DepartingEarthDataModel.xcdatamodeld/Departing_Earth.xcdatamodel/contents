@@ -29,6 +29,8 @@
         <attribute name="missionID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="objectives" optional="YES" attributeType="String"/>
+        <attribute name="orbitAbbreviation" optional="YES" attributeType="String"/>
+        <attribute name="orbitName" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="launch" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Launch" inverseName="mission" inverseEntity="Launch"/>
         <relationship name="orbit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Orbit" inverseName="missions" inverseEntity="Orbit"/>
@@ -85,7 +87,7 @@
     <elements>
         <element name="Launch" positionX="-1094.1796875" positionY="-64.51953125" width="153.72265625" height="253"/>
         <element name="Logo" positionX="-258.41015625" positionY="102.23046875" width="128" height="73"/>
-        <element name="Mission" positionX="-851.2578125" positionY="-226.66796875" width="128" height="133"/>
+        <element name="Mission" positionX="-851.2578125" positionY="-226.66796875" width="128" height="149"/>
         <element name="Orbit" positionX="-625.0625" positionY="-180.59765625" width="128" height="103"/>
         <element name="Pad" positionX="-579.765625" positionY="-23.8359375" width="128" height="133"/>
         <element name="Provider" positionX="-429.296875" positionY="12.58984375" width="128" height="148"/>

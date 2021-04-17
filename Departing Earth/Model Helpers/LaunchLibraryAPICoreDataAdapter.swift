@@ -45,12 +45,8 @@ struct LaunchLibraryAPICoreDataAdapter {
         mission.name = missionInfo.name
         mission.type = missionInfo.type
         mission.objectives = missionInfo.description
-        if let orbitInfo = missionInfo.orbit {
-            let orbit = Orbit(context: context)
-            orbit.name = orbitInfo.name
-            orbit.abbreviation = orbitInfo.abbrev
-            orbit.orbitID = Int16(orbitInfo.id)
-        }
+        mission.orbitName = missionInfo.orbit?.name
+        mission.orbitAbbreviation = missionInfo.orbit?.abbrev
         return mission
     }
     

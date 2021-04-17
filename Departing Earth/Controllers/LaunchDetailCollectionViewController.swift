@@ -17,6 +17,7 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         statusController = StatusController(launch: launch)
         self.navigationController!.navigationBar.tintColor = Colours.spaceSuitOrange.ui
+        //collectionView.backgroundColor = .secondarySystemGroupedBackground
         setupCountdownUpdateTimer()
     }
     
@@ -95,9 +96,9 @@ extension LaunchDetailCollectionViewController: UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var itemSize = defaultCellSize()
         
-        if indexPath.row == 0 { itemSize.height = 90 }
+        if indexPath.row == 0 { itemSize.height = 80 }
         if indexPath.row == 1 { itemSize.height = 90 }
-        if indexPath.row == 2 { itemSize.height = 90 }
+        if indexPath.row == 2 { itemSize.height = 122 }
         if indexPath.row == 3 { itemSize.height = 400 }
         return itemSize
     }
@@ -111,7 +112,7 @@ extension LaunchDetailCollectionViewController: UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let edgeInsets = UIEdgeInsets(top: 4, left: cellSideInsetAmount, bottom: 10, right: cellSideInsetAmount)
+        let edgeInsets = UIEdgeInsets(top: 8, left: cellSideInsetAmount, bottom: 10, right: cellSideInsetAmount)
         return edgeInsets
     }
     

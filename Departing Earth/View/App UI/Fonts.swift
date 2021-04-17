@@ -43,7 +43,7 @@ enum Fonts {
             return UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .light)
             
         case .detailCountdown:
-            return UIFont.monospacedSystemFont(ofSize: 26, weight: .semibold)
+            return UIFont.monospacedSystemFont(ofSize: 22, weight: .semibold)
         case .detailSmall:
             return UIFont.monospacedDigitSystemFont(ofSize: 10, weight: .light)
             
