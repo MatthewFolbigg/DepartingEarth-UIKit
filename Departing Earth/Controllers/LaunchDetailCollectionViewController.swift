@@ -15,7 +15,7 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
     var launch: Launch!
     var statusController: StatusController!
     let eventStore = EKEventStore()
-    var cellSideInsetAmount: CGFloat = 1
+    var cellSideInsetAmount: CGFloat = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,10 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
 extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavigationControllerDelegate, CalendarCellDelegate {
     
     func didTapAddToCalButton(launch: Launch) {
+        presentEventEditViewControllerWithLauchDetails()
+    }
+    
+    @IBAction func addToCalButtonDidPressed() {
         presentEventEditViewControllerWithLauchDetails()
     }
 
@@ -202,15 +206,15 @@ extension LaunchDetailCollectionViewController: UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let edgeInsets = UIEdgeInsets(top: 0, left: cellSideInsetAmount, bottom: 10, right: cellSideInsetAmount)
+        let edgeInsets = UIEdgeInsets(top: 5, left: cellSideInsetAmount, bottom: 10, right: cellSideInsetAmount)
         return edgeInsets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 5
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 5
     }
     
 }
