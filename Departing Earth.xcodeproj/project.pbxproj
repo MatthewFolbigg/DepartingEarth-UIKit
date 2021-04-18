@@ -29,7 +29,6 @@
 		1F88435926226ED600D3B271 /* DateTimeStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F88435826226ED600D3B271 /* DateTimeStyles.swift */; };
 		1F933DDE2621C507009A4F15 /* missionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */; };
 		1F933DE926221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F933DE826221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift */; };
-		1FB9D051261B716B00648E9D /* LaunchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9D050261B716B00648E9D /* LaunchDetailViewController.swift */; };
 		1FB9D059261B758B00648E9D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9D058261B758B00648E9D /* Fonts.swift */; };
 		1FD30BB2262358EF00982E71 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD30BB1262358EF00982E71 /* StatusController.swift */; };
 		1FE5ED152628EC9D006C4985 /* LaunchDetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5ED142628EC9D006C4985 /* LaunchDetailCollectionViewController.swift */; };
@@ -83,7 +82,6 @@
 		1F88435826226ED600D3B271 /* DateTimeStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeStyles.swift; sourceTree = "<group>"; };
 		1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missionDetailViewController.swift; sourceTree = "<group>"; };
 		1F933DE826221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryAPICoreDataAdapter.swift; sourceTree = "<group>"; };
-		1FB9D050261B716B00648E9D /* LaunchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailViewController.swift; sourceTree = "<group>"; };
 		1FB9D058261B758B00648E9D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		1FD30BB1262358EF00982E71 /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusController.swift; sourceTree = "<group>"; };
 		1FE5ED142628EC9D006C4985 /* LaunchDetailCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailCollectionViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 			children = (
 				1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */,
 				1FE5ED142628EC9D006C4985 /* LaunchDetailCollectionViewController.swift */,
-				1FB9D050261B716B00648E9D /* LaunchDetailViewController.swift */,
 				1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */,
 			);
 			path = Controllers;
@@ -412,7 +409,6 @@
 				1FE5ED2626298152006C4985 /* LaunchDetailCountdownCell.swift in Sources */,
 				1FE5ED152628EC9D006C4985 /* LaunchDetailCollectionViewController.swift in Sources */,
 				1F5E90132628B1D80056CF7D /* UpcomingLaunchesCollectionViewHeader.swift in Sources */,
-				1FB9D051261B716B00648E9D /* LaunchDetailViewController.swift in Sources */,
 				1F933DE926221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift in Sources */,
 				1F7FEB9E262B3DAB00457093 /* LaunchDetailCell.swift in Sources */,
 				1F360378261B1A7600099E02 /* Colours.swift in Sources */,

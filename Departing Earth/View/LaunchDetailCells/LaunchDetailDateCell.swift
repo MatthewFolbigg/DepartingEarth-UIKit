@@ -8,38 +8,44 @@
 import Foundation
 import UIKit
 
+protocol CalendarCellDelegate {
+    func didTapAddToCalButton(launch: Launch)
+}
+
 class LaunchDetailDateCell: LaunchDetailCell {
     
     @IBOutlet var dateStatusLabel: UILabel!
-    @IBOutlet var statusIndicatorView: UIView!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var dateImageView: UIImageView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var timeImageView: UIImageView!
     
     @IBOutlet var addToCalButton: UIButton!
+    var delegate: CalendarCellDelegate?
   
     override func setupCell() {
         super.setupCell()
         self.tag = 2
-        setRoundedCorners(view: statusIndicatorView, modifier: 4)
         setFontToTitle(labels: [dateStatusLabel])
         setFontToBody(labels: [dateLabel, timeLabel])
         
-        guard let status = status else { return }
-        
-        statusIndicatorView.backgroundColor = status.color
         dateImageView.tintColor = .secondaryLabel
         timeImageView.tintColor = .secondaryLabel
         addToCalButton.tintColor = Colours.spaceSuitOrange.ui
         
+        guard let status = status else { return }
         dateStatusLabel.text = status.launchDescription
         dateLabel.text = status.launchDate
         timeLabel.text = status.launchTime
     }
     
     @IBAction func addToCalButtonDidPressed() {
-        print("Add to cal")
+        guard let launch = launch else { return }
+        if let delegate = self.delegate {
+            delegate.didTapAddToCalButton(launch: launch)
+        }
     }
+    
+    
     
 }

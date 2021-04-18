@@ -12,27 +12,37 @@ class MissionDetailViewController: UIViewController {
     
     @IBOutlet var textBackgroundView: UIView!
     @IBOutlet var missionTitleLabel: UILabel!
-    @IBOutlet var missionTypeLabel: UILabel!
+    //@IBOutlet var missionTypeLabel: UILabel!
     @IBOutlet var missionDescriptionTextView: UITextView!
+    
+    @IBOutlet var doneButton: UIButton!
     
     var mission: Mission!
     
     override func viewDidLoad() {
         setTextForLabels()
         setFontsForLabels()
+        textBackgroundView.alpha = 0.95
+        missionTitleLabel.textColor = Colours.spaceSuitOrange.ui
+        textBackgroundView.layer.shadowOpacity = 0.2
+        textBackgroundView.layer.shadowRadius = 20
         textBackgroundView.layer.cornerRadius = textBackgroundView.frame.width/20
+    }
+    
+    @IBAction func doneButtonDidTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setTextForLabels() {
         missionTitleLabel.text = mission.name
-        missionTypeLabel.text = mission.type
+        //missionTypeLabel.text = mission.type
         missionDescriptionTextView.text = mission.objectives
     }
     
     func setFontsForLabels() {
-        missionTitleLabel.font = Fonts.customMonospaced(20, .semibold).uiFont
-        missionTypeLabel.font = Fonts.customMonospaced(15, .regular).uiFont
-        missionDescriptionTextView.font = Fonts.cellBody.uiFont
+        missionTitleLabel.font = Fonts.cellTitle.uiFont
+        //missionTypeLabel.font = Fonts.cellSubtitleTwo.uiFont
+        missionDescriptionTextView.font = Fonts.customMonospacedDigit(15, .light).uiFont
     }
     
 }

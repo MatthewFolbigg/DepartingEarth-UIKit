@@ -15,24 +15,25 @@ class LaunchDetailPadCell: LaunchDetailCell {
     @IBOutlet var padNameLabel: UILabel!
     @IBOutlet var padMapView: MKMapView!
     
-    @IBOutlet var openInMapsButton: UIButton!
+    @IBOutlet var openInMapsImageView: UIImageView!
     
     override func setupCell() {
         self.tag = 4
         guard let launch = launch else { return }
         setFontToTitle(labels: [padNameLabel])
         setFontToBody(labels: [locationNameLabel])
-        openInMapsButton.tintColor = Colours.spaceSuitOrange.ui
-        setRoundedCorners(view: padMapView)
-        locationNameLabel.text = launch.pad?.loacationName
-        padNameLabel.text = launch.pad?.name
+        openInMapsImageView.tintColor = Colours.spaceSuitOrange.ui
+        setRoundedCorners(view: padMapView, modifier: 2)
+        setLabelContent(launch: launch)
         setupBackground()
         setupMap(launch: launch)
     }
     
-    @IBAction func openInMapsButtonDidPressed() {
-        guard let launch = launch else { return }
-        openInMaps(launch: launch)
+    func setLabelContent(launch: Launch) {
+        locationNameLabel.text = launch.pad?.loacationName
+        locationNameLabel.preferredMaxLayoutWidth = 10
+        padNameLabel.text = launch.pad?.name
+        padNameLabel.preferredMaxLayoutWidth = 10
     }
     
     func openInMaps(launch: Launch) {

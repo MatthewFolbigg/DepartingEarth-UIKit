@@ -21,7 +21,7 @@ class LaunchDetailCell: UICollectionViewCell {
     func setupBackground() {
         contentView.backgroundColor = .secondarySystemGroupedBackground
         contentView.layer.cornerCurve = .continuous
-        contentView.layer.cornerRadius = contentView.frame.width/cornerRadiusConstant
+        contentView.layer.cornerRadius = contentView.frame.width/80
     }
     
     func setFontToTitle(labels: [UILabel]) {

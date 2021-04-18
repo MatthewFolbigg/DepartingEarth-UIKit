@@ -21,6 +21,8 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
     @IBOutlet var hoursBackgroundView: UIView!
     @IBOutlet var minutesBackgroundView: UIView!
     @IBOutlet var secondsBackgroundView: UIView!
+    
+    @IBOutlet var statusColourView: UIView!
         
     @IBOutlet var dayTitleLabel: UILabel!
     @IBOutlet var hourTitleLabel: UILabel!
@@ -36,16 +38,16 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
     }
     
     private func setupCountdowUI() {
-        let countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView, tBackgroundView ]
+        let countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView ]
         let countdownLabels = [ daysLabel, hoursLabel, minutesLabel, secondsLabel, tLabel ]
         let countdownTitleLabels = [ dayTitleLabel, hourTitleLabel, minuteTitleLabel, secondTitleLabel ]
         
         for countdownBackground in countdownBackgrounds {
-            countdownBackground?.layer.cornerCurve = .continuous
-            countdownBackground?.layer.cornerRadius = (countdownBackground?.frame.width)!/(cornerRadiusConstant/4)
+            setRoundedCorners(view: countdownBackground!, modifier: 2)
         }
+        setRoundedCorners(view: tBackgroundView, modifier: 2)
+        setRoundedCorners(view: statusColourView, modifier: 2)
         
-        tBackgroundView.layer.cornerRadius = tBackgroundView.frame.width/(cornerRadiusConstant/8)
         for title in countdownTitleLabels {
             title?.font = Fonts.detailSmall.uiFont
         }
@@ -63,7 +65,7 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
         minutesLabel.text = status.countdownComponents.minutes
         secondsLabel.text = status.countdownComponents.seconds
         tLabel.text = status.countdownComponents.t
-        //statusColorView.backgroundColor = status.color
+        statusColourView.backgroundColor = status.color
     }
     
 }

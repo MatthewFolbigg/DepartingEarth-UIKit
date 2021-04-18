@@ -16,11 +16,15 @@ class LaunchDetailMissionCell: LaunchDetailCell {
     @IBOutlet var missionTypeImageView: UIImageView!
     @IBOutlet var orbitLabel: UILabel!
     
-    @IBOutlet var missionInfoButton: UIButton!
+    @IBOutlet var missionInfoImageView: UIImageView!
         
     override func setupCell() {
         super.setupCell()
         self.tag = 3
+        if  launch?.mission?.objectives == nil {
+            missionInfoImageView.isHidden = true
+        }
+        
         setupBackground()
         setFontToTitle(labels: [missionNameLabel])
         setFontToBody(labels: [missionTypeLabel, orbitLabel])
@@ -31,13 +35,6 @@ class LaunchDetailMissionCell: LaunchDetailCell {
         
         missionTypeImageView.tintColor = .secondaryLabel
         orbitImageView.tintColor = .secondaryLabel
-        missionInfoButton.tintColor = Colours.spaceSuitOrange.ui
+        missionInfoImageView.tintColor = Colours.spaceSuitOrange.ui
     }
-    
-    @IBAction func missionInfoButtonDidPressed() {
-        print("Mission Info")
-    }
-    
-    
-    
 }
