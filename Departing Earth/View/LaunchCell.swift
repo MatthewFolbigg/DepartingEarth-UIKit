@@ -33,6 +33,8 @@ class LaunchCell: UICollectionViewCell {
     @IBOutlet var providerNameLabel: UILabel!
     @IBOutlet var launchDateLabel: UILabel!
     @IBOutlet var launchDateDescriptionLabel: UILabel!
+    @IBOutlet var missionTypeIconImageView: UIImageView!
+    @IBOutlet var missionTypeIconBackgroundView: UIView!
     
     var launch: Launch?
     var statusController: StatusController?
@@ -41,6 +43,7 @@ class LaunchCell: UICollectionViewCell {
     var countdownBackgrounds: [UIView]?
     
     override func prepareForReuse() {
+        missionTypeIconBackgroundView.isHidden = true
     }
     
     func setupCell() {
@@ -52,6 +55,38 @@ class LaunchCell: UICollectionViewCell {
         setupCountdown()
         updateLabelText(launch: launch)
         updateCountdown(launch: launch, status: statusController)
+        setupMissionTypeIcon(launch: launch)
+    }
+    
+    private func setupMissionTypeIcon(launch: Launch) {
+        missionTypeIconBackgroundView.backgroundColor = .secondarySystemGroupedBackground
+        
+        missionTypeIconBackgroundView.layer.cornerRadius = (missionTypeIconBackgroundView?.frame.width)!/(cornerRadiusConstant/5)
+        missionTypeIconBackgroundView.alpha = 0.8
+        
+        missionTypeIconBackgroundView.isHidden = true
+        missionTypeIconImageView.tintColor = .secondaryLabel
+        missionTypeIconImageView.alpha = 0.8
+        if launch.mission?.type == "Human Exploration" {
+            missionTypeIconBackgroundView.isHidden = false
+            missionTypeIconImageView.image = UIImage(systemName: "person.2")
+        }
+        if launch.mission?.type == "Test Flight" {
+            missionTypeIconBackgroundView.isHidden = false
+            missionTypeIconImageView.image = UIImage(systemName: "wrench")
+        }
+        if launch.mission?.type == "Communications" {
+            missionTypeIconBackgroundView.isHidden = false
+            missionTypeIconImageView.image = UIImage(systemName: "antenna.radiowaves.left.and.right")
+        }
+        if launch.mission?.type == "Government/Top Secret" {
+            missionTypeIconBackgroundView.isHidden = false
+            missionTypeIconImageView.image = UIImage(systemName: "lock")
+        }
+        if launch.mission?.type == "Earth Science" {
+            missionTypeIconBackgroundView.isHidden = false
+            missionTypeIconImageView.image = UIImage(systemName: "leaf")
+        }
     }
     
     private func setupBackground() {
