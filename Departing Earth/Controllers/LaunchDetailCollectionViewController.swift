@@ -17,11 +17,20 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
     let eventStore = EKEventStore()
     var cellSideInsetAmount: CGFloat = 10
     
+    enum detailSections: Int {
+        case title = 0
+        case countdown = 1
+        case dateTime = 2
+        case mission = 3
+        case pad = 4
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         statusController = StatusController(launch: launch)
         self.navigationController!.navigationBar.tintColor = Colours.spaceSuitOrange.ui
         collectionView.backgroundColor = .systemGroupedBackground
+        //collectionView.backgroundColor = .systemBackground
         setupCountdownUpdateTimer()
     }
         
@@ -121,12 +130,21 @@ extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavig
 extension LaunchDetailCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.row == 0 {
+        if indexPath.row == detailSections.title.rawValue {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailTitleCell", for: indexPath) as? LaunchDetailTitleCell {
+                cell.launch = launch
+                cell.status = statusController
+                cell.setupCell()
+                return cell
+            }
+        }
+        
+        if indexPath.row == detailSections.countdown.rawValue {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailCountdownCell", for: indexPath) as? LaunchDetailCountdownCell {
                 cell.launch = launch
                 cell.status = statusController
@@ -136,7 +154,7 @@ extension LaunchDetailCollectionViewController {
             }
         }
         
-        if indexPath.row == 1 {
+        if indexPath.row == detailSections.dateTime.rawValue {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailDateCell", for: indexPath) as? LaunchDetailDateCell {
                 cell.launch = launch
                 cell.status = statusController
@@ -146,7 +164,7 @@ extension LaunchDetailCollectionViewController {
             }
         }
         
-        if indexPath.row == 2 {
+        if indexPath.row == detailSections.mission.rawValue {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailMissionCell", for: indexPath) as? LaunchDetailMissionCell {
                 cell.launch = launch
                 cell.status = statusController
@@ -155,7 +173,7 @@ extension LaunchDetailCollectionViewController {
             }
         }
         
-        if indexPath.row == 3 {
+        if indexPath.row == detailSections.pad.rawValue {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailPadCell", for: indexPath) as? LaunchDetailPadCell {
                 cell.launch = launch
                 cell.status = statusController
@@ -168,13 +186,13 @@ extension LaunchDetailCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 2 {
+        if indexPath.row == detailSections.mission.rawValue {
             let destination = storyboard?.instantiateViewController(identifier: "missionDetailViewController") as! MissionDetailViewController
             guard let mission = launch.mission else { return }
             destination.mission = mission
             present(destination, animated: true, completion: nil)
         }
-        if indexPath.row == 3 {
+        if indexPath.row == detailSections.pad.rawValue {
             if let cell = collectionView.cellForItem(at: indexPath) as? LaunchDetailPadCell {
                 guard let launch = launch else { return }
                 cell.openInMaps(launch: launch)
@@ -190,10 +208,11 @@ extension LaunchDetailCollectionViewController: UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var itemSize = defaultCellSize()
         
-        if indexPath.row == 0 { itemSize.height = 80 }
-        if indexPath.row == 1 { itemSize.height = 90 }
-        if indexPath.row == 2 { itemSize.height = 122 }
-        if indexPath.row == 3 { itemSize.height = 400 }
+        if indexPath.row == detailSections.title.rawValue { itemSize.height = 80 }
+        if indexPath.row == detailSections.countdown.rawValue { itemSize.height = 80 }
+        if indexPath.row == detailSections.dateTime.rawValue { itemSize.height = 90 }
+        if indexPath.row == detailSections.mission.rawValue { itemSize.height = 122 }
+        if indexPath.row == detailSections.pad.rawValue { itemSize.height = 400 }
         return itemSize
     }
     

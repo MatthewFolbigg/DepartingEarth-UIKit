@@ -29,6 +29,8 @@
 		1F88435926226ED600D3B271 /* DateTimeStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F88435826226ED600D3B271 /* DateTimeStyles.swift */; };
 		1F933DDE2621C507009A4F15 /* missionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */; };
 		1F933DE926221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F933DE826221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift */; };
+		1FA4607426306D97005FA419 /* MissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4607326306D97005FA419 /* MissionController.swift */; };
+		1FA4607926307362005FA419 /* LaunchDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4607826307362005FA419 /* LaunchDetailTitleCell.swift */; };
 		1FB9D059261B758B00648E9D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9D058261B758B00648E9D /* Fonts.swift */; };
 		1FD30BB2262358EF00982E71 /* StatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD30BB1262358EF00982E71 /* StatusController.swift */; };
 		1FE5ED152628EC9D006C4985 /* LaunchDetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5ED142628EC9D006C4985 /* LaunchDetailCollectionViewController.swift */; };
@@ -82,6 +84,8 @@
 		1F88435826226ED600D3B271 /* DateTimeStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeStyles.swift; sourceTree = "<group>"; };
 		1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missionDetailViewController.swift; sourceTree = "<group>"; };
 		1F933DE826221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLibraryAPICoreDataAdapter.swift; sourceTree = "<group>"; };
+		1FA4607326306D97005FA419 /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
+		1FA4607826307362005FA419 /* LaunchDetailTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailTitleCell.swift; sourceTree = "<group>"; };
 		1FB9D058261B758B00648E9D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		1FD30BB1262358EF00982E71 /* StatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusController.swift; sourceTree = "<group>"; };
 		1FE5ED142628EC9D006C4985 /* LaunchDetailCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailCollectionViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 				1F933DE826221F69009A4F15 /* LaunchLibraryAPICoreDataAdapter.swift */,
 				1F8843502622523D00D3B271 /* LaunchManager.swift */,
 				1FD30BB1262358EF00982E71 /* StatusController.swift */,
+				1FA4607326306D97005FA419 /* MissionController.swift */,
 			);
 			path = "Model Helpers";
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				1F7FEB9D262B3DAB00457093 /* LaunchDetailCell.swift */,
+				1FA4607826307362005FA419 /* LaunchDetailTitleCell.swift */,
 				1FE5ED2526298152006C4985 /* LaunchDetailCountdownCell.swift */,
 				1FE5ED192628EEFE006C4985 /* LaunchDetailDateCell.swift */,
 				1F7FEB932629938800457093 /* LaunchDetailMissionCell.swift */,
@@ -396,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FD30BB2262358EF00982E71 /* StatusController.swift in Sources */,
+				1FA4607426306D97005FA419 /* MissionController.swift in Sources */,
 				1F933DDE2621C507009A4F15 /* missionDetailViewController.swift in Sources */,
 				1FB9D059261B758B00648E9D /* Fonts.swift in Sources */,
 				1FE5ED1A2628EEFE006C4985 /* LaunchDetailDateCell.swift in Sources */,
@@ -416,6 +423,7 @@
 				1F58202926147104004AA80B /* UpcomingLaunchApiResponse.swift in Sources */,
 				1F8843512622523D00D3B271 /* LaunchManager.swift in Sources */,
 				1F1C098D26258CBF00F60879 /* LaunchCell.swift in Sources */,
+				1FA4607926307362005FA419 /* LaunchDetailTitleCell.swift in Sources */,
 				1F581FDA26138584004AA80B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

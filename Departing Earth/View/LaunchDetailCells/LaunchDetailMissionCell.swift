@@ -34,6 +34,9 @@ class LaunchDetailMissionCell: LaunchDetailCell {
         orbitLabel.text = launch?.mission?.orbitName ?? "Pending Orbit"
         
         missionTypeImageView.tintColor = .secondaryLabel
+        if let mission = launch?.mission {
+            missionTypeImageView.image = MissionController.missionTypeIconFor(mission: mission)
+        }
         orbitImageView.tintColor = .secondaryLabel
         missionInfoImageView.tintColor = Colours.spaceSuitOrange.ui
     }

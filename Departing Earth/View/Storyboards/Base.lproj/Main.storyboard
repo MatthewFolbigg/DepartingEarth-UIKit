@@ -322,8 +322,45 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailTitleCell" id="WKK-Tc-orY" customClass="LaunchDetailTitleCell" customModule="Departing_Earth" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bJr-Hb-BAG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" text="Launch Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fFt-29-tze">
+                                            <rect key="frame" x="146" y="30" width="122" height="27"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" text="Launch Subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kvz-Lg-c1D">
+                                            <rect key="frame" x="148" y="62" width="118.5" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kvz-Lg-c1D" secondAttribute="trailing" constant="20" id="CiV-6S-M2M"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fFt-29-tze" secondAttribute="trailing" constant="40" id="a6G-yv-mnH"/>
+                                        <constraint firstAttribute="bottom" secondItem="Kvz-Lg-c1D" secondAttribute="bottom" constant="10" id="cUE-NL-Txe"/>
+                                        <constraint firstItem="Kvz-Lg-c1D" firstAttribute="top" secondItem="fFt-29-tze" secondAttribute="bottom" constant="5" id="cly-Uh-2FI"/>
+                                        <constraint firstItem="fFt-29-tze" firstAttribute="centerX" secondItem="bJr-Hb-BAG" secondAttribute="centerX" id="dfd-0s-WYF"/>
+                                        <constraint firstItem="Kvz-Lg-c1D" firstAttribute="centerX" secondItem="bJr-Hb-BAG" secondAttribute="centerX" id="mMh-CF-nTw"/>
+                                        <constraint firstItem="Kvz-Lg-c1D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bJr-Hb-BAG" secondAttribute="leading" constant="20" id="mvS-tD-tAa"/>
+                                        <constraint firstItem="fFt-29-tze" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bJr-Hb-BAG" secondAttribute="leading" constant="40" id="vzP-o3-SIk"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="414" height="93"/>
+                                <connections>
+                                    <outlet property="subtitleLabel" destination="Kvz-Lg-c1D" id="o8q-BB-kws"/>
+                                    <outlet property="titleLabel" destination="fFt-29-tze" id="QdP-7U-Oi4"/>
+                                </connections>
+                            </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailCountdownCell" id="74Y-dj-xff" customClass="LaunchDetailCountdownCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="103" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mor-ye-W6N">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -507,7 +544,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LaunchDetailDateCell" id="PVQ-1E-Auy" customClass="LaunchDetailDateCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="80" width="414" height="87"/>
+                                <rect key="frame" x="0.0" y="183" width="414" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eO6-Ou-202">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
@@ -583,7 +620,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailMissionCell" id="XAN-aq-bSG" customClass="LaunchDetailMissionCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="177" width="414" height="123"/>
+                                <rect key="frame" x="0.0" y="280" width="414" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Ma-aM-8UY">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
@@ -608,7 +645,7 @@
                                                 <constraint firstAttribute="height" constant="25" id="ssQ-q4-Ysg"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.dashed.inset.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1yX-ow-C5F">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1yX-ow-C5F">
                                             <rect key="frame" x="20" y="76.5" width="25" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="6oF-Xd-n4o"/>
@@ -655,7 +692,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailPadCell" id="wal-uj-37D" customClass="LaunchDetailPadCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="310" width="414" height="400"/>
+                                <rect key="frame" x="0.0" y="413" width="414" height="400"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wEw-bZ-PLy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
@@ -826,7 +863,7 @@
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="108"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="circle.dashed.inset.fill" catalog="system" width="128" height="121"/>
+        <image name="circle.dashed" catalog="system" width="128" height="121"/>
         <image name="clock" catalog="system" width="128" height="121"/>
         <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>

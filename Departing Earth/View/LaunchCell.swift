@@ -67,26 +67,12 @@ class LaunchCell: UICollectionViewCell {
         missionTypeIconBackgroundView.isHidden = true
         missionTypeIconImageView.tintColor = .secondaryLabel
         missionTypeIconImageView.alpha = 0.8
-        if launch.mission?.type == "Human Exploration" {
+        
+        if let mission = launch.mission {
             missionTypeIconBackgroundView.isHidden = false
-            missionTypeIconImageView.image = UIImage(systemName: "person.2")
+            missionTypeIconImageView.image = MissionController.missionTypeIconFor(mission: mission)
         }
-        if launch.mission?.type == "Test Flight" {
-            missionTypeIconBackgroundView.isHidden = false
-            missionTypeIconImageView.image = UIImage(systemName: "wrench")
-        }
-        if launch.mission?.type == "Communications" {
-            missionTypeIconBackgroundView.isHidden = false
-            missionTypeIconImageView.image = UIImage(systemName: "antenna.radiowaves.left.and.right")
-        }
-        if launch.mission?.type == "Government/Top Secret" {
-            missionTypeIconBackgroundView.isHidden = false
-            missionTypeIconImageView.image = UIImage(systemName: "lock")
-        }
-        if launch.mission?.type == "Earth Science" {
-            missionTypeIconBackgroundView.isHidden = false
-            missionTypeIconImageView.image = UIImage(systemName: "leaf")
-        }
+        
     }
     
     private func setupBackground() {

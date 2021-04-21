@@ -25,7 +25,6 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //UserDefaults.standard.setValue(Date.distantPast, forKey: "lastUpdated")
         setupUI()
         setupRereshControl()
         launchManager = LaunchManager(context: dataController.viewContext)
@@ -213,7 +212,7 @@ extension UpcomingLaunchesCollectionViewController {
         let destination = storyboard?.instantiateViewController(identifier: "LaunchDetailCollectionViewController") as! LaunchDetailCollectionViewController
         let launch = launches[indexPath.row]
         destination.launch = launch
-        destination.title = launch.rocket?.name
+        destination.title = nil //launch.rocket?.name
         self.navigationController?.pushViewController(destination, animated: true)
     }
     
