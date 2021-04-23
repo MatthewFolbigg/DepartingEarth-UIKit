@@ -29,6 +29,7 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
     @IBOutlet var minuteTitleLabel: UILabel!
     @IBOutlet var secondTitleLabel: UILabel!
     
+    var countdownBackgrounds: [UIView]?
      
     override func setupCell() {
         super.setupCell()
@@ -45,6 +46,7 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
         for countdownBackground in countdownBackgrounds {
             setRoundedCorners(view: countdownBackground!, modifier: 2)
         }
+        
         setRoundedCorners(view: tBackgroundView, modifier: 2)
         setRoundedCorners(view: statusColourView, modifier: 2)
         
@@ -60,6 +62,7 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
         if launch.isPendingDate || launch.isPendingTime {
             //self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui
         }
+            
         daysLabel.text = status.countdownComponents.days
         hoursLabel.text = status.countdownComponents.hours
         minutesLabel.text = status.countdownComponents.minutes

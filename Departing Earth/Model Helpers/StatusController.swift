@@ -65,7 +65,7 @@ struct StatusController {
     
     var secondaryColor: UIColor {
         switch status {
-        case .go, .tbd, .hold: return Colours.moonCraterGrey.ui
+        case .go, .tbd, .hold: return  Colours.moonSurfaceGrey.ui
         case .success: return Colours.cosmonautSuitGreen.ui
         case .failure: return Colours.nasaWormRed.ui
         }
@@ -150,7 +150,11 @@ struct StatusController {
         } else if status == .go {
             return dateTimeStyles.monthYearStringOf(date: date)
         } else {
-            return "Pending"
+            if status == .success {
+                return "Success"
+            } else {
+                return "Pending"
+            }
         }
     }
     
