@@ -99,12 +99,12 @@ struct StatusController {
         }
         if status == .tbd {
             if !launch.isPendingDate && !launch.isPendingTime {
-                return "Scheduled"
+                return "Targeting"
             }
         }
         switch status {
         case .go: return "Launching"
-        case .tbd: return "Targeting"
+        case .tbd: return "TBC"
         case .success: return "Departed"
         case .failure: return "Failed"
         case .hold: return "Holding"
@@ -115,7 +115,7 @@ struct StatusController {
         var isPreLaunch = "-"
         let noCountdown = Countdown(days: blankClockElement, hours: blankClockElement, minutes: blankClockElement, seconds: blankClockElement, t: isPreLaunch)
         guard let date = launch.date else { return noCountdown }
-        if launch.isPendingDate || launch.isPendingTime { return noCountdown }
+        if launch.isPendingDate && launch.isPendingTime && status != .go { return noCountdown }
         let countdownComponents = dateTimeStyles.countdownComponentsFromNowTo(date: date)
         let components = [countdownComponents.day, countdownComponents.hour, countdownComponents.minute, countdownComponents.second]
         for component in components {

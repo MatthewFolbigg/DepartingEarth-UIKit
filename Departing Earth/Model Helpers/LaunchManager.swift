@@ -27,7 +27,6 @@ class LaunchManager {
         do {
             try context.save()
         } catch {
-            //TODO: Handle failed to save error
             print("Failed to save launches generated from results")
         }
         return launches

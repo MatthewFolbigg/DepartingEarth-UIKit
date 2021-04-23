@@ -134,7 +134,7 @@ extension LaunchDetailCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        //TODO: Is there a better way to do this with generics?
         if indexPath.row == detailSections.title.rawValue {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LaunchDetailTitleCell", for: indexPath) as? LaunchDetailTitleCell {
                 cell.launch = launch

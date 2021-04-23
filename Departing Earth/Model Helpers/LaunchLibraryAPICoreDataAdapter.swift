@@ -18,7 +18,7 @@ struct LaunchLibraryAPICoreDataAdapter {
     
     //MARK: Construction Methods
     func createLaunchFrom(launchInfo: LaunchInfo) -> Launch {
-        //CoreData merge policy and constraints will prevent duplicates of the entities that have an ID.
+        //CoreData merge policy and constraints will prevent duplicates of the entities that have an ID. Meaning this also acts to Update/Replace existing entities with more up to date information
         let launch = Launch(context: context)
         launch.launchID = launchInfo.id
         launch.name = launchInfo.name
