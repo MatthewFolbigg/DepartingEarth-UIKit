@@ -40,8 +40,8 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
     }
     
     @objc func countdownUpdateTimerDidFire() {
-        let secondCell = collectionView.cellForItem(at: IndexPath(row: detailSections.countdown.rawValue, section: 0))
-        guard let countdownCell = secondCell as? LaunchDetailCountdownCell else { return }
+        let cell = collectionView.cellForItem(at: IndexPath(row: detailSections.countdown.rawValue, section: 0))
+        guard let countdownCell = cell as? LaunchDetailCountdownCell else { return }
         guard let launch = countdownCell.launch else { return }
         guard let status = countdownCell.status else { return }
         countdownCell.updateCountdown(launch: launch, status: status)
