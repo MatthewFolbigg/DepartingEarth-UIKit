@@ -22,7 +22,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     var launches: [Launch] = []
     var selectedProvider: String = "All"
     
-    //MARK: Life Cycle
+    //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -190,7 +190,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     
 }
 
-//MARK: CollectionView Delegate and DataSource
+//MARK:- CollectionView Delegate and DataSource
 extension UpcomingLaunchesCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

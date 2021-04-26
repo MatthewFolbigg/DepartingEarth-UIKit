@@ -25,6 +25,7 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
         case pad = 4
     }
     
+    //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         statusController = StatusController(launch: launch)
@@ -48,7 +49,7 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
     }
 }
 
-//MARK: Calander Events
+//MARK:- Calander Events
 extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavigationControllerDelegate, CalendarCellDelegate {
     
     func didTapAddToCalButton(launch: Launch) {
@@ -126,7 +127,7 @@ extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavig
     
 }
 
-//MARK: CollectionView Delegate
+//MARK:- CollectionView Delegate
 extension LaunchDetailCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
