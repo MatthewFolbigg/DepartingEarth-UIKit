@@ -5,8 +5,9 @@ Upcoming launch data is from the [Launch Library 2](https://thespacedevs.com/lla
 You can filter the upcoming launch list by the launch provider, add launches to your calendar and view the launch pad in Apple Maps.
 
 ## Built With
-* Swift
-* Xcode
+* Swift 5
+* Xcode 12.4
+* iOS 14.4
 * UIKit
 * Launch Library 2
 
