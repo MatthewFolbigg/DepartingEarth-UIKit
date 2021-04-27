@@ -37,7 +37,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         if let lastUpdate = UserDefaults.standard.object(forKey: "lastUpdated") as? Date{
             if lastUpdate.timeIntervalSinceNow < -21600 { //If last update is older than 6 hours
-                print("updating because data is old")
+                print("\(#file): Updating launches because data is old")
                 downloadUpcomingLaunches()
             }
         }
@@ -64,7 +64,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     }
     
     func handelFetchedLaunches(launches: [Launch]) {
-        print("Loaded upcoming launches from CoreData")
+        print("\(#file) Loaded upcoming launches from CoreData")
         self.launches = launches
         self.allLaunches = self.launches
         mainActivityIndicator.stopAnimating()
@@ -251,7 +251,6 @@ extension UpcomingLaunchesCollectionViewController {
     }
     
     @objc func collectionViewRefreshControlDidActivate() {
-        print("REFRESH NOW")
         // Gets new launches first, only deletes previous saved/shown launches if the get request is successful.
         downloadUpcomingLaunches()
         self.selectedProvider = "All"

@@ -69,7 +69,7 @@ extension LaunchLibraryApiClient {
                     completion(jsonData.results, nil)
                 
                 } catch {
-                    print("JSON Decoding Failed: \(error.localizedDescription)")
+                    print("\(#file) \(#function) JSON Decoding Failed: \(error.localizedDescription)")
                     completion(nil, downloadError.decodingFailed)
                 }
             }
@@ -79,7 +79,7 @@ extension LaunchLibraryApiClient {
             
     static func getImage(urlString: String, completion: @escaping (UIImage?, Error?) -> Void) {
         guard let url = URL(string: urlString) else {
-            print("Invalid Logo URL")
+            print("\(#file) \(#function): Invalid Logo URL")
             return
         }
         print("Getting Image: \(url)")
