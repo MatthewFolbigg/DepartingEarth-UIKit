@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F18E9D5263AE4CE00802218 /* ViewControllerShowErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F18E9D4263AE4CE00802218 /* ViewControllerShowErrorExtension.swift */; };
 		1F1C098D26258CBF00F60879 /* LaunchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1C098C26258CBF00F60879 /* LaunchCell.swift */; };
 		1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */; };
 		1F360378261B1A7600099E02 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F360377261B1A7600099E02 /* Colours.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F18E9D4263AE4CE00802218 /* ViewControllerShowErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerShowErrorExtension.swift; sourceTree = "<group>"; };
 		1F1C098C26258CBF00F60879 /* LaunchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCell.swift; sourceTree = "<group>"; };
 		1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingLaunchesCollectionViewController.swift; sourceTree = "<group>"; };
 		1F360377261B1A7600099E02 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				1F2B21282614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift */,
 				1FE5ED142628EC9D006C4985 /* LaunchDetailCollectionViewController.swift */,
 				1F933DDD2621C507009A4F15 /* missionDetailViewController.swift */,
+				1F18E9D4263AE4CE00802218 /* ViewControllerShowErrorExtension.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				1FB9D059261B758B00648E9D /* Fonts.swift in Sources */,
 				1FE5ED1A2628EEFE006C4985 /* LaunchDetailDateCell.swift in Sources */,
 				1F7FEB942629938800457093 /* LaunchDetailMissionCell.swift in Sources */,
+				1F18E9D5263AE4CE00802218 /* ViewControllerShowErrorExtension.swift in Sources */,
 				1F2B21292614B6F2001A940D /* UpcomingLaunchesCollectionViewController.swift in Sources */,
 				1F7FEB99262B3A1200457093 /* LaunchDetaiPadCell.swift in Sources */,
 				1F4F41D426147B97000B9CD9 /* DataController.swift in Sources */,

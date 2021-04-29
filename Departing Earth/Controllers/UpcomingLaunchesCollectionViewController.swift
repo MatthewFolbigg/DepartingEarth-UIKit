@@ -149,10 +149,9 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     func showUserError(error: Error) {
         let error = error as NSError
         let message = "\(error.localizedFailureReason ?? "")\n\(error.localizedRecoverySuggestion ?? "")"
-        let alert = UIAlertController(title: error.localizedDescription, message: message, preferredStyle: .alert)
+        let title = error.localizedDescription
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+        self.displayError(title: title, message: message, actions: [action])
     }
     
     //MARK: Filter Menu

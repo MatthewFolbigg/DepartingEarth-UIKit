@@ -20,6 +20,7 @@ class MissionController {
         case "Planetary Science": return UIImage(systemName: "circle.dashed.inset.fill")!
         case "Resupply": return UIImage(systemName: "shippingbox")!
         case "Suborbital": return UIImage(systemName: "circle.bottomhalf.fill")!
+        case "Dedicated Rideshare": return UIImage(systemName: "circles.hexagongrid")!
         default: return UIImage(systemName: "doc.plaintext")!
         }
     }

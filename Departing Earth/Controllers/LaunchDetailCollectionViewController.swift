@@ -64,17 +64,7 @@ extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavig
         eventStore.requestAccess(to: .event) { granted, error in
             DispatchQueue.main.async {
                 guard granted, error == nil else {
-                    let message = "To add launch events to a calendar this app needs permission to access your calendars. If you would like to use the add to calendar button please update your privacy settings."
-                    let alert = UIAlertController(title: "No Calendar Access", message: message, preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Not Right Now", style: .cancel, handler: nil)
-                    let settingsAction = UIAlertAction(title: "Settings", style: .default) {_ in
-                        let url = URL(string: UIApplication.openSettingsURLString)!
-                        UIApplication.shared.canOpenURL(url)
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                    alert.addAction(okAction)
-                    alert.addAction(settingsAction)
-                    self.present(alert, animated: true, completion: nil)
+                    self.showCalendarPermissionError()
                     return
                 }
                 let launchEvent = self.eventForLaunch()
@@ -86,6 +76,18 @@ extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavig
                 self.present(eventVC, animated: true, completion: nil)
             }
         }
+    }
+    
+    private func showCalendarPermissionError() {
+        let message = "To add launch events to a calendar this app needs permission to access your calendars. If you would like to use the add to calendar button please update your privacy settings."
+        let title = "No Calendar Access"
+        let okAction = UIAlertAction(title: "Not Right Now", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) {_ in
+            let url = URL(string: UIApplication.openSettingsURLString)!
+            UIApplication.shared.canOpenURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        self.displayError(title: title, message: message, actions: [okAction, settingsAction])
     }
     
     private func eventForLaunch() -> EKEvent {
