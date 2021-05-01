@@ -29,7 +29,7 @@ class LaunchDetailCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         statusController = StatusController(launch: launch)
-        self.navigationController!.navigationBar.tintColor = Colours.spaceSuitOrange.ui
+        self.navigationController!.navigationBar.tintColor = AppUI.accentColour
         collectionView.backgroundColor = .systemGroupedBackground
         //collectionView.backgroundColor = .systemBackground
         setupCountdownUpdateTimer()

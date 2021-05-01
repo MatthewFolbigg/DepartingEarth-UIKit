@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+struct AppUI {
+    static var accentColour: UIColor = UIColor(named: "AccentColour")!
+}
+
 enum Colours {
     case spaceSuitOrange
     case cosmonautSuitGreen

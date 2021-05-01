@@ -91,7 +91,7 @@ class LaunchCell: UICollectionViewCell {
         providerNameLabel.font = Fonts.cellTitle.uiFont
         rocketNameLabel.text = launch.rocket?.name
         rocketNameLabel.font = Fonts.cellSubtitle.uiFont
-        rocketNameLabel.textColor = Colours.spaceSuitOrange.ui
+        rocketNameLabel.textColor = AppUI.accentColour
         launchDateLabel.text = statusController?.launchDate
         launchDateLabel.font = Fonts.cellDate.uiFont
         launchDateDescriptionLabel.text = statusController?.dateDescription

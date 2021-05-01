@@ -127,7 +127,7 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     func setupUI() {
         setupNavigationBar()
         setupCollectionViewUI()
-        filterBarButtonItem.tintColor = Colours.spaceSuitOrange.ui
+        filterBarButtonItem.tintColor = AppUI.accentColour
     }
     
     func setupNavigationBar() {
