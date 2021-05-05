@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sn5-fy-kzB">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Sn5-fy-kzB">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,7 +15,7 @@
             <objects>
                 <collectionViewController id="xOj-Qe-v8h" customClass="UpcomingLaunchesCollectionViewController" customModule="Departing_Earth" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="cQL-Rx-xIG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="duq-0I-kQO">
@@ -25,12 +25,12 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="Oif-7d-NUl">
-                            <rect key="frame" x="0.0" y="-88" width="414" height="896"/>
+                            <rect key="frame" x="0.0" y="-88" width="428" height="926"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchCell" id="242-hC-7e0" customClass="LaunchCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="30" width="414" height="175"/>
+                                <rect key="frame" x="7" y="30" width="414" height="175"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="efE-dO-MTg">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
@@ -40,7 +40,7 @@
                                             <rect key="frame" x="45" y="120" width="38" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pm5-Tc-Y9q">
-                                                    <rect key="frame" x="4.5" y="4.5" width="29" height="21"/>
+                                                    <rect key="frame" x="4.6666666666666643" y="4.6666666666666714" width="29" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRN-ai-erg">
-                                            <rect key="frame" x="56.5" y="151" width="15.5" height="10"/>
+                                            <rect key="frame" x="56.333333333333336" y="151" width="15.333333333333336" height="10"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                                             <rect key="frame" x="88" y="120" width="38" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jty-6j-f1e">
-                                                    <rect key="frame" x="8.5" y="4.5" width="21" height="21"/>
+                                                    <rect key="frame" x="8.6666666666666714" y="4.6666666666666714" width="21" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -87,7 +87,7 @@
                                             <rect key="frame" x="131" y="120" width="38" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXH-ka-jpo">
-                                                    <rect key="frame" x="8.5" y="4.5" width="21" height="21"/>
+                                                    <rect key="frame" x="8.6666666666666572" y="4.6666666666666714" width="21" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -101,7 +101,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minute" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSh-5a-oLv">
-                                            <rect key="frame" x="136.5" y="151" width="27" height="10"/>
+                                            <rect key="frame" x="136.66666666666666" y="151" width="27" height="10"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -110,7 +110,7 @@
                                             <rect key="frame" x="174" y="120" width="38" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JF-G1-bF6">
-                                                    <rect key="frame" x="10" y="4.5" width="18" height="21"/>
+                                                    <rect key="frame" x="10" y="4.6666666666666714" width="18" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -130,13 +130,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United Launch Alliance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="M72-4B-pjC">
-                                            <rect key="frame" x="20" y="20" width="215.5" height="24"/>
+                                            <rect key="frame" x="20" y="20" width="215.66666666666666" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturn V" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkP-78-nSU">
-                                            <rect key="frame" x="20" y="49" width="57.5" height="17"/>
+                                            <rect key="frame" x="19.999999999999996" y="49" width="57.666666666666657" height="17"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -155,7 +155,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Description" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="12B-7T-okm">
-                                            <rect key="frame" x="327.5" y="120" width="66.5" height="10"/>
+                                            <rect key="frame" x="327.66666666666669" y="120" width="66.333333333333314" height="10"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -164,7 +164,7 @@
                                             <rect key="frame" x="20" y="120" width="20" height="30"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUc-w2-ESi">
-                                                    <rect key="frame" x="6" y="4.5" width="8" height="21"/>
+                                                    <rect key="frame" x="6" y="4.6666666666666714" width="8" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -181,7 +181,7 @@
                                             <rect key="frame" x="364" y="20" width="30" height="30"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dOu-IH-XsQ">
-                                                    <rect key="frame" x="-2" y="6.5" width="34" height="16.5"/>
+                                                    <rect key="frame" x="-2" y="6.9999999999999982" width="34" height="16.333333333333336"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="bold"/>
                                                 </imageView>
                                             </subviews>
@@ -242,36 +242,41 @@
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="414" height="175"/>
                                 <connections>
-                                    <outlet property="daysBackgroundView" destination="gjt-EC-eQB" id="VVP-BD-vHx"/>
-                                    <outlet property="daysLabel" destination="pm5-Tc-Y9q" id="0b3-ma-J4N"/>
-                                    <outlet property="daysTitleLabel" destination="TRN-ai-erg" id="qmJ-hQ-Fji"/>
-                                    <outlet property="hoursBackgroundView" destination="zOR-wQ-ER5" id="FlT-FJ-nmS"/>
-                                    <outlet property="hoursLabel" destination="Jty-6j-f1e" id="V81-Ae-Wdl"/>
-                                    <outlet property="hoursTitleLabel" destination="Rxf-0z-yfl" id="l0i-kz-OWn"/>
+                                    <outlet property="daysLabel" destination="pm5-Tc-Y9q" id="SFH-wB-ZKx"/>
+                                    <outlet property="hoursLabel" destination="Jty-6j-f1e" id="rld-n7-6JV"/>
                                     <outlet property="launchDateDescriptionLabel" destination="12B-7T-okm" id="2AH-IE-MRj"/>
                                     <outlet property="launchDateLabel" destination="mKi-GB-bFg" id="Opo-A6-8IW"/>
-                                    <outlet property="minutesBackgroundView" destination="Yta-HN-iv8" id="iOK-N3-Oer"/>
-                                    <outlet property="minutesLabel" destination="CXH-ka-jpo" id="3dl-mF-dPJ"/>
-                                    <outlet property="minutesTitleLabel" destination="MSh-5a-oLv" id="b1Y-xb-yqb"/>
+                                    <outlet property="minutesLabel" destination="CXH-ka-jpo" id="fC7-mn-nQi"/>
                                     <outlet property="missionTypeIconBackgroundView" destination="Tli-DR-hZ0" id="4Cy-UZ-Ofe"/>
                                     <outlet property="missionTypeIconImageView" destination="dOu-IH-XsQ" id="iRe-K9-9Wh"/>
                                     <outlet property="providerNameLabel" destination="M72-4B-pjC" id="uO8-bp-vwT"/>
                                     <outlet property="rocketNameLabel" destination="FkP-78-nSU" id="sBX-Wb-wYE"/>
-                                    <outlet property="secondsBackgroundView" destination="UDy-uB-T6t" id="EwK-Po-Vu6"/>
-                                    <outlet property="secondsLabel" destination="9JF-G1-bF6" id="HK4-Cd-zzB"/>
-                                    <outlet property="secondsTitleLabel" destination="tu3-ak-ZgB" id="25a-xm-7Ez"/>
+                                    <outlet property="secondsLabel" destination="9JF-G1-bF6" id="DUy-pz-mph"/>
                                     <outlet property="statusColorView" destination="Kjd-qT-0x7" id="eZu-RA-KCu"/>
-                                    <outlet property="tMinusPlusBackgroundView" destination="zy5-Cw-jWq" id="VbZ-T7-YQ0"/>
-                                    <outlet property="tMinusPlusLabel" destination="aUc-w2-ESi" id="W0M-oL-F4M"/>
+                                    <outlet property="tMinusPlusBackgroundView" destination="zy5-Cw-jWq" id="JRo-fA-KCg"/>
+                                    <outlet property="tMinusPlusLabel" destination="aUc-w2-ESi" id="HGn-kI-zMX"/>
+                                    <outletCollection property="countdownLabels" destination="pm5-Tc-Y9q" collectionClass="NSMutableArray" id="gka-FH-DZw"/>
+                                    <outletCollection property="countdownLabels" destination="Jty-6j-f1e" collectionClass="NSMutableArray" id="ZOh-xN-dpp"/>
+                                    <outletCollection property="countdownLabels" destination="CXH-ka-jpo" collectionClass="NSMutableArray" id="WTj-ZN-PDl"/>
+                                    <outletCollection property="countdownLabels" destination="9JF-G1-bF6" collectionClass="NSMutableArray" id="fza-ds-ArU"/>
+                                    <outletCollection property="countdownLabels" destination="aUc-w2-ESi" collectionClass="NSMutableArray" id="oS3-zF-ZMx"/>
+                                    <outletCollection property="countdownTitleLabels" destination="TRN-ai-erg" collectionClass="NSMutableArray" id="b8O-fM-X78"/>
+                                    <outletCollection property="countdownTitleLabels" destination="Rxf-0z-yfl" collectionClass="NSMutableArray" id="C2Z-BF-Iol"/>
+                                    <outletCollection property="countdownTitleLabels" destination="MSh-5a-oLv" collectionClass="NSMutableArray" id="evh-w7-wxd"/>
+                                    <outletCollection property="countdownTitleLabels" destination="tu3-ak-ZgB" collectionClass="NSMutableArray" id="9qj-o6-bRA"/>
+                                    <outletCollection property="countdownBackgroundViews" destination="gjt-EC-eQB" collectionClass="NSMutableArray" id="UwR-vQ-jXI"/>
+                                    <outletCollection property="countdownBackgroundViews" destination="zOR-wQ-ER5" collectionClass="NSMutableArray" id="eqi-iU-gjb"/>
+                                    <outletCollection property="countdownBackgroundViews" destination="Yta-HN-iv8" collectionClass="NSMutableArray" id="I9R-k6-GBR"/>
+                                    <outletCollection property="countdownBackgroundViews" destination="UDy-uB-T6t" collectionClass="NSMutableArray" id="uFt-D5-HmN"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="UpcomingHeader" id="hxk-zI-RUc" customClass="UpcomingLaunchesSectionHeader" customModule="Departing_Earth" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="428" height="30"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SpaceX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="Tfn-U4-buO">
-                                    <rect key="frame" x="20" y="0.0" width="374" height="30"/>
+                                    <rect key="frame" x="20" y="0.0" width="388" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -312,7 +317,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="LaunchDetailCollectionViewController" id="Qck-zt-PaL" customClass="LaunchDetailCollectionViewController" customModule="Departing_Earth" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cgA-xY-xe8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="liH-kB-zN4">
@@ -323,7 +328,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailTitleCell" id="WKK-Tc-orY" customClass="LaunchDetailTitleCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                <rect key="frame" x="7" y="0.0" width="414" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bJr-Hb-BAG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
@@ -336,7 +341,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" text="Launch Subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Kvz-Lg-c1D">
-                                            <rect key="frame" x="148" y="62" width="118.5" height="21"/>
+                                            <rect key="frame" x="147.66666666666666" y="62" width="118.66666666666666" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -360,20 +365,20 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailCountdownCell" id="74Y-dj-xff" customClass="LaunchDetailCountdownCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="103" width="414" height="70"/>
+                                <rect key="frame" x="7" y="103" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mor-ye-W6N">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1" placeholderIntrinsicWidth="332" placeholderIntrinsicHeight="52" translatesAutoresizingMaskIntoConstraints="NO" id="vJu-gS-cLk">
-                                            <rect key="frame" x="44.5" y="20" width="325" height="52"/>
+                                            <rect key="frame" x="44.666666666666657" y="20" width="325" height="52"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="gZe-IJ-hm8">
                                                     <rect key="frame" x="165" y="0.0" width="55" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="aHH-PJ-tce">
-                                                            <rect key="frame" x="18.5" y="9.5" width="18" height="21"/>
+                                                            <rect key="frame" x="18.333333333333343" y="9.6666666666666679" width="18" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -391,7 +396,7 @@
                                                     <rect key="frame" x="45" y="0.0" width="55" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="1uH-GY-buL">
-                                                            <rect key="frame" x="13.5" y="9.5" width="28.5" height="21"/>
+                                                            <rect key="frame" x="13.000000000000002" y="9.6666666666666679" width="28.666666666666671" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -406,7 +411,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-JU-Zn9">
-                                                    <rect key="frame" x="237.5" y="42" width="30" height="10"/>
+                                                    <rect key="frame" x="237.33333333333334" y="42" width="30.000000000000028" height="10"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -415,7 +420,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge4-Pv-1Ar">
-                                                            <rect key="frame" x="16" y="9.5" width="8" height="21"/>
+                                                            <rect key="frame" x="16" y="9.6666666666666679" width="8" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -438,7 +443,7 @@
                                                     <rect key="frame" x="105" y="0.0" width="55" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="7uq-kx-NSa">
-                                                            <rect key="frame" x="17.5" y="9.5" width="20.5" height="21"/>
+                                                            <rect key="frame" x="17" y="9.6666666666666679" width="20.666666666666671" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -453,16 +458,16 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ew-1L-eI0">
-                                                    <rect key="frame" x="64.5" y="42" width="16" height="10"/>
+                                                    <rect key="frame" x="64.333333333333343" y="42" width="16" height="10"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="7cc-Ar-NcG">
-                                                    <rect key="frame" x="225" y="0.0" width="55" height="40"/>
+                                                    <rect key="frame" x="225.00000000000003" y="0.0" width="54.999999999999972" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="ZtY-yV-k1u">
-                                                            <rect key="frame" x="17" y="9.5" width="21" height="21"/>
+                                                            <rect key="frame" x="17" y="9.6666666666666679" width="21" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -480,7 +485,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-t4-S0Q">
-                                                    <rect key="frame" x="122.5" y="42" width="20" height="10"/>
+                                                    <rect key="frame" x="122.33333333333334" y="42" width="20" height="10"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -536,64 +541,68 @@
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="414" height="70"/>
                                 <connections>
-                                    <outlet property="dayTitleLabel" destination="1Ew-1L-eI0" id="ddW-jB-CUf"/>
                                     <outlet property="daysBackgroundView" destination="oW1-hP-8VX" id="EFp-h0-7Cl"/>
                                     <outlet property="daysLabel" destination="1uH-GY-buL" id="SFH-IS-7gn"/>
-                                    <outlet property="hourTitleLabel" destination="JYe-t4-S0Q" id="nli-IT-qdS"/>
                                     <outlet property="hoursBackgroundView" destination="oAy-KN-Rfb" id="Eiy-cf-pBP"/>
                                     <outlet property="hoursLabel" destination="7uq-kx-NSa" id="M9s-sc-DyW"/>
-                                    <outlet property="minuteTitleLabel" destination="u7g-QO-vP0" id="mi0-R6-YfJ"/>
                                     <outlet property="minutesBackgroundView" destination="gZe-IJ-hm8" id="1Zg-b2-gOL"/>
                                     <outlet property="minutesLabel" destination="aHH-PJ-tce" id="Mam-Td-37M"/>
-                                    <outlet property="secondTitleLabel" destination="o9Z-JU-Zn9" id="SO9-Pq-4QF"/>
                                     <outlet property="secondsBackgroundView" destination="7cc-Ar-NcG" id="Mq8-Ud-izC"/>
                                     <outlet property="secondsLabel" destination="ZtY-yV-k1u" id="6X7-Kv-K9A"/>
                                     <outlet property="statusColourView" destination="V70-fs-diW" id="WVG-yB-VYG"/>
                                     <outlet property="tBackgroundView" destination="APo-Cp-v61" id="G8t-Um-EzK"/>
                                     <outlet property="tLabel" destination="ge4-Pv-1Ar" id="9BY-NS-neN"/>
+                                    <outletCollection property="countdownTitleLabels" destination="1Ew-1L-eI0" collectionClass="NSMutableArray" id="zG7-IG-y8X"/>
+                                    <outletCollection property="countdownTitleLabels" destination="JYe-t4-S0Q" collectionClass="NSMutableArray" id="IMl-5C-pW1"/>
+                                    <outletCollection property="countdownTitleLabels" destination="u7g-QO-vP0" collectionClass="NSMutableArray" id="Px4-bb-rmC"/>
+                                    <outletCollection property="countdownTitleLabels" destination="o9Z-JU-Zn9" collectionClass="NSMutableArray" id="gDN-JO-Ysf"/>
+                                    <outletCollection property="countdownLabels" destination="1uH-GY-buL" collectionClass="NSMutableArray" id="6dK-Dc-57s"/>
+                                    <outletCollection property="countdownLabels" destination="7uq-kx-NSa" collectionClass="NSMutableArray" id="EvG-GN-o8R"/>
+                                    <outletCollection property="countdownLabels" destination="aHH-PJ-tce" collectionClass="NSMutableArray" id="iZj-qh-Uhg"/>
+                                    <outletCollection property="countdownLabels" destination="ZtY-yV-k1u" collectionClass="NSMutableArray" id="1tb-HK-vAx"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LaunchDetailDateCell" id="PVQ-1E-Auy" customClass="LaunchDetailDateCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="183" width="414" height="87"/>
+                                <rect key="frame" x="7" y="183" width="414" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eO6-Ou-202">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00 Aaa 0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="Hhy-Cz-Ztq" userLabel="Date Label">
-                                            <rect key="frame" x="50" y="47.5" width="100" height="21"/>
+                                            <rect key="frame" x="50" y="47.666666666666664" width="100" height="20.999999999999993"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Oi6-yk-vM6">
-                                            <rect key="frame" x="20" y="46.5" width="25" height="22.5"/>
+                                            <rect key="frame" x="20" y="47.333333333333329" width="25" height="22.000000000000007"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="475-uo-FtV"/>
                                                 <constraint firstAttribute="width" constant="25" id="kFQ-mt-Spt"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jli-Q2-4eY">
-                                            <rect key="frame" x="170" y="46" width="25" height="24"/>
+                                            <rect key="frame" x="170" y="46.666666666666664" width="25" height="23.666666666666664"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="8uF-Q5-LcF"/>
                                                 <constraint firstAttribute="height" constant="25" id="E8Z-Wf-Ipn"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="FMM-gI-oKi" userLabel="Date Status Label">
-                                            <rect key="frame" x="20" y="20" width="76" height="20.5"/>
+                                            <rect key="frame" x="20" y="20" width="76" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="7Xr-ud-G5I" userLabel="Time Label">
-                                            <rect key="frame" x="200" y="48" width="46" height="20.5"/>
+                                            <rect key="frame" x="200" y="48" width="46" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzK-e3-G1E">
-                                            <rect key="frame" x="361" y="29.5" width="33" height="28.5"/>
+                                            <rect key="frame" x="361" y="29.333333333333336" width="33" height="28.333333333333336"/>
                                             <state key="normal">
                                                 <imageReference key="image" image="calendar.badge.plus" catalog="system" symbolScale="large"/>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
@@ -631,7 +640,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailMissionCell" id="XAN-aq-bSG" customClass="LaunchDetailMissionCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="280" width="414" height="123"/>
+                                <rect key="frame" x="7" y="280" width="414" height="123"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Ma-aM-8UY">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="123"/>
@@ -650,14 +659,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list.bullet.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kbd-rc-L9N">
-                                            <rect key="frame" x="20" y="47" width="25" height="22.5"/>
+                                            <rect key="frame" x="20" y="47.666666666666664" width="25" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="Bj2-E6-mte"/>
                                                 <constraint firstAttribute="height" constant="25" id="ssQ-q4-Ysg"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1yX-ow-C5F">
-                                            <rect key="frame" x="20" y="76.5" width="25" height="24"/>
+                                            <rect key="frame" x="20" y="77" width="25" height="23.666666666666671"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="6oF-Xd-n4o"/>
                                                 <constraint firstAttribute="width" constant="25" id="N7f-7h-Kep"/>
@@ -670,7 +679,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JJ8-YT-aKt">
-                                            <rect key="frame" x="383.5" y="54.5" width="10.5" height="14"/>
+                                            <rect key="frame" x="383.66666666666669" y="54.666666666666671" width="10.333333333333314" height="14.000000000000007"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14"/>
                                         </imageView>
                                     </subviews>
@@ -703,23 +712,23 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="LaunchDetailPadCell" id="wal-uj-37D" customClass="LaunchDetailPadCell" customModule="Departing_Earth" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="413" width="414" height="400"/>
+                                <rect key="frame" x="7" y="413" width="414" height="400"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wEw-bZ-PLy">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" text="Pad Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="bCT-4r-uwx">
-                                            <rect key="frame" x="20" y="20" width="78.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="20" width="78.666666666666671" height="20.666666666666671"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xpr-4h-IaK">
-                                            <rect key="frame" x="10" y="90.5" width="394" height="299.5"/>
+                                            <rect key="frame" x="10" y="90.666666666666657" width="394" height="299.33333333333337"/>
                                         </mapView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rdL-GT-mc8">
-                                            <rect key="frame" x="20" y="46" width="25" height="24"/>
+                                            <rect key="frame" x="20" y="46.666666666666664" width="25" height="23.666666666666664"/>
                                             <color key="tintColor" systemColor="secondaryLabelColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="LUW-25-7X9"/>
@@ -727,13 +736,13 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="2" horizontalCompressionResistancePriority="1" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="RAz-5N-l6g">
-                                            <rect key="frame" x="50" y="47.5" width="115" height="21"/>
+                                            <rect key="frame" x="50" y="47.666666666666664" width="115" height="20.999999999999993"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JFC-w2-Pvj">
-                                            <rect key="frame" x="383.5" y="21.5" width="10.5" height="47.5"/>
+                                            <rect key="frame" x="383.66666666666669" y="21.333333333333332" width="10.333333333333314" height="48"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14"/>
                                         </imageView>
                                     </subviews>
@@ -789,20 +798,20 @@
             <objects>
                 <viewController storyboardIdentifier="missionDetailViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="a6S-NR-WOd" customClass="MissionDetailViewController" customModule="Departing_Earth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BXl-v1-SAi" customClass="detail">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vM-pP-nYY" userLabel="ousideButton">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                                 <connections>
                                     <action selector="doneButtonDidTapped" destination="a6S-NR-WOd" eventType="touchUpInside" id="66D-Ge-QfA"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nL3-W0-0Pk">
-                                <rect key="frame" x="40" y="251.5" width="334" height="333.5"/>
+                                <rect key="frame" x="40" y="274.66666666666663" width="348" height="316.66666666666663"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ae6-Jy-A8D">
-                                        <rect key="frame" x="30" y="53.5" width="274" height="250"/>
+                                        <rect key="frame" x="30" y="53.333333333333329" width="288" height="233.33333333333337"/>
                                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -810,7 +819,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" text="Mission Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Lde-k2-C3t">
-                                        <rect key="frame" x="40" y="30" width="254" height="20.5"/>
+                                        <rect key="frame" x="40" y="30" width="268" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -857,7 +866,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sn5-fy-kzB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="5dJ-dX-7gf">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="428" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

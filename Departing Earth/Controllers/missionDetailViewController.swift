@@ -12,7 +12,6 @@ class MissionDetailViewController: UIViewController {
     
     @IBOutlet var textBackgroundView: UIView!
     @IBOutlet var missionTitleLabel: UILabel!
-    //@IBOutlet var missionTypeLabel: UILabel!
     @IBOutlet var missionDescriptionTextView: UITextView!
     
     @IBOutlet var doneButton: UIButton!

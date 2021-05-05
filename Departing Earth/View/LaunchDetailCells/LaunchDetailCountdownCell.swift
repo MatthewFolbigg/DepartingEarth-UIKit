@@ -10,6 +10,7 @@ import UIKit
 
 class LaunchDetailCountdownCell: LaunchDetailCell {
     
+    @IBOutlet var countdownLabels: [UILabel]!
     @IBOutlet var tLabel: UILabel!
     @IBOutlet var daysLabel: UILabel!
     @IBOutlet var hoursLabel: UILabel!
@@ -21,13 +22,9 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
     @IBOutlet var hoursBackgroundView: UIView!
     @IBOutlet var minutesBackgroundView: UIView!
     @IBOutlet var secondsBackgroundView: UIView!
-    
     @IBOutlet var statusColourView: UIView!
-        
-    @IBOutlet var dayTitleLabel: UILabel!
-    @IBOutlet var hourTitleLabel: UILabel!
-    @IBOutlet var minuteTitleLabel: UILabel!
-    @IBOutlet var secondTitleLabel: UILabel!
+    @IBOutlet var countdownTitleLabels: [UILabel]!
+
     
     var countdownBackgrounds: [UIView]?
      
@@ -41,9 +38,6 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
     
     private func setupCountdowUI() {
         let countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView ]
-        let countdownLabels = [ daysLabel, hoursLabel, minutesLabel, secondsLabel, tLabel ]
-        let countdownTitleLabels = [ dayTitleLabel, hourTitleLabel, minuteTitleLabel, secondTitleLabel ]
-        
         for countdownBackground in countdownBackgrounds {
             setRoundedCorners(view: countdownBackground!, modifier: 2)
         }
@@ -52,18 +46,17 @@ class LaunchDetailCountdownCell: LaunchDetailCell {
         setRoundedCorners(view: statusColourView, modifier: 2)
         
         for title in countdownTitleLabels {
-            title?.font = Fonts.detailSmall.uiFont
+            title.font = Fonts.detailSmall.uiFont
         }
         for label in countdownLabels {
-            label!.font = Fonts.detailCountdown.uiFont
+            label.font = Fonts.detailCountdown.uiFont
         }
     }
     
     func updateCountdown(launch: Launch, status: StatusController) {
-        if launch.isPendingDate || launch.isPendingTime {
-            //self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui
-        }
-            
+//        if launch.isPendingDate || launch.isPendingTime {
+//            self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui
+//        }
         daysLabel.text = status.countdownComponents.days
         hoursLabel.text = status.countdownComponents.hours
         minutesLabel.text = status.countdownComponents.minutes

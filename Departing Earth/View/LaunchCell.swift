@@ -16,14 +16,10 @@ class LaunchCell: UICollectionViewCell {
     @IBOutlet var hoursLabel: UILabel!
     @IBOutlet var minutesLabel: UILabel!
     @IBOutlet var secondsLabel: UILabel!
-    @IBOutlet var daysTitleLabel: UILabel!
-    @IBOutlet var hoursTitleLabel: UILabel!
-    @IBOutlet var minutesTitleLabel: UILabel!
-    @IBOutlet var secondsTitleLabel: UILabel!
-    @IBOutlet var daysBackgroundView: UIView!
-    @IBOutlet var hoursBackgroundView: UIView!
-    @IBOutlet var minutesBackgroundView: UIView!
-    @IBOutlet var secondsBackgroundView: UIView!
+    @IBOutlet var countdownLabels: [UILabel]!
+    @IBOutlet var countdownTitleLabels: [UILabel]!
+    
+    @IBOutlet var countdownBackgroundViews: [UIView]!
     @IBOutlet var statusColorView: UIView!
     @IBOutlet var tMinusPlusLabel: UILabel!
     @IBOutlet var tMinusPlusBackgroundView: UIView!
@@ -39,7 +35,6 @@ class LaunchCell: UICollectionViewCell {
     var launch: Launch?
     var statusController: StatusController?
     var cornerRadiusConstant: CGFloat = 30
-    var countdownLabels: [UILabel]?
     var countdownBackgrounds: [UIView]?
     
     //MARK:-
@@ -50,8 +45,6 @@ class LaunchCell: UICollectionViewCell {
     func setupCell() {
         guard let launch = launch else { return }
         guard let statusController = statusController else { return }
-        countdownLabels = [ daysLabel, hoursLabel, minutesLabel, secondsLabel, tMinusPlusLabel ]
-        countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView, tMinusPlusBackgroundView ]
         setupBackground()
         setupCountdown()
         updateLabelText(launch: launch)
@@ -100,17 +93,15 @@ class LaunchCell: UICollectionViewCell {
     
     //MARK: Countdown Methods
     func setupCountdown() {
-        let countdownBackgrounds = [ daysBackgroundView, hoursBackgroundView, minutesBackgroundView, secondsBackgroundView, tMinusPlusBackgroundView ]
-        let countdownTitleLabels = [ daysTitleLabel, hoursTitleLabel, minutesTitleLabel, secondsTitleLabel ]
         statusColorView?.layer.cornerCurve = .continuous
         statusColorView?.layer.cornerRadius = (statusColorView?.frame.width)!/(cornerRadiusConstant*2)
-        for countdownBackground in countdownBackgrounds {
-            countdownBackground?.layer.cornerCurve = .continuous
-            countdownBackground?.layer.cornerRadius = (countdownBackground?.frame.width)!/(cornerRadiusConstant/4)
+        for countdownBackground in countdownBackgroundViews {
+            countdownBackground.layer.cornerCurve = .continuous
+            countdownBackground.layer.cornerRadius = (countdownBackground.frame.width)/(cornerRadiusConstant/4)
         }
         tMinusPlusBackgroundView.layer.cornerRadius = tMinusPlusBackgroundView.frame.width/(cornerRadiusConstant/8)
         for title in countdownTitleLabels {
-            title?.font = Fonts.cellSmall.uiFont
+            title.font = Fonts.cellSmall.uiFont
         }
         for label in countdownLabels! {
             label.font = Fonts.cellCountdown.uiFont
@@ -118,9 +109,9 @@ class LaunchCell: UICollectionViewCell {
     }
             
     func updateCountdown(launch: Launch, status: StatusController) {
-        if launch.isPendingDate || launch.isPendingTime {
-            //self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui
-        }
+//        if launch.isPendingDate || launch.isPendingTime {
+//            self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui
+//        }
         statusColorView.backgroundColor = status.color
         daysLabel.text = status.countdownComponents.days
         hoursLabel.text = status.countdownComponents.hours
