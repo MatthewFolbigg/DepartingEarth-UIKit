@@ -22,7 +22,7 @@ class MissionDetailViewController: UIViewController {
         setTextForLabels()
         setFontsForLabels()
         textBackgroundView.alpha = 0.95
-        missionTitleLabel.textColor = Colours.spaceSuitOrange.ui
+        missionTitleLabel.textColor = AppUI.accentColour
         textBackgroundView.layer.shadowOpacity = 0.2
         textBackgroundView.layer.shadowRadius = 20
         textBackgroundView.layer.cornerRadius = textBackgroundView.frame.width/20
@@ -34,13 +34,11 @@ class MissionDetailViewController: UIViewController {
     
     func setTextForLabels() {
         missionTitleLabel.text = mission.name
-        //missionTypeLabel.text = mission.type
         missionDescriptionTextView.text = mission.objectives
     }
     
     func setFontsForLabels() {
         missionTitleLabel.font = Fonts.cellTitle.uiFont
-        //missionTypeLabel.font = Fonts.cellSubtitleTwo.uiFont
         missionDescriptionTextView.font = Fonts.customMonospacedDigit(15, .light).uiFont
     }
     

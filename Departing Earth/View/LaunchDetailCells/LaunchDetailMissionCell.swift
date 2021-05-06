@@ -38,6 +38,6 @@ class LaunchDetailMissionCell: LaunchDetailCell {
             missionTypeImageView.image = MissionController.missionTypeIconFor(mission: mission)
         }
         orbitImageView.tintColor = .secondaryLabel
-        missionInfoImageView.tintColor = Colours.spaceSuitOrange.ui
+        missionInfoImageView.tintColor = AppUI.accentColour
     }
 }

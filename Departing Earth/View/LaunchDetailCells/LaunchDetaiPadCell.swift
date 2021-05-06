@@ -22,7 +22,7 @@ class LaunchDetailPadCell: LaunchDetailCell {
         guard let launch = launch else { return }
         setFontToTitle(labels: [padNameLabel])
         setFontToBody(labels: [locationNameLabel])
-        openInMapsImageView.tintColor = Colours.spaceSuitOrange.ui
+        openInMapsImageView.tintColor = AppUI.accentColour
         setRoundedCorners(view: padMapView, modifier: 2)
         setLabelContent(launch: launch)
         setupBackground()

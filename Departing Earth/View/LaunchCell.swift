@@ -124,12 +124,14 @@ class LaunchCell: UICollectionViewCell {
         if label.text != newVlaue {
             countInAnimator.addAnimations {
                 label.transform = CGAffineTransform(scaleX: 1, y: 0.1)
+                //label.transform = CGAffineTransform(translationX: 0, y: 1)
                 label.alpha = 0.8
             }
             countInAnimator.addCompletion { _ in
                 label.text = newVlaue
                 self.countOutAnimator.addAnimations {
                     label.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    //label.transform = CGAffineTransform(translationX: 0, y: 0)
                     label.alpha = 1
                 }
                 self.countOutAnimator.startAnimation()

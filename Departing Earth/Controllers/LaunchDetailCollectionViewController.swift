@@ -73,6 +73,7 @@ extension LaunchDetailCollectionViewController: EKEventEditViewDelegate, UINavig
                 eventVC.editViewDelegate = self
                 eventVC.eventStore = self.eventStore
                 eventVC.event = launchEvent
+                eventVC.navigationBar.tintColor = AppUI.accentColour
                 self.present(eventVC, animated: true, completion: nil)
             }
         }
