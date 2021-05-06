@@ -110,7 +110,8 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
         
     //MARK: Countdown Refresh Timer
     func setupCountdownUpdateTimer() {
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countdownUpdateTimerDidFire), userInfo: nil, repeats: true)
+        let timer = Timer(timeInterval: 1, target: self, selector: #selector(self.countdownUpdateTimerDidFire), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     @objc func countdownUpdateTimerDidFire() {

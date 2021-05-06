@@ -36,6 +36,8 @@ class LaunchCell: UICollectionViewCell {
     var statusController: StatusController?
     var cornerRadiusConstant: CGFloat = 30
     var countdownBackgrounds: [UIView]?
+    let countInAnimator = UIViewPropertyAnimator(duration: 0.05, curve: .easeIn)
+    let countOutAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .easeOut)
     
     //MARK:-
     override func prepareForReuse() {
@@ -109,15 +111,31 @@ class LaunchCell: UICollectionViewCell {
     }
             
     func updateCountdown(launch: Launch, status: StatusController) {
-//        if launch.isPendingDate || launch.isPendingTime {
-//            self.countdownBackgroundView.backgroundColor = Colours.moonSurfaceGrey.ui
-//        }
         statusColorView.backgroundColor = status.color
-        daysLabel.text = status.countdownComponents.days
-        hoursLabel.text = status.countdownComponents.hours
-        minutesLabel.text = status.countdownComponents.minutes
-        secondsLabel.text = status.countdownComponents.seconds
-        tMinusPlusLabel.text = status.countdownComponents.t
+        let components = status.countdownComponents
+        animateCountdownUpdateFor(label: daysLabel, newVlaue: components.days)
+        animateCountdownUpdateFor(label: hoursLabel, newVlaue: components.hours)
+        animateCountdownUpdateFor(label: minutesLabel, newVlaue: components.minutes)
+        animateCountdownUpdateFor(label: secondsLabel, newVlaue: components.seconds)
+        animateCountdownUpdateFor(label: tMinusPlusLabel, newVlaue: components.t)
+    }
+    
+    func animateCountdownUpdateFor(label: UILabel, newVlaue: String) {
+        if label.text != newVlaue {
+            countInAnimator.addAnimations {
+                label.transform = CGAffineTransform(scaleX: 1, y: 0.1)
+                label.alpha = 0.8
+            }
+            countInAnimator.addCompletion { _ in
+                label.text = newVlaue
+                self.countOutAnimator.addAnimations {
+                    label.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    label.alpha = 1
+                }
+                self.countOutAnimator.startAnimation()
+            }
+            countInAnimator.startAnimation()
+        }
     }
     
 }
