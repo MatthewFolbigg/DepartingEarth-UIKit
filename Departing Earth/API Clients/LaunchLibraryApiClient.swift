@@ -48,33 +48,10 @@ class LaunchLibraryApiClient {
 extension LaunchLibraryApiClient {
     
     //MARK: Get Upcoming Launches
-    static func getUpcomingLaunches(completion: @escaping ([LaunchInfo]?, Error?) -> Void) {
+    static func getUpcomingLaunches(completion: @escaping (UpcomingLaunchApiResponse?, Error?) -> Void) {
         let url = Endpoint.getUpcomingLaunches.url!
         print("Getting Upcoming Launches: \(url)")
-        let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
-                if let error = setErrorType(error: error, response: response) {
-                    completion(nil, error)
-                    return
-                }
-                guard let data = data else {
-                    completion(nil, downloadError.nilData)
-                    return
-                }
-            
-                let decoder = JSONDecoder()
-                do {
-                    let jsonData = try decoder.decode(UpcomingLaunchApiResponse.self, from: data)
-                    completion(jsonData.results, nil)
-                
-                } catch {
-                    print("\(#file) \(#function) JSON Decoding Failed: \(error.localizedDescription)")
-                    completion(nil, downloadError.decodingFailed)
-                }
-            }
-        }
-        task.resume()
+        getJsonDataFromApi(url: url, resultType: UpcomingLaunchApiResponse.self, completion: completion)
     }
             
     static func getImage(urlString: String, completion: @escaping (UIImage?, Error?) -> Void) {
@@ -105,6 +82,42 @@ extension LaunchLibraryApiClient {
         }
         task.resume()
     }
+    
+    static func getJsonDataFromApi<ResultType: Decodable>(url: URL, resultType: ResultType.Type, completion: @escaping (ResultType?, Error?) -> Void) {
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let error = setErrorType(error: error, response: response) {
+                    completion(nil, error)
+                    return
+                }
+                guard let data = data else {
+                    completion(nil, downloadError.nilData)
+                    return
+                }
+            
+                if let decodedData = decodeLaunchLibraryResult(jsonData: data, to: resultType.self) {
+                    completion(decodedData, nil)
+                } else {
+                    completion(nil, downloadError.decodingFailed)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    static func decodeLaunchLibraryResult<ResultType: Decodable>(jsonData: Data, to resultType: ResultType.Type) -> ResultType? {
+        let decoder = JSONDecoder()
+        do {
+            let jsonData = try decoder.decode(ResultType.self, from: jsonData)
+            return jsonData
+        
+        } catch {
+            print("\(#file) \(#function) JSON Decoding Failed: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
 }
 
 //MARK: Errors

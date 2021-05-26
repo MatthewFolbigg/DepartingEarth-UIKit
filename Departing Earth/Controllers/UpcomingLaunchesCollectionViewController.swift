@@ -74,8 +74,8 @@ class UpcomingLaunchesCollectionViewController: UICollectionViewController {
     
     func downloadUpcomingLaunches() {
         filterBarButtonItem.isEnabled = false
-        LaunchLibraryApiClient.getUpcomingLaunches { (returnedLaunches, error) in
-            guard let returnedLaunches = returnedLaunches else {
+        LaunchLibraryApiClient.getUpcomingLaunches { (response, error) in
+            guard let returnedLaunches = response?.results else {
                 self.mainActivityIndicator.stopAnimating()
                 self.collectionView.refreshControl?.endRefreshing()
                 self.filterBarButtonItem.isEnabled = true
